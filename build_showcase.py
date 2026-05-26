@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 DATA = ROOT / "data"
 OUT = ROOT / "docs" / "index.html"
+README = ROOT / "README.md"
 
 MEDALS = ["🥇", "🥈", "🥉"]
 PROVIDER_LABEL = {"anthropic": "Anthropic", "openai": "OpenAI", "google": "Google"}
@@ -207,10 +208,39 @@ def build() -> str:
 """
 
 
+def build_readme_table() -> str:
+    from scoring import compute_leaderboard
+    rows = compute_leaderboard()["leaderboard"]
+    lines = ["| # | Model | Avg %ile | LOL rate |", "|---:|---|---:|---:|"]
+    for i, r in enumerate(rows, 1):
+        pct = f"{r['avg_percentile']:.1f}" if r["avg_percentile"] is not None else "—"
+        lol = f"{r['lol_rate']:.0f}%" if r["lol_rate"] is not None else "—"
+        lines.append(f"| {i} | {r['display_name']} | {pct} | {lol} |")
+    return "\n".join(lines)
+
+
+def update_readme() -> bool:
+    if not README.exists():
+        return False
+    text = README.read_text()
+    start, end = "<!-- leaderboard:start -->", "<!-- leaderboard:end -->"
+    if start not in text or end not in text:
+        return False
+    before, _, rest = text.partition(start)
+    _, _, after = rest.partition(end)
+    new = f"{before}{start}\n{build_readme_table()}\n{end}{after}"
+    if new != text:
+        README.write_text(new)
+        return True
+    return False
+
+
 def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(build())
     print(f"Wrote {OUT}")
+    if update_readme():
+        print(f"Updated {README}")
 
 
 if __name__ == "__main__":
