@@ -3,12 +3,12 @@ from __future__ import annotations
 
 import html
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-PROJECT = ROOT.parent
 DATA = ROOT / "data"
-OUT = PROJECT / "docs" / "index.html"
+OUT = ROOT / "docs" / "index.html"
 
 MEDALS = ["🥇", "🥈", "🥉"]
 PROVIDER_LABEL = {"anthropic": "Anthropic", "openai": "OpenAI", "google": "Google"}
@@ -28,6 +28,18 @@ def fmt_money(x: float | None) -> str:
 
 def escape(s: str) -> str:
     return html.escape(s, quote=True)
+
+
+def discover_repo_url() -> str | None:
+    try:
+        url = subprocess.check_output(
+            ["git", "remote", "get-url", "origin"], cwd=ROOT, stderr=subprocess.DEVNULL
+        ).decode().strip()
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return None
+    if url.startswith("git@github.com:"):
+        url = "https://github.com/" + url[len("git@github.com:"):]
+    return url.removesuffix(".git") or None
 
 
 def build() -> str:
@@ -150,6 +162,11 @@ def build() -> str:
             + "</div>"
         )
 
+    repo_url = discover_repo_url()
+    source_link = (
+        f'Source: <a href="{escape(repo_url)}">{escape(repo_url.replace("https://", ""))}</a>'
+        if repo_url else 'Source on GitHub (link not yet configured)'
+    )
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -182,7 +199,7 @@ def build() -> str:
 
 <footer>
 <p><strong>Methodology.</strong> Each model is invoked at its provider's maximum reasoning tier (Anthropic <code>effort:max</code>, OpenAI <code>reasoning:xhigh</code>, Google <code>thinking_level:high</code>), with no tools or web access. The single prompt is: <em>"Write one roast joke about {{name}}. It will be your entry into a competitive roast battle judged by humans."</em> A human rater then drags each joke into a per-personality ranked list (best at top); the headline number is the average percentile across personalities. LOL rate is a separate flag for jokes that made the rater laugh out loud.</p>
-<p>Source: <a href="https://github.com/">github.com/…/roast_bench</a></p>
+<p>{source_link}</p>
 </footer>
 </div>
 </body>
