@@ -1,4 +1,5 @@
 {
+  "_comment": "prices_per_mtok are $/M tokens; thinking/reasoning tokens are billed as output. Edit if pricing changes.",
   "models": [
     {
       "id": "claude-opus-4-7",
@@ -7,7 +8,8 @@
       "params": {
         "effort": "max",
         "max_tokens": 64000
-      }
+      },
+      "prices_per_mtok": {"input": 15.0, "output": 75.0}
     },
     {
       "id": "gpt-5.5",
@@ -15,8 +17,9 @@
       "display_name": "GPT-5.5",
       "params": {
         "reasoning_effort": "xhigh",
-        "max_output_tokens": 50000
-      }
+        "max_output_tokens": 64000
+      },
+      "prices_per_mtok": {"input": 10.0, "output": 30.0}
     },
     {
       "id": "gemini-3.1-pro-preview",
@@ -24,8 +27,9 @@
       "display_name": "Gemini 3.1 Pro",
       "params": {
         "thinking_level": "high",
-        "max_output_tokens": 16000
-      }
+        "max_output_tokens": 64000
+      },
+      "prices_per_mtok": {"input": 2.5, "output": 10.0}
     }
   ]
 }

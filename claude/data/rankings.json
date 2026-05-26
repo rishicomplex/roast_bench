@@ -1,15 +1,55 @@
 {
   "rankings": {
-    "hikaru_nakamura": [],
-    "rfk_jr": [],
-    "sherlock_holmes": [],
-    "demis_hassabis": [],
-    "steph_curry": [],
-    "sam_altman": [],
-    "lisa_manoban": [],
-    "alex_honnold": [],
-    "jon_stewart": [],
-    "dario_amodei": []
+    "hikaru_nakamura": [
+      "claude-opus-4-7",
+      "gemini-3.1-pro-preview",
+      "gpt-5.5"
+    ],
+    "rfk_jr": [
+      "gemini-3.1-pro-preview",
+      "claude-opus-4-7",
+      "gpt-5.5"
+    ],
+    "sherlock_holmes": [
+      "gemini-3.1-pro-preview",
+      "gpt-5.5",
+      "claude-opus-4-7"
+    ],
+    "demis_hassabis": [
+      "gpt-5.5",
+      "claude-opus-4-7",
+      "gemini-3.1-pro-preview"
+    ],
+    "steph_curry": [
+      "claude-opus-4-7",
+      "gemini-3.1-pro-preview",
+      "gpt-5.5"
+    ],
+    "sam_altman": [
+      "gpt-5.5",
+      "gemini-3.1-pro-preview",
+      "claude-opus-4-7"
+    ],
+    "lisa_manoban": [
+      "claude-opus-4-7",
+      "gemini-3.1-pro-preview",
+      "gpt-5.5"
+    ],
+    "alex_honnold": [
+      "gpt-5.5",
+      "gemini-3.1-pro-preview",
+      "claude-opus-4-7"
+    ],
+    "jon_stewart": [
+      "gpt-5.5",
+      "gemini-3.1-pro-preview",
+      "claude-opus-4-7"
+    ],
+    "dario_amodei": [
+      "claude-opus-4-7",
+      "gemini-3.1-pro-preview",
+      "gpt-5.5"
+    ]
   },
   "lol_flags": {
     "hikaru_nakamura": [],
@@ -18,7 +58,9 @@
     "demis_hassabis": [],
     "steph_curry": [],
     "sam_altman": [],
-    "lisa_manoban": [],
+    "lisa_manoban": [
+      "claude-opus-4-7"
+    ],
     "alex_honnold": [],
     "jon_stewart": [],
     "dario_amodei": []

@@ -25,6 +25,7 @@ def main() -> int:
     ap.add_argument("--params", default="{}", help="JSON params override")
     ap.add_argument("--skip-generate", action="store_true", help="Reuse existing jokes file")
     ap.add_argument("--overwrite", action="store_true", help="Regenerate even if jokes file exists")
+    ap.add_argument("--workers", type=int, default=5, help="Parallel API calls")
     ap.add_argument("--host", default="127.0.0.1")
     ap.add_argument("--port", type=int, default=5000)
     args = ap.parse_args()
@@ -47,7 +48,7 @@ def main() -> int:
     out_path = JOKES_DIR / f"{args.id}.json"
     if not args.skip_generate and (not out_path.exists() or args.overwrite):
         print(f"→ Generating jokes for {model['display_name']} ({model['provider']})…", file=sys.stderr)
-        result = generate_for_model(model, personalities)
+        result = generate_for_model(model, personalities, max_workers=args.workers)
         save_json(out_path, result)
         print(f"✓ Saved {out_path}", file=sys.stderr)
     elif out_path.exists():

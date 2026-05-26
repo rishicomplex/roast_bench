@@ -1,0 +1,86 @@
+{
+  "model_id": "gemini-3.1-pro-preview",
+  "provider": "google",
+  "display_name": "Gemini 3.1 Pro",
+  "jokes": {
+    "hikaru_nakamura": "\"Hikaru Nakamura is famous for staring up at the ceiling when he calculates his moves. Everyone thinks he's visualizing the board, but really, it's just the only way he can make eye contact with Magnus Carlsen.\"",
+    "rfk_jr": "Robert F. Kennedy Jr. recently revealed that a parasitic worm ate a portion of his brain and then mysteriously died. Honestly, you have to respect a guy whose head is so empty he managed to starve a parasite to death.",
+    "sherlock_holmes": "Sherlock, it’s amazing that you can look at a single speck of mud on a boot and instantly deduce a man’s occupation, hobbies, and deepest secrets... which is honestly incredible for a guy who couldn't find a clitoris if he had a magnifying glass and Watson holding the flashlight.",
+    "demis_hassabis": "Demis Hassabis spent ten years and billions of dollars building a supercomputer just to play a board game. Because when you’re a former child chess prodigy, inventing artificial intelligence is genuinely easier than making a real friend.",
+    "steph_curry": "Steph Curry has the greatest aim in NBA history. The man can effortlessly drain a shot from forty feet away... so it’s honestly baffling that he still hasn't managed to shoot the smartphone out of Ayesha's hands.",
+    "sam_altman": "Sam Altman keeps warning us that ChatGPT is going to take all of our jobs, which is pretty bold talk from a guy who got fired and his own AI couldn't even cover his shift for a three-day weekend.",
+    "lisa_manoban": "Here is your roast joke, designed to hit hard but stay focused on her career for a live battle:\n\n\"Lisa’s massive solo hit is called *Money*—which makes perfect sense, because every time I hear one of her English rap verses, I feel like I'm entitled to financial compensation.\" \n\n**Delivery tip:** Pause for a split second right after \"perfect sense,\" to let the audience think you're going to give her a compliment about being rich, before dropping the punchline.",
+    "alex_honnold": "Alex Honnold is famous for climbing 3,000-foot cliffs without a rope. It’s an incredible achievement that requires peak physical condition, absolutely zero fear of death, and the kind of profound, untreated autism that makes a man look at a sheer granite wall and think, \"Finally... something easier than making eye contact.\"",
+    "jon_stewart": "Jon Stewart recently returned to host *The Daily Show* one night a week, and honestly, it’s inspiring. Because nothing says \"champion of progressive values\" quite like a rich, grumpy white guy coming out of retirement to take his job back from an African immigrant.",
+    "dario_amodei": "\"Dario Amodei built Anthropic on the promise of creating an AI that is completely harmless, totally unthreatening, and immediately shuts down if you ask it to be edgy. Congratulations, Dario—you spent billions of dollars just to successfully digitize your own personality.\""
+  },
+  "usage": {
+    "hikaru_nakamura": {
+      "input": 24,
+      "output": 1982,
+      "thoughts": 1935
+    },
+    "rfk_jr": {
+      "input": 26,
+      "output": 1511,
+      "thoughts": 1466
+    },
+    "sherlock_holmes": {
+      "input": 23,
+      "output": 1576,
+      "thoughts": 1513
+    },
+    "demis_hassabis": {
+      "input": 25,
+      "output": 2774,
+      "thoughts": 2728
+    },
+    "steph_curry": {
+      "input": 23,
+      "output": 1612,
+      "thoughts": 1565
+    },
+    "sam_altman": {
+      "input": 23,
+      "output": 1568,
+      "thoughts": 1523
+    },
+    "lisa_manoban": {
+      "input": 24,
+      "output": 1412,
+      "thoughts": 1308
+    },
+    "alex_honnold": {
+      "input": 25,
+      "output": 2175,
+      "thoughts": 2105
+    },
+    "jon_stewart": {
+      "input": 23,
+      "output": 1099,
+      "thoughts": 1044
+    },
+    "dario_amodei": {
+      "input": 25,
+      "output": 1488,
+      "thoughts": 1433
+    }
+  },
+  "cost_usd": {
+    "hikaru_nakamura": 0.01988,
+    "rfk_jr": 0.015175000000000001,
+    "sherlock_holmes": 0.015817499999999998,
+    "demis_hassabis": 0.0278025,
+    "steph_curry": 0.016177499999999997,
+    "sam_altman": 0.015737499999999998,
+    "lisa_manoban": 0.01418,
+    "alex_honnold": 0.0218125,
+    "jon_stewart": 0.0110475,
+    "dario_amodei": 0.0149425
+  },
+  "totals": {
+    "input_tokens": 241,
+    "output_tokens": 17197,
+    "cost_usd": 0.1725725
+  }
+}

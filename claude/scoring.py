@@ -26,6 +26,13 @@ def percentile(rank: int, n: int) -> float | None:
     return (n - 1 - rank) / (n - 1) * 100.0
 
 
+def _load_totals(model_id: str) -> dict:
+    p = DATA / "jokes" / f"{model_id}.json"
+    if not p.exists():
+        return {}
+    return load_json(p).get("totals", {})
+
+
 def compute_leaderboard() -> dict:
     personalities = load_json(ROOT / "personalities.json")["personalities"]
     models = {m["id"]: m for m in load_json(ROOT / "models.json")["models"]}
@@ -33,6 +40,7 @@ def compute_leaderboard() -> dict:
 
     per_model: dict[str, dict] = {}
     for mid, m in models.items():
+        totals = _load_totals(mid)
         per_model[mid] = {
             "model_id": mid,
             "display_name": m.get("display_name", mid),
@@ -40,6 +48,9 @@ def compute_leaderboard() -> dict:
             "percentiles": {},
             "jokes_rated": 0,
             "lol_count": 0,
+            "cost_usd": totals.get("cost_usd"),
+            "input_tokens": totals.get("input_tokens"),
+            "output_tokens": totals.get("output_tokens"),
         }
 
     for p in personalities:
@@ -69,6 +80,9 @@ def compute_leaderboard() -> dict:
             "lol_rate": lol_rate,
             "jokes_rated": entry["jokes_rated"],
             "lol_count": entry["lol_count"],
+            "cost_usd": entry["cost_usd"],
+            "input_tokens": entry["input_tokens"],
+            "output_tokens": entry["output_tokens"],
             "per_personality": entry["percentiles"],
         })
 

@@ -23,6 +23,8 @@
             <th>Avg %ile</th>
             <th>LOL rate</th>
             <th>Rated</th>
+            <th>Cost</th>
+            <th>Tokens (in/out)</th>
             <th></th>
           </tr>
         </thead>
@@ -35,6 +37,8 @@
             <td>{% if row.avg_percentile is not none %}{{ "%.1f"|format(row.avg_percentile) }}{% else %}—{% endif %}</td>
             <td>{% if row.lol_rate is not none %}{{ "%.0f"|format(row.lol_rate) }}%{% else %}—{% endif %}</td>
             <td class="dim">{{ row.jokes_rated }}/{{ personalities|length }}</td>
+            <td class="dim">{% if row.cost_usd is not none %}${{ "%.3f"|format(row.cost_usd) }}{% else %}—{% endif %}</td>
+            <td class="dim">{% if row.input_tokens is not none %}{{ row.input_tokens }} / {{ row.output_tokens }}{% else %}—{% endif %}</td>
             <td>
               {% if progress[row.model_id].next %}
                 <a class="btn" href="{{ url_for('rate_model', model_id=row.model_id) }}">Rate ({{ progress[row.model_id].unranked|length }} left)</a>

@@ -1,0 +1,76 @@
+{
+  "leaderboard": [
+    {
+      "model_id": "gemini-3.1-pro-preview",
+      "display_name": "Gemini 3.1 Pro",
+      "provider": "google",
+      "avg_percentile": 55.0,
+      "lol_rate": 0.0,
+      "jokes_rated": 10,
+      "lol_count": 0,
+      "cost_usd": 0.1725725,
+      "input_tokens": 241,
+      "output_tokens": 17197,
+      "per_personality": {
+        "hikaru_nakamura": 50.0,
+        "rfk_jr": 100.0,
+        "sherlock_holmes": 100.0,
+        "demis_hassabis": 0.0,
+        "steph_curry": 50.0,
+        "sam_altman": 50.0,
+        "lisa_manoban": 50.0,
+        "alex_honnold": 50.0,
+        "jon_stewart": 50.0,
+        "dario_amodei": 50.0
+      }
+    },
+    {
+      "model_id": "claude-opus-4-7",
+      "display_name": "Claude Opus 4.7",
+      "provider": "anthropic",
+      "avg_percentile": 50.0,
+      "lol_rate": 10.0,
+      "jokes_rated": 10,
+      "lol_count": 1,
+      "cost_usd": 2.4927449999999998,
+      "input_tokens": 493,
+      "output_tokens": 33138,
+      "per_personality": {
+        "hikaru_nakamura": 100.0,
+        "rfk_jr": 50.0,
+        "sherlock_holmes": 0.0,
+        "demis_hassabis": 50.0,
+        "steph_curry": 100.0,
+        "sam_altman": 0.0,
+        "lisa_manoban": 100.0,
+        "alex_honnold": 0.0,
+        "jon_stewart": 0.0,
+        "dario_amodei": 100.0
+      }
+    },
+    {
+      "model_id": "gpt-5.5",
+      "display_name": "GPT-5.5",
+      "provider": "openai",
+      "avg_percentile": 45.0,
+      "lol_rate": 0.0,
+      "jokes_rated": 10,
+      "lol_count": 0,
+      "cost_usd": 0.16796999999999998,
+      "input_tokens": 294,
+      "output_tokens": 5501,
+      "per_personality": {
+        "hikaru_nakamura": 0.0,
+        "rfk_jr": 0.0,
+        "sherlock_holmes": 50.0,
+        "demis_hassabis": 100.0,
+        "steph_curry": 0.0,
+        "sam_altman": 100.0,
+        "lisa_manoban": 0.0,
+        "alex_honnold": 100.0,
+        "jon_stewart": 100.0,
+        "dario_amodei": 0.0
+      }
+    }
+  ]
+}

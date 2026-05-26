@@ -1,0 +1,96 @@
+{
+  "model_id": "claude-opus-4-7",
+  "provider": "anthropic",
+  "display_name": "Claude Opus 4.7",
+  "jokes": {
+    "hikaru_nakamura": "After twenty years of chasing Magnus Carlsen, the only opening Hikaru's ever truly mastered is the resignation.",
+    "rfk_jr": "Here's my entry:\n\n\"RFK Jr. once announced that a worm crawled into his brain and died in there. Honestly, that parasite did more credible medical research inside his skull than he's done his entire career.\"",
+    "sherlock_holmes": "Sherlock Holmes memorized 240 varieties of tobacco ash but in 60 stories never once deduced that \"I'm bored\" isn't a personality.",
+    "demis_hassabis": "Demis Hassabis won a Nobel Prize for predicting how proteins fold. Fitting — his video game \"Republic: The Revolution\" folded faster than any of them.",
+    "steph_curry": "Steph Curry has the body of a substitute teacher and the face of the kid who got him fired.",
+    "sam_altman": "Sam Altman has a doomsday bunker stocked with guns, gold, and gas masks for the AI apocalypse — which has to be the most damning product review OpenAI has ever received.",
+    "lisa_manoban": "Here's my entry:\n\n\"They call Lisa the main rapper of BLACKPINK — a title about as competitive as 'tallest Smurf.'\"",
+    "alex_honnold": "Alex Honnold's amygdala is the smallest ever recorded — and somehow it's still bigger than his personality.",
+    "jon_stewart": "Jon Stewart named his Apple TV+ show \"The Problem with Jon Stewart.\" They cancelled it after two seasons—turns out they finally figured out what the problem was.",
+    "dario_amodei": "Dario Amodei founded Anthropic to make sure that when AI destroys humanity, it'll at least feel really bad about it."
+  },
+  "usage": {
+    "hikaru_nakamura": {
+      "input": 51,
+      "output": 3389,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "rfk_jr": {
+      "input": 55,
+      "output": 2246,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "sherlock_holmes": {
+      "input": 50,
+      "output": 3699,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "demis_hassabis": {
+      "input": 49,
+      "output": 4925,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "steph_curry": {
+      "input": 48,
+      "output": 1615,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "sam_altman": {
+      "input": 47,
+      "output": 1905,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "lisa_manoban": {
+      "input": 49,
+      "output": 4451,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "alex_honnold": {
+      "input": 48,
+      "output": 3940,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "jon_stewart": {
+      "input": 48,
+      "output": 3336,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "dario_amodei": {
+      "input": 48,
+      "output": 3632,
+      "cache_read": 0,
+      "cache_write": 0
+    }
+  },
+  "cost_usd": {
+    "hikaru_nakamura": 0.25494,
+    "rfk_jr": 0.169275,
+    "sherlock_holmes": 0.27817499999999995,
+    "demis_hassabis": 0.37010999999999994,
+    "steph_curry": 0.121845,
+    "sam_altman": 0.14358,
+    "lisa_manoban": 0.33455999999999997,
+    "alex_honnold": 0.29622,
+    "jon_stewart": 0.25092,
+    "dario_amodei": 0.27312
+  },
+  "totals": {
+    "input_tokens": 493,
+    "output_tokens": 33138,
+    "cost_usd": 2.4927449999999998
+  }
+}
