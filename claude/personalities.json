@@ -1,0 +1,54 @@
+{
+  "personalities": [
+    {
+      "id": "hikaru_nakamura",
+      "name": "Hikaru Nakamura",
+      "description": "American chess grandmaster and Twitch/YouTube streamer known for bullet chess and reactions to Magnus Carlsen."
+    },
+    {
+      "id": "rfk_jr",
+      "name": "Robert F. Kennedy Jr.",
+      "description": "American politician, environmental lawyer, and vaccine skeptic; known for his raspy voice and conspiracy-adjacent views."
+    },
+    {
+      "id": "sherlock_holmes",
+      "name": "Sherlock Holmes",
+      "description": "Fictional consulting detective created by Arthur Conan Doyle; famously arrogant, deductive, violin-playing, cocaine-using."
+    },
+    {
+      "id": "demis_hassabis",
+      "name": "Demis Hassabis",
+      "description": "Co-founder and CEO of Google DeepMind; former chess prodigy and game designer; Nobel laureate (chemistry, 2024)."
+    },
+    {
+      "id": "steph_curry",
+      "name": "Stephen Curry",
+      "description": "NBA superstar point guard for the Golden State Warriors; greatest 3-point shooter of all time; relatively small for the NBA."
+    },
+    {
+      "id": "sam_altman",
+      "name": "Sam Altman",
+      "description": "CEO of OpenAI; former Y Combinator president; known for prepper hobbies, a soft voice, and his board-firing-then-rehiring saga."
+    },
+    {
+      "id": "lisa_manoban",
+      "name": "Lisa Manoban",
+      "description": "Thai rapper and singer; member of K-pop group BLACKPINK; solo artist, fashion icon, and Celine ambassador."
+    },
+    {
+      "id": "alex_honnold",
+      "name": "Alex Honnold",
+      "description": "American rock climber famous for free-solo (no ropes) ascents, including El Capitan; subject of the documentary Free Solo."
+    },
+    {
+      "id": "jon_stewart",
+      "name": "Jon Stewart",
+      "description": "American comedian and political commentator; longtime host of The Daily Show; returned in 2024."
+    },
+    {
+      "id": "dario_amodei",
+      "name": "Dario Amodei",
+      "description": "Co-founder and CEO of Anthropic; former OpenAI VP of research; known for long essays about AI safety and 'Machines of Loving Grace'."
+    }
+  ]
+}

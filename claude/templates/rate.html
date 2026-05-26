@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>RoastBench — {{ personality.name }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1><a href="{{ url_for('index') }}">RoastBench</a></h1>
+    <div class="ctx">
+      {% if rerank_only %}
+        Re-ranking <strong>{{ personality.name }}</strong>
+      {% else %}
+        Rating <strong>{{ model_display }}</strong> — {{ completed }} / {{ total }} done
+      {% endif %}
+    </div>
+  </header>
+
+  <main>
+    <section class="target">
+      <h2>{{ personality.name }}</h2>
+      <p class="desc">{{ personality.description }}</p>
+    </section>
+
+    <p class="instr">Drag rows to reorder (best at top). Tick LOL for any joke that made you laugh out loud.</p>
+
+    <ul id="ranklist" class="ranklist">
+      {% for c in cards %}
+      <li class="card {% if c.is_new %}new{% endif %}" data-model="{{ c.model_id }}">
+        <div class="rank-num">{{ loop.index }}</div>
+        <div class="handle" title="drag">≡</div>
+        <div class="content">
+          <div class="name">
+            {{ c.display_name }}
+            {% if c.is_new %}<span class="badge">NEW</span>{% endif %}
+          </div>
+          <div class="joke">{{ c.joke }}</div>
+        </div>
+        <label class="lol">
+          <input type="checkbox" {% if c.lol %}checked{% endif %} class="lol-cb">
+          <span>LOL</span>
+        </label>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <div class="actions">
+      <button id="save" class="primary">
+        {% if rerank_only %}Save{% else %}Save &amp; Next →{% endif %}
+      </button>
+      <a class="cancel" href="{{ url_for('index') }}">Cancel</a>
+    </div>
+
+    {% if not rerank_only and pers_progress %}
+    <div class="progress-list">
+      {% for x in pers_progress %}
+        <span class="pdot {% if x.rated %}done{% endif %} {% if x.is_current %}current{% endif %}" title="{{ x.personality.name }}{% if not x.has_joke %} (no joke){% endif %}"></span>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </main>
+
+  <script>
+    const list = document.getElementById('ranklist');
+    Sortable.create(list, {
+      handle: '.handle',
+      animation: 150,
+      onSort: renumber,
+    });
+    function renumber() {
+      list.querySelectorAll('.card').forEach((el, i) => {
+        el.querySelector('.rank-num').textContent = (i + 1);
+      });
+    }
+    document.getElementById('save').addEventListener('click', async (e) => {
+      e.preventDefault();
+      const items = Array.from(list.querySelectorAll('.card'));
+      const order = items.map(el => el.dataset.model);
+      const lol = items.filter(el => el.querySelector('.lol-cb').checked).map(el => el.dataset.model);
+      const btn = e.currentTarget;
+      btn.disabled = true;
+      btn.textContent = 'Saving…';
+      try {
+        const r = await fetch(window.location.pathname, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({order, lol}),
+        });
+        const data = await r.json();
+        window.location = data.next;
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = 'Save (retry)';
+        alert('Save failed: ' + err);
+      }
+    });
+  </script>
+</body>
+</html>

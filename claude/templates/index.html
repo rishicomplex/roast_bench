@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>RoastBench</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>RoastBench <span class="sub">— an LLM benchmark for roast jokes</span></h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Leaderboard</h2>
+      {% if board %}
+      <table class="board">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Model</th>
+            <th>Provider</th>
+            <th>Avg %ile</th>
+            <th>LOL rate</th>
+            <th>Rated</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in board %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td><strong>{{ row.display_name }}</strong></td>
+            <td class="dim">{{ row.provider }}</td>
+            <td>{% if row.avg_percentile is not none %}{{ "%.1f"|format(row.avg_percentile) }}{% else %}—{% endif %}</td>
+            <td>{% if row.lol_rate is not none %}{{ "%.0f"|format(row.lol_rate) }}%{% else %}—{% endif %}</td>
+            <td class="dim">{{ row.jokes_rated }}/{{ personalities|length }}</td>
+            <td>
+              {% if progress[row.model_id].next %}
+                <a class="btn" href="{{ url_for('rate_model', model_id=row.model_id) }}">Rate ({{ progress[row.model_id].unranked|length }} left)</a>
+              {% else %}
+                <span class="dim">done</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p class="dim">No models yet. Generate some with <code>python claude/add_model.py …</code>.</p>
+      {% endif %}
+    </section>
+
+    <section>
+      <h2>Personalities</h2>
+      <ul class="pers">
+        {% for p in personalities %}
+        <li>
+          <a href="{{ url_for('rerank_personality', personality_id=p.id) }}">{{ p.name }}</a>
+          <span class="dim">— {{ rankings.rankings[p.id]|length }} ranked</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
