@@ -49,7 +49,17 @@
       "claude-opus-4-7",
       "gemini-3.1-pro-preview",
       "gpt-5.5"
-    ]
+    ],
+    "pam_anderson": [],
+    "whitney_cummings": [],
+    "donald_trump": [],
+    "james_franco": [],
+    "jonah_hill": [],
+    "rob_lowe": [],
+    "nikki_glaser": [],
+    "blake_griffin": [],
+    "caitlyn_jenner": [],
+    "alec_baldwin": []
   },
   "lol_flags": {
     "hikaru_nakamura": [],
@@ -63,6 +73,16 @@
     ],
     "alex_honnold": [],
     "jon_stewart": [],
-    "dario_amodei": []
+    "dario_amodei": [],
+    "pam_anderson": [],
+    "whitney_cummings": [],
+    "donald_trump": [],
+    "james_franco": [],
+    "jonah_hill": [],
+    "rob_lowe": [],
+    "nikki_glaser": [],
+    "blake_griffin": [],
+    "caitlyn_jenner": [],
+    "alec_baldwin": []
   }
 }

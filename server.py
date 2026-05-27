@@ -15,6 +15,11 @@ JOKES_DIR = DATA / "jokes"
 
 app = Flask(__name__, template_folder=str(ROOT / "templates"), static_folder=str(ROOT / "static"))
 
+SET_LABELS = {
+    "original": "Original benchmark",
+    "human_baseline": "Human baseline (Comedy Central roasts)",
+}
+
 
 def _load(p: Path) -> dict:
     with p.open() as f:
@@ -56,9 +61,12 @@ def get_jokes() -> dict[str, dict[str, str]]:
     return out
 
 
-def _next_unranked(pers: list[dict], rankings: dict, model_id: str, skip: str | None = None) -> str | None:
+def _next_unranked(pers: list[dict], rankings: dict, model_id: str, jokes: dict, skip: str | None = None) -> str | None:
+    """Next personality where this model has a joke but isn't yet in the ranking."""
     for p in pers:
         if p["id"] == skip:
+            continue
+        if model_id not in jokes.get(p["id"], {}):
             continue
         if model_id not in rankings["rankings"].get(p["id"], []):
             return p["id"]
@@ -67,33 +75,49 @@ def _next_unranked(pers: list[dict], rankings: dict, model_id: str, skip: str | 
 
 @app.route("/")
 def index():
-    board = compute_leaderboard()["leaderboard"]
+    leaderboard = compute_leaderboard()
     pers = get_personalities()
     rankings = get_rankings()
     models = get_models()
     jokes = get_jokes()
 
-    # progress per model
-    progress = {}
+    pers_by_set: dict[str, list[dict]] = defaultdict(list)
+    for p in pers:
+        pers_by_set[p.get("set", "original")].append(p)
+
+    # per-(model, set) progress
+    progress: dict[str, dict] = {}
     for mid in models:
-        unranked = []
-        has_joke = []
-        for p in pers:
-            if mid in jokes.get(p["id"], {}):
-                has_joke.append(p["id"])
-                if mid not in rankings["rankings"].get(p["id"], []):
-                    unranked.append(p["id"])
-        progress[mid] = {
-            "unranked": unranked,
-            "has_joke": has_joke,
-            "next": unranked[0] if unranked else None,
-        }
+        progress[mid] = {}
+        for set_name, set_pers in pers_by_set.items():
+            unranked = []
+            has_joke = []
+            for p in set_pers:
+                if mid in jokes.get(p["id"], {}):
+                    has_joke.append(p["id"])
+                    if mid not in rankings["rankings"].get(p["id"], []):
+                        unranked.append(p["id"])
+            progress[mid][set_name] = {
+                "unranked": unranked,
+                "has_joke": has_joke,
+                "next": unranked[0] if unranked else None,
+            }
+
+    sets_view = []
+    for set_name in ["original", "human_baseline"]:
+        if set_name not in pers_by_set:
+            continue
+        sets_view.append({
+            "name": set_name,
+            "label": SET_LABELS.get(set_name, set_name),
+            "personalities": pers_by_set[set_name],
+            "board": leaderboard["sets"].get(set_name, []),
+        })
 
     return render_template(
         "index.html",
-        board=board,
+        sets_view=sets_view,
         models=models,
-        personalities=pers,
         rankings=rankings,
         progress=progress,
     )
@@ -103,7 +127,8 @@ def index():
 def rate_model(model_id):
     pers = get_personalities()
     rankings = get_rankings()
-    nxt = _next_unranked(pers, rankings, model_id)
+    jokes = get_jokes()
+    nxt = _next_unranked(pers, rankings, model_id, jokes)
     if nxt is None:
         return redirect(url_for("index"))
     return redirect(url_for("rate_personality", model_id=model_id, personality_id=nxt))
@@ -118,7 +143,8 @@ def rate_personality(model_id, personality_id):
 
     rankings = get_rankings()
     models = get_models()
-    jokes_for_p = get_jokes().get(personality_id, {})
+    jokes = get_jokes()
+    jokes_for_p = jokes.get(personality_id, {})
 
     if request.method == "POST":
         body = request.get_json(force=True)
@@ -128,7 +154,7 @@ def rate_personality(model_id, personality_id):
         rankings["lol_flags"][personality_id] = lol
         save_rankings(rankings)
         regenerate()
-        nxt = _next_unranked(pers, rankings, model_id, skip=personality_id)
+        nxt = _next_unranked(pers, rankings, model_id, jokes, skip=personality_id)
         if nxt:
             return jsonify({"next": url_for("rate_personality", model_id=model_id, personality_id=nxt)})
         return jsonify({"next": url_for("index")})
@@ -137,6 +163,10 @@ def rate_personality(model_id, personality_id):
     lol_set = set(rankings["lol_flags"].get(personality_id, []))
     if model_id in jokes_for_p and model_id not in current:
         current.insert(0, model_id)
+    # Make sure every model with a joke for this personality shows up, even if not yet ranked.
+    for mid in jokes_for_p:
+        if mid not in current:
+            current.append(mid)
     cards = [
         {
             "model_id": mid,
@@ -149,14 +179,17 @@ def rate_personality(model_id, personality_id):
         if mid in jokes_for_p
     ]
 
+    # Show progress only for personalities in the same set as the current one.
+    current_set = by_pid[personality_id].get("set", "original")
+    set_pers = [p for p in pers if p.get("set", "original") == current_set]
     pers_progress = [
         {
             "personality": p,
             "rated": model_id in rankings["rankings"].get(p["id"], []),
             "is_current": p["id"] == personality_id,
-            "has_joke": model_id in get_jokes().get(p["id"], {}),
+            "has_joke": model_id in jokes.get(p["id"], {}),
         }
-        for p in pers
+        for p in set_pers
     ]
     completed = sum(1 for x in pers_progress if x["rated"])
 
@@ -167,7 +200,7 @@ def rate_personality(model_id, personality_id):
         model_id=model_id,
         model_display=models.get(model_id, {}).get("display_name", model_id),
         completed=completed,
-        total=len(pers),
+        total=len(set_pers),
         pers_progress=pers_progress,
     )
 

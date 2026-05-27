@@ -30,6 +30,12 @@
         "max_output_tokens": 64000
       },
       "prices_per_mtok": {"input": 2.5, "output": 10.0}
+    },
+    {
+      "id": "human",
+      "provider": "human",
+      "display_name": "Human (Comedy Central)",
+      "params": {}
     }
   ]
 }

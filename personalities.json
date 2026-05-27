@@ -3,52 +3,122 @@
     {
       "id": "hikaru_nakamura",
       "name": "Hikaru Nakamura",
-      "description": "American chess grandmaster and Twitch/YouTube streamer known for bullet chess and reactions to Magnus Carlsen."
+      "description": "American chess grandmaster and Twitch/YouTube streamer known for bullet chess and reactions to Magnus Carlsen.",
+      "set": "original"
     },
     {
       "id": "rfk_jr",
       "name": "Robert F. Kennedy Jr.",
-      "description": "American politician, environmental lawyer, and vaccine skeptic; known for his raspy voice and conspiracy-adjacent views."
+      "description": "American politician, environmental lawyer, and vaccine skeptic; known for his raspy voice and conspiracy-adjacent views.",
+      "set": "original"
     },
     {
       "id": "sherlock_holmes",
       "name": "Sherlock Holmes",
-      "description": "Fictional consulting detective created by Arthur Conan Doyle; famously arrogant, deductive, violin-playing, cocaine-using."
+      "description": "Fictional consulting detective created by Arthur Conan Doyle; famously arrogant, deductive, violin-playing, cocaine-using.",
+      "set": "original"
     },
     {
       "id": "demis_hassabis",
       "name": "Demis Hassabis",
-      "description": "Co-founder and CEO of Google DeepMind; former chess prodigy and game designer; Nobel laureate (chemistry, 2024)."
+      "description": "Co-founder and CEO of Google DeepMind; former chess prodigy and game designer; Nobel laureate (chemistry, 2024).",
+      "set": "original"
     },
     {
       "id": "steph_curry",
       "name": "Stephen Curry",
-      "description": "NBA superstar point guard for the Golden State Warriors; greatest 3-point shooter of all time; relatively small for the NBA."
+      "description": "NBA superstar point guard for the Golden State Warriors; greatest 3-point shooter of all time; relatively small for the NBA.",
+      "set": "original"
     },
     {
       "id": "sam_altman",
       "name": "Sam Altman",
-      "description": "CEO of OpenAI; former Y Combinator president; known for prepper hobbies, a soft voice, and his board-firing-then-rehiring saga."
+      "description": "CEO of OpenAI; former Y Combinator president; known for prepper hobbies, a soft voice, and his board-firing-then-rehiring saga.",
+      "set": "original"
     },
     {
       "id": "lisa_manoban",
       "name": "Lisa Manoban",
-      "description": "Thai rapper and singer; member of K-pop group BLACKPINK; solo artist, fashion icon, and Celine ambassador."
+      "description": "Thai rapper and singer; member of K-pop group BLACKPINK; solo artist, fashion icon, and Celine ambassador.",
+      "set": "original"
     },
     {
       "id": "alex_honnold",
       "name": "Alex Honnold",
-      "description": "American rock climber famous for free-solo (no ropes) ascents, including El Capitan; subject of the documentary Free Solo."
+      "description": "American rock climber famous for free-solo (no ropes) ascents, including El Capitan; subject of the documentary Free Solo.",
+      "set": "original"
     },
     {
       "id": "jon_stewart",
       "name": "Jon Stewart",
-      "description": "American comedian and political commentator; longtime host of The Daily Show; returned in 2024."
+      "description": "American comedian and political commentator; longtime host of The Daily Show; returned in 2024.",
+      "set": "original"
     },
     {
       "id": "dario_amodei",
       "name": "Dario Amodei",
-      "description": "Co-founder and CEO of Anthropic; former OpenAI VP of research; known for long essays about AI safety and 'Machines of Loving Grace'."
+      "description": "Co-founder and CEO of Anthropic; former OpenAI VP of research; known for long essays about AI safety and 'Machines of Loving Grace'.",
+      "set": "original"
+    },
+    {
+      "id": "pam_anderson",
+      "name": "Pamela Anderson",
+      "description": "Canadian-American actress and Playboy fixture; Baywatch icon; vegan activist; survived a notorious 1990s sex-tape leak with Tommy Lee.",
+      "set": "human_baseline"
+    },
+    {
+      "id": "whitney_cummings",
+      "name": "Whitney Cummings",
+      "description": "American stand-up comedian; co-creator of 2 Broke Girls; producer and host of the Good for You podcast.",
+      "set": "human_baseline"
+    },
+    {
+      "id": "donald_trump",
+      "name": "Donald Trump",
+      "description": "American real-estate mogul, reality-TV host (The Apprentice), and 45th + 47th U.S. President; famous for his hair and ego.",
+      "set": "human_baseline"
+    },
+    {
+      "id": "james_franco",
+      "name": "James Franco",
+      "description": "American actor and serial degree-collector (Yale, UCLA, NYU); known for 127 Hours, Spider-Man, and a perpetual half-asleep gaze.",
+      "set": "human_baseline"
+    },
+    {
+      "id": "jonah_hill",
+      "name": "Jonah Hill",
+      "description": "American actor and writer (Superbad, Moneyball, The Wolf of Wall Street); two-time Oscar nominee; Hollywood lifer with a fluctuating waistline.",
+      "set": "human_baseline"
+    },
+    {
+      "id": "rob_lowe",
+      "name": "Rob Lowe",
+      "description": "American actor; Brat Pack heartthrob in The Outsiders and St. Elmo's Fire; star of The West Wing and Parks & Recreation; survived a 1988 sex-tape scandal.",
+      "set": "human_baseline"
+    },
+    {
+      "id": "nikki_glaser",
+      "name": "Nikki Glaser",
+      "description": "American stand-up comedian and roast performer; podcaster; widely praised set at the 2024 Roast of Tom Brady; hosted the 2026 Golden Globes.",
+      "set": "human_baseline"
+    },
+    {
+      "id": "blake_griffin",
+      "name": "Blake Griffin",
+      "description": "Former NBA All-Star forward (Clippers, Pistons, Nets, Celtics); famed dunker; once engaged to Kendall Jenner.",
+      "set": "human_baseline"
+    },
+    {
+      "id": "caitlyn_jenner",
+      "name": "Caitlyn Jenner",
+      "description": "Olympic decathlon gold medalist (as Bruce Jenner, 1976); reality-TV star (Keeping Up with the Kardashians); came out as transgender in 2015.",
+      "set": "human_baseline"
+    },
+    {
+      "id": "alec_baldwin",
+      "name": "Alec Baldwin",
+      "description": "American actor (30 Rock, Glengarry Glen Ross, The Hunt for Red October); SNL Trump impersonator; involved in the 2021 Rust on-set shooting.",
+      "set": "human_baseline"
     }
   ]
 }

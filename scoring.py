@@ -1,4 +1,4 @@
-"""Compute the leaderboard from rankings.json."""
+"""Compute leaderboards from rankings.json, partitioned by personality set."""
 from __future__ import annotations
 
 import json
@@ -33,13 +33,29 @@ def _load_totals(model_id: str) -> dict:
     return load_json(p).get("totals", {})
 
 
-def compute_leaderboard() -> dict:
-    personalities = load_json(ROOT / "personalities.json")["personalities"]
-    models = {m["id"]: m for m in load_json(ROOT / "models.json")["models"]}
-    rankings = load_json(DATA / "rankings.json")
+def _load_jokes_for_model(model_id: str) -> dict[str, str]:
+    p = DATA / "jokes" / f"{model_id}.json"
+    if not p.exists():
+        return {}
+    return {pid: j for pid, j in load_json(p).get("jokes", {}).items() if j}
 
+
+def _personalities_by_set() -> dict[str, list[dict]]:
+    pers = load_json(ROOT / "personalities.json")["personalities"]
+    out: dict[str, list[dict]] = {}
+    for p in pers:
+        out.setdefault(p.get("set", "original"), []).append(p)
+    return out
+
+
+def _compute_set(set_name: str, personalities: list[dict], models: dict[str, dict], rankings: dict) -> list[dict]:
+    """Compute leaderboard rows for one set, including only models that have at least one joke in this set."""
+    pids = {p["id"] for p in personalities}
     per_model: dict[str, dict] = {}
     for mid, m in models.items():
+        jokes_in_set = {pid for pid in _load_jokes_for_model(mid) if pid in pids}
+        if not jokes_in_set:
+            continue
         totals = _load_totals(mid)
         per_model[mid] = {
             "model_id": mid,
@@ -48,6 +64,7 @@ def compute_leaderboard() -> dict:
             "percentiles": {},
             "jokes_rated": 0,
             "lol_count": 0,
+            # Token / cost totals only make sense for the original benchmark — humans have none.
             "cost_usd": totals.get("cost_usd"),
             "input_tokens": totals.get("input_tokens"),
             "output_tokens": totals.get("output_tokens"),
@@ -61,8 +78,7 @@ def compute_leaderboard() -> dict:
         for i, mid in enumerate(order):
             if mid not in per_model:
                 continue
-            pct = percentile(i, n)
-            per_model[mid]["percentiles"][pid] = pct
+            per_model[mid]["percentiles"][pid] = percentile(i, n)
             per_model[mid]["jokes_rated"] += 1
             if mid in lol:
                 per_model[mid]["lol_count"] += 1
@@ -76,9 +92,11 @@ def compute_leaderboard() -> dict:
             "model_id": mid,
             "display_name": entry["display_name"],
             "provider": entry["provider"],
+            "set": set_name,
             "avg_percentile": avg,
             "lol_rate": lol_rate,
             "jokes_rated": entry["jokes_rated"],
+            "personalities_in_set": len(personalities),
             "lol_count": entry["lol_count"],
             "cost_usd": entry["cost_usd"],
             "input_tokens": entry["input_tokens"],
@@ -87,7 +105,24 @@ def compute_leaderboard() -> dict:
         })
 
     rows.sort(key=lambda r: (r["avg_percentile"] is None, -(r["avg_percentile"] or 0)))
-    return {"leaderboard": rows}
+    return rows
+
+
+def compute_leaderboard() -> dict:
+    """Returns {"sets": {set_name: [rows]}, "leaderboard": [rows]} where `leaderboard` is the original set (back-compat)."""
+    by_set = _personalities_by_set()
+    models = {m["id"]: m for m in load_json(ROOT / "models.json")["models"]}
+    rankings = load_json(DATA / "rankings.json")
+
+    sets: dict[str, list[dict]] = {}
+    for set_name, persons in by_set.items():
+        sets[set_name] = _compute_set(set_name, persons, models, rankings)
+
+    return {
+        "sets": sets,
+        # Back-compat: existing callers read top-level "leaderboard" — keep pointing at the original set.
+        "leaderboard": sets.get("original", []),
+    }
 
 
 def regenerate() -> Path:
@@ -100,13 +135,15 @@ if __name__ == "__main__":
     path = regenerate()
     board = load_json(path)
     print(f"Wrote {path}\n")
-    rows = board["leaderboard"]
-    if not rows:
-        print("(no models)")
-    else:
+    for set_name, rows in board["sets"].items():
+        print(f"━━ {set_name} ━━")
+        if not rows:
+            print("(no models)\n")
+            continue
         width = max(len(r["display_name"]) for r in rows)
         print(f"{'Rank':<5} {'Model':<{width}}  {'Avg %ile':>9}  {'LOL':>6}  {'Rated':>6}")
         for i, r in enumerate(rows, 1):
             pct = f"{r['avg_percentile']:.1f}" if r["avg_percentile"] is not None else "  —  "
             lol = f"{r['lol_rate']:.0f}%" if r["lol_rate"] is not None else "  —  "
             print(f"{i:<5} {r['display_name']:<{width}}  {pct:>9}  {lol:>6}  {r['jokes_rated']:>6}")
+        print()

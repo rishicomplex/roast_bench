@@ -211,18 +211,42 @@ def generate_for_model(model: dict, personalities: list[dict], max_workers: int 
     }
 
 
+def _merge_results(existing: dict, new: dict) -> dict:
+    """Merge a fresh generate_for_model() result into an existing jokes file."""
+    if not existing:
+        return new
+    out = {**existing, "model_id": new["model_id"], "provider": new["provider"], "display_name": new["display_name"]}
+    out["jokes"] = {**existing.get("jokes", {}), **new["jokes"]}
+    out["usage"] = {**existing.get("usage", {}), **new["usage"]}
+    out["cost_usd"] = {**existing.get("cost_usd", {}), **new["cost_usd"]}
+    # Recompute totals across all jokes.
+    in_tok = sum(u.get("input", 0) for u in out["usage"].values())
+    out_tok = sum(u.get("output", 0) for u in out["usage"].values())
+    cost = sum(out["cost_usd"].values())
+    out["totals"] = {"input_tokens": in_tok, "output_tokens": out_tok, "cost_usd": cost}
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--id", required=True, help="Model ID, e.g. claude-opus-4-7")
     ap.add_argument("--provider", required=True, choices=list(PROVIDERS.keys()))
     ap.add_argument("--display", default=None, help="Display name")
     ap.add_argument("--params", default="{}", help="JSON params override")
-    ap.add_argument("--overwrite", action="store_true")
+    ap.add_argument("--overwrite", action="store_true", help="Regenerate all personalities, replacing existing jokes")
+    ap.add_argument("--fill", action="store_true", help="Only generate for personalities not yet in the jokes file")
+    ap.add_argument("--set", dest="set_filter", default=None, help="Only generate for personalities in this set (e.g. human_baseline)")
     ap.add_argument("--workers", type=int, default=5, help="Parallel API calls")
     args = ap.parse_args()
 
     personalities = load_json(ROOT / "personalities.json")["personalities"]
     models = load_json(ROOT / "models.json")
+
+    if args.set_filter:
+        personalities = [p for p in personalities if p.get("set", "original") == args.set_filter]
+        if not personalities:
+            print(f"No personalities matched --set {args.set_filter!r}", file=sys.stderr)
+            return 1
 
     existing = next((m for m in models["models"] if m["id"] == args.id), None)
     model = existing or {
@@ -237,12 +261,26 @@ def main() -> int:
         model = {**model, "display_name": args.display}
 
     out_path = JOKES_DIR / f"{args.id}.json"
-    if out_path.exists() and not args.overwrite:
-        print(f"{out_path} already exists. Use --overwrite to regenerate.", file=sys.stderr)
-        return 1
+    existing_data: dict = {}
+    if out_path.exists():
+        existing_data = load_json(out_path)
+        if not args.overwrite and not args.fill:
+            print(f"{out_path} already exists. Use --overwrite to regenerate all, or --fill to add only missing personalities.", file=sys.stderr)
+            return 1
 
-    print(f"Generating jokes for {model['display_name']} ({model['provider']})…", file=sys.stderr)
-    result = generate_for_model(model, personalities, max_workers=args.workers)
+    if args.fill and existing_data:
+        have = {pid for pid, j in existing_data.get("jokes", {}).items() if j}
+        missing = [p for p in personalities if p["id"] not in have]
+        if not missing:
+            print(f"Nothing to fill — all {len(personalities)} personalities already have jokes.", file=sys.stderr)
+            return 0
+        print(f"Filling {len(missing)} missing personalities (of {len(personalities)}) for {model['display_name']}…", file=sys.stderr)
+        result = generate_for_model(model, missing, max_workers=args.workers)
+        result = _merge_results(existing_data, result)
+    else:
+        print(f"Generating jokes for {model['display_name']} ({model['provider']})…", file=sys.stderr)
+        result = generate_for_model(model, personalities, max_workers=args.workers)
+
     save_json(out_path, result)
 
     if existing is None:

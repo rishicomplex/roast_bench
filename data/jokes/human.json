@@ -1,0 +1,29 @@
+{
+  "model_id": "human",
+  "provider": "human",
+  "display_name": "Human (Comedy Central)",
+  "jokes": {
+    "pam_anderson": "Pam, you've written more books than you've read.",
+    "whitney_cummings": "Everybody in Hollywood is talking about her, and they all saying the same thing. 'I think that bitch gave me herpes.'",
+    "donald_trump": "What do you say to a barber to get that type of haircut … 'I fucked your daughter?'",
+    "james_franco": "I don't think James Franco is necessarily gay or straight. I think he literally can't open his eyes enough to see who he's fucking.",
+    "jonah_hill": "When Jonah's agent told him that Quentin Tarantino wanted him to be in a spaghetti western, Jonah was like, 'You had me at spaghetti.'",
+    "rob_lowe": "You look like you're sculpted. You put the 'statue' in 'statutory rape.' God, I had such a crush on you when I was a little girl. If only I'd known that's when I had my best shot.",
+    "nikki_glaser": "Nikki inherited her face from her dad's dick.",
+    "blake_griffin": "Blake, you look like a black guy that got made by a printer running out of ink.",
+    "caitlyn_jenner": "Caitlyn completed her gender reassignment in 2017, finally confirming that no one in that family wants a white dick.",
+    "alec_baldwin": "Alec had a substance abuse problem in the past, but he worked through it and hasn't done anything of substance in 20 years."
+  },
+  "sources": {
+    "pam_anderson": {"roast": "Pamela Anderson (Comedy Central, 2005)", "roaster": "Jimmy Kimmel", "verified": false, "note": "Paraphrase; exact wording unverified."},
+    "whitney_cummings": {"roast": "Donald Trump (Comedy Central, 2011)", "roaster": "Snoop Dogg", "verified": true},
+    "donald_trump": {"roast": "Donald Trump (Comedy Central, 2011)", "roaster": "Lisa Lampanelli", "verified": true},
+    "james_franco": {"roast": "James Franco (Comedy Central, 2013)", "roaster": "Sarah Silverman", "verified": true},
+    "jonah_hill": {"roast": "James Franco (Comedy Central, 2013)", "roaster": "Jeff Ross", "verified": true},
+    "rob_lowe": {"roast": "Rob Lowe (Comedy Central, 2016)", "roaster": "Nikki Glaser", "verified": true},
+    "nikki_glaser": {"roast": "Rob Lowe (Comedy Central, 2016)", "roaster": "Jimmy Carr", "verified": false, "note": "Paraphrase per user recollection; exact wording not in any text-indexed transcript."},
+    "blake_griffin": {"roast": "Alec Baldwin (Comedy Central, 2019)", "roaster": "Nikki Glaser", "verified": true},
+    "caitlyn_jenner": {"roast": "Alec Baldwin (Comedy Central, 2019)", "roaster": "Blake Griffin", "verified": true},
+    "alec_baldwin": {"roast": "Alec Baldwin (Comedy Central, 2019)", "roaster": "Sean Hayes", "verified": true}
+  }
+}
