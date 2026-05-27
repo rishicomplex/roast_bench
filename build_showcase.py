@@ -19,7 +19,7 @@ SET_LABELS = {
 }
 SET_TAGS = {
     "human_baseline": "LLMs go head-to-head against some of my favorite roast jokes — verified quotes from real Comedy Central roasts (2005–2019).",
-    "original": "A separate set of personalities; frontier models scored only against each other (no human entry).",
+    "original": "10 personalities who have never been the subject of a public roast, so the models can't fall back on memorized material — frontier models only.",
 }
 SET_ORDER = ["human_baseline", "original"]
 
@@ -237,7 +237,7 @@ def build() -> str:
 <div class="wrap">
 <header>
   <h1>RoastBench</h1>
-  <p class="tag">A two-part comparison. The <strong>first table</strong> pits frontier LLMs against some of my favorite roast jokes from human comedians (real Comedy Central roasts). The <strong>second table</strong> is a separate set of 10 additional personalities where the LLMs are scored only against each other. For every personality, each model writes one roast at maximum reasoning effort; I rank the jokes by hand and flag any that made me laugh.</p>
+  <p class="tag">A two-part comparison. The <strong>first table</strong> pits frontier LLMs against some of my favorite roast jokes from human comedians (real Comedy Central roasts) — useful as an absolute reference. The <strong>second table</strong> swaps in 10 personalities who have <em>never</em> been the subject of a public roast, so the models can't lean on memorized material from training data; the LLMs are scored only against each other there. For every personality, each model writes one roast at maximum reasoning effort; I rank the jokes by hand and flag any that made me laugh.</p>
   <p class="meta">{total_models} models · {len(personalities)} personalities · {total_jokes} jokes · total LLM cost {fmt_money(total_cost)}</p>
 </header>
 
