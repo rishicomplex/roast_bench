@@ -14,13 +14,14 @@ README = ROOT / "README.md"
 MEDALS = ["🥇", "🥈", "🥉"]
 PROVIDER_LABEL = {"anthropic": "Anthropic", "openai": "OpenAI", "google": "Google", "human": "Human"}
 SET_LABELS = {
-    "original": "Original benchmark (frontier LLMs)",
-    "human_baseline": "Human baseline (Comedy Central roasts)",
+    "human_baseline": "vs. human comedians",
+    "original": "10 additional personalities",
 }
 SET_TAGS = {
-    "original": "Each model writes one roast at maximum reasoning effort.",
-    "human_baseline": "Verified-where-possible quotes from real Comedy Central roasts (2005–2019).",
+    "human_baseline": "LLMs go head-to-head against some of my favorite roast jokes — verified quotes from real Comedy Central roasts (2005–2019).",
+    "original": "A separate set of personalities; frontier models scored only against each other (no human entry).",
 }
+SET_ORDER = ["human_baseline", "original"]
 
 
 def load(p: Path) -> dict:
@@ -65,7 +66,7 @@ def build() -> str:
     pers_by_set: dict[str, list[dict]] = {}
     for p in personalities:
         pers_by_set.setdefault(p.get("set", "original"), []).append(p)
-    set_order = [s for s in ["original", "human_baseline"] if s in pers_by_set]
+    set_order = [s for s in SET_ORDER if s in pers_by_set]
     for s in pers_by_set:
         if s not in set_order:
             set_order.append(s)
@@ -236,7 +237,7 @@ def build() -> str:
 <div class="wrap">
 <header>
   <h1>RoastBench</h1>
-  <p class="tag">An LLM benchmark for roast jokes. Frontier models each write one roast for each of 10 personalities at maximum reasoning effort, scored against (i) each other and (ii) a separate set of professional human roasts from Comedy Central.</p>
+  <p class="tag">A two-part comparison. The <strong>first table</strong> pits frontier LLMs against some of my favorite roast jokes from human comedians (real Comedy Central roasts). The <strong>second table</strong> is a separate set of 10 additional personalities where the LLMs are scored only against each other. For every personality, each model writes one roast at maximum reasoning effort; I rank the jokes by hand and flag any that made me laugh.</p>
   <p class="meta">{total_models} models · {len(personalities)} personalities · {total_jokes} jokes · total LLM cost {fmt_money(total_cost)}</p>
 </header>
 
@@ -253,9 +254,9 @@ def build() -> str:
 """
 
 
-def build_readme_table() -> str:
-    from scoring import compute_leaderboard
-    rows = compute_leaderboard()["leaderboard"]
+def _markdown_table(rows: list[dict]) -> str:
+    if not rows:
+        return "_(no ratings yet)_"
     lines = ["| # | Model | Avg %ile | LOL rate |", "|---:|---|---:|---:|"]
     for i, r in enumerate(rows, 1):
         pct = f"{r['avg_percentile']:.1f}" if r["avg_percentile"] is not None else "—"
@@ -264,20 +265,34 @@ def build_readme_table() -> str:
     return "\n".join(lines)
 
 
+def _replace_marker(text: str, marker: str, body: str) -> tuple[str, bool]:
+    start = f"<!-- {marker}:start -->"
+    end = f"<!-- {marker}:end -->"
+    if start not in text or end not in text:
+        return text, False
+    before, _, rest = text.partition(start)
+    _, _, after = rest.partition(end)
+    new = f"{before}{start}\n{body}\n{end}{after}"
+    return new, new != text
+
+
 def update_readme() -> bool:
     if not README.exists():
         return False
     text = README.read_text()
-    start, end = "<!-- leaderboard:start -->", "<!-- leaderboard:end -->"
-    if start not in text or end not in text:
-        return False
-    before, _, rest = text.partition(start)
-    _, _, after = rest.partition(end)
-    new = f"{before}{start}\n{build_readme_table()}\n{end}{after}"
-    if new != text:
-        README.write_text(new)
-        return True
-    return False
+    from scoring import compute_leaderboard
+    sets = compute_leaderboard()["sets"]
+    changed = False
+    for marker, set_name in [("leaderboard:human_baseline", "human_baseline"),
+                              ("leaderboard:original", "original")]:
+        text, did = _replace_marker(text, marker, _markdown_table(sets.get(set_name, [])))
+        changed = changed or did
+    # Back-compat: if there's still a plain "leaderboard" block, fill it with human_baseline.
+    text, did = _replace_marker(text, "leaderboard", _markdown_table(sets.get("human_baseline", [])))
+    changed = changed or did
+    if changed:
+        README.write_text(text)
+    return changed
 
 
 def main():
