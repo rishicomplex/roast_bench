@@ -12,7 +12,15 @@ OUT = ROOT / "docs" / "index.html"
 README = ROOT / "README.md"
 
 MEDALS = ["🥇", "🥈", "🥉"]
-PROVIDER_LABEL = {"anthropic": "Anthropic", "openai": "OpenAI", "google": "Google"}
+PROVIDER_LABEL = {"anthropic": "Anthropic", "openai": "OpenAI", "google": "Google", "human": "Human"}
+SET_LABELS = {
+    "original": "Original benchmark (frontier LLMs)",
+    "human_baseline": "Human baseline (Comedy Central roasts)",
+}
+SET_TAGS = {
+    "original": "Each model writes one roast at maximum reasoning effort.",
+    "human_baseline": "Verified-where-possible quotes from real Comedy Central roasts (2005–2019).",
+}
 
 
 def load(p: Path) -> dict:
@@ -48,16 +56,28 @@ def build() -> str:
     models = {m["id"]: m for m in load(ROOT / "models.json")["models"]}
     rankings = load(DATA / "rankings.json")
     jokes_by_model: dict[str, dict[str, str]] = {}
-    for p in (DATA / "jokes").glob("*.json"):
+    sources_by_model: dict[str, dict[str, dict]] = {}
+    for p in sorted((DATA / "jokes").glob("*.json")):
         d = load(p)
         jokes_by_model[d["model_id"]] = d.get("jokes", {})
+        sources_by_model[d["model_id"]] = d.get("sources", {})
+
+    pers_by_set: dict[str, list[dict]] = {}
+    for p in personalities:
+        pers_by_set.setdefault(p.get("set", "original"), []).append(p)
+    set_order = [s for s in ["original", "human_baseline"] if s in pers_by_set]
+    for s in pers_by_set:
+        if s not in set_order:
+            set_order.append(s)
 
     # leaderboard rows (reuse scoring logic)
     from scoring import compute_leaderboard
 
-    board = compute_leaderboard()["leaderboard"]
-    total_cost = sum((r["cost_usd"] or 0) for r in board)
+    boards = compute_leaderboard()["sets"]
+    all_rows = [r for rows in boards.values() for r in rows]
+    total_cost = sum((r["cost_usd"] or 0) for r in all_rows)
     total_jokes = sum(1 for m in jokes_by_model for j in jokes_by_model[m].values() if j)
+    total_models = len({r["model_id"] for r in all_rows})
 
     css = """
     :root { --bg:#fafaf7; --fg:#181818; --muted:#7a7670; --rule:#e4e0d8; --paper:#fff;
@@ -84,6 +104,12 @@ def build() -> str:
     .pill.anthropic{background:#fbeede; color:var(--anthropic)}
     .pill.openai{background:#dff5ec; color:var(--openai)}
     .pill.google{background:#e3edfd; color:var(--google)}
+    .pill.human{background:#eee7da; color:#5e4a1f}
+    .set-tag{color:var(--muted); font-size:14px; margin:-8px 0 16px}
+    .source{margin-top:8px; font-size:13px; color:var(--muted)}
+    .source strong{color:var(--fg)}
+    .source .unverified{background:#f5e8c8; color:#8a6a14; padding:1px 6px; border-radius:3px;
+                        font-size:10px; margin-left:6px; letter-spacing:0.03em; text-transform:uppercase}
     .pers{margin:48px 0 64px; padding-top:24px; border-top:1px solid var(--rule)}
     .pers h3{font-size:28px; margin:0 0 6px; letter-spacing:-0.02em}
     .pers .desc{color:var(--muted); font-size:15px; margin:0 0 24px; max-width:640px}
@@ -109,58 +135,88 @@ def build() -> str:
     code{font-family:ui-monospace,"SF Mono",Menlo,monospace; background:#efece4; padding:1px 5px; border-radius:4px; font-size:0.92em}
     """
 
-    # leaderboard rows
-    lb_rows = []
-    for i, r in enumerate(board, 1):
-        pct = f"{r['avg_percentile']:.1f}" if r["avg_percentile"] is not None else "—"
-        lol = f"{r['lol_rate']:.0f}%" if r["lol_rate"] is not None else "—"
-        cost = fmt_money(r["cost_usd"])
-        provider = r["provider"]
-        lb_rows.append(
-            f"<tr><td class='num'><span class='rank'>{i}</span></td>"
-            f"<td><strong>{escape(r['display_name'])}</strong>"
-            f" <span class='pill {provider}'>{escape(PROVIDER_LABEL.get(provider, provider))}</span></td>"
-            f"<td class='num'>{pct}</td>"
-            f"<td class='num'>{lol}</td>"
-            f"<td class='num'>{cost}</td></tr>"
+    def render_card(i: int, mid: str, pid: str, lol_set: set[str]) -> str:
+        joke = jokes_by_model.get(mid, {}).get(pid, "")
+        m = models.get(mid, {"display_name": mid, "provider": ""})
+        rank_cls = f"r{i+1}" if i < 3 else ""
+        medal = MEDALS[i] if i < len(MEDALS) else "·"
+        lol_badge = "<span class='lol'>★ LOL</span>" if mid in lol_set else ""
+        provider = m.get("provider", "")
+        src = sources_by_model.get(mid, {}).get(pid)
+        source_block = ""
+        if src:
+            unv = "" if src.get("verified") else "<span class='unverified'>unverified</span>"
+            roast = f" at the {escape(src['roast'])}" if src.get("roast") else ""
+            source_block = (
+                f"<div class='source'>— <strong>{escape(src.get('roaster',''))}</strong>{roast}{unv}</div>"
+            )
+        return (
+            f"<div class='card {rank_cls}'>"
+            f"<div class='rank-cell'><div class='medal'>{medal}</div>"
+            f"<div class='rank-n'>#{i+1}</div></div>"
+            f"<div>"
+            f"<div class='joke'>{escape(joke)}</div>"
+            f"{source_block}"
+            f"<div class='byline'>"
+            f"<span class='model'>{escape(m.get('display_name', mid))}</span>"
+            f"<span class='pill {provider}'>{escape(PROVIDER_LABEL.get(provider, provider))}</span>"
+            f"{lol_badge}"
+            f"</div></div></div>"
         )
 
-    # personality sections
-    pers_sections = []
-    toc = []
-    for p in personalities:
-        pid = p["id"]
-        order = rankings["rankings"].get(pid, [])
-        lol_set = set(rankings["lol_flags"].get(pid, []))
-        if not order:
+    # Per-set leaderboard tables + personality sections
+    set_sections = []
+    for set_name in set_order:
+        rows = boards.get(set_name, [])
+        if not rows and not pers_by_set.get(set_name):
             continue
-        toc.append(f"<a href='#{escape(pid)}'>{escape(p['name'])}</a>")
-        cards = []
-        for i, mid in enumerate(order):
-            joke = jokes_by_model.get(mid, {}).get(pid, "")
-            m = models.get(mid, {"display_name": mid, "provider": ""})
-            rank_cls = f"r{i+1}" if i < 3 else ""
-            medal = MEDALS[i] if i < len(MEDALS) else "·"
-            lol_badge = "<span class='lol'>★ LOL</span>" if mid in lol_set else ""
-            provider = m.get("provider", "")
-            cards.append(
-                f"<div class='card {rank_cls}'>"
-                f"<div class='rank-cell'><div class='medal'>{medal}</div>"
-                f"<div class='rank-n'>#{i+1}</div></div>"
-                f"<div>"
-                f"<div class='joke'>{escape(joke)}</div>"
-                f"<div class='byline'>"
-                f"<span class='model'>{escape(m.get('display_name', mid))}</span>"
-                f"<span class='pill {provider}'>{escape(PROVIDER_LABEL.get(provider, provider))}</span>"
-                f"{lol_badge}"
-                f"</div></div></div>"
+        lb_rows = []
+        for i, r in enumerate(rows, 1):
+            pct = f"{r['avg_percentile']:.1f}" if r["avg_percentile"] is not None else "—"
+            lol = f"{r['lol_rate']:.0f}%" if r["lol_rate"] is not None else "—"
+            cost = fmt_money(r["cost_usd"])
+            provider = r["provider"]
+            lb_rows.append(
+                f"<tr><td class='num'><span class='rank'>{i}</span></td>"
+                f"<td><strong>{escape(r['display_name'])}</strong>"
+                f" <span class='pill {provider}'>{escape(PROVIDER_LABEL.get(provider, provider))}</span></td>"
+                f"<td class='num'>{pct}</td>"
+                f"<td class='num'>{lol}</td>"
+                f"<td class='num'>{cost}</td></tr>"
             )
-        pers_sections.append(
-            f"<div class='pers' id='{escape(pid)}'>"
-            f"<h3>{escape(p['name'])}</h3>"
-            f"<p class='desc'>{escape(p.get('description', ''))}</p>"
-            + "".join(cards)
-            + "</div>"
+        lb_table = (
+            "<table class='lb'>"
+            "<thead><tr><th>#</th><th>Model</th><th>Avg %ile</th><th>LOL rate</th><th>Gen cost</th></tr></thead>"
+            f"<tbody>{''.join(lb_rows)}</tbody></table>"
+        )
+
+        pers_sections = []
+        toc = []
+        for p in pers_by_set.get(set_name, []):
+            pid = p["id"]
+            order = rankings["rankings"].get(pid, [])
+            lol_set = set(rankings["lol_flags"].get(pid, []))
+            if not order:
+                continue
+            toc.append(f"<a href='#{escape(pid)}'>{escape(p['name'])}</a>")
+            cards = [render_card(i, mid, pid, lol_set) for i, mid in enumerate(order)]
+            pers_sections.append(
+                f"<div class='pers' id='{escape(pid)}'>"
+                f"<h3>{escape(p['name'])}</h3>"
+                f"<p class='desc'>{escape(p.get('description', ''))}</p>"
+                + "".join(cards)
+                + "</div>"
+            )
+
+        set_sections.append(
+            f"<section class='lead'>"
+            f"<h2>{escape(SET_LABELS.get(set_name, set_name))}</h2>"
+            f"<p class='set-tag'>{escape(SET_TAGS.get(set_name, ''))}</p>"
+            f"{lb_table}"
+            f"<h2>Roasts by personality</h2>"
+            f"<nav class='toc'>{' · '.join(toc)}</nav>"
+            f"{''.join(pers_sections)}"
+            f"</section>"
         )
 
     repo_url = discover_repo_url()
@@ -180,26 +236,15 @@ def build() -> str:
 <div class="wrap">
 <header>
   <h1>RoastBench</h1>
-  <p class="tag">An LLM benchmark for roast jokes. Each frontier model writes one roast for each of 10 personalities, at maximum reasoning effort. A human rater drags the jokes into a ranked list per personality and flags any that made them laugh.</p>
-  <p class="meta">{len(board)} models · {len(personalities)} personalities · {total_jokes} jokes · total cost {fmt_money(total_cost)}</p>
+  <p class="tag">An LLM benchmark for roast jokes. Frontier models each write one roast for each of 10 personalities at maximum reasoning effort, scored against (i) each other and (ii) a separate set of professional human roasts from Comedy Central.</p>
+  <p class="meta">{total_models} models · {len(personalities)} personalities · {total_jokes} jokes · total LLM cost {fmt_money(total_cost)}</p>
 </header>
 
-<section class="lead">
-  <h2>Leaderboard</h2>
-  <table class="lb">
-    <thead><tr><th>#</th><th>Model</th><th>Avg %ile</th><th>LOL rate</th><th>Gen cost</th></tr></thead>
-    <tbody>{''.join(lb_rows)}</tbody>
-  </table>
-</section>
-
-<section>
-  <h2>Roasts by personality</h2>
-  <nav class="toc">{' · '.join(toc)}</nav>
-  {''.join(pers_sections)}
-</section>
+{''.join(set_sections)}
 
 <footer>
-<p><strong>Methodology.</strong> Each model is invoked at its provider's maximum reasoning tier (Anthropic <code>effort:max</code>, OpenAI <code>reasoning:xhigh</code>, Google <code>thinking_level:high</code>), with no tools or web access. The single prompt is: <em>"Write one roast joke about {{name}}. It will be your entry into a competitive roast battle judged by humans."</em> A human rater then drags each joke into a per-personality ranked list (best at top); the headline number is the average percentile across personalities. LOL rate is a separate flag for jokes that made the rater laugh out loud.</p>
+<p><strong>Methodology.</strong> Each LLM is invoked at its provider's maximum reasoning tier (Anthropic <code>effort:max</code>, OpenAI <code>reasoning:xhigh</code>, Google <code>thinking_level:high</code>), with no tools or web access. The single prompt is: <em>"Write one roast joke about {{name}}. It will be your entry into a competitive roast battle judged by humans."</em> A human rater drags each joke into a per-personality ranked list (best at top); the headline number is the average percentile across personalities. LOL rate is a separate flag for jokes that made the rater laugh out loud.</p>
+<p>The <strong>Human baseline</strong> set is seeded with quotes from real Comedy Central roasts (2005–2019). Each card credits the original comedian and event; jokes labelled "unverified" are paraphrases that need a verbatim transcript.</p>
 <p>{source_link}</p>
 </footer>
 </div>

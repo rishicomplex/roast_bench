@@ -37,6 +37,11 @@
             {% if c.is_new %}<span class="badge">NEW</span>{% endif %}
           </div>
           <div class="joke">{{ c.joke }}</div>
+          {% if c.source %}
+          <div class="source">
+            — <strong>{{ c.source.roaster }}</strong>{% if c.source.roast %} at the {{ c.source.roast }}{% endif %}{% if not c.source.verified %} <span class="unverified">unverified paraphrase</span>{% endif %}
+          </div>
+          {% endif %}
         </div>
         <label class="lol">
           <input type="checkbox" {% if c.lol %}checked{% endif %} class="lol-cb">

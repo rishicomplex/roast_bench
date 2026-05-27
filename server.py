@@ -61,6 +61,20 @@ def get_jokes() -> dict[str, dict[str, str]]:
     return out
 
 
+def get_sources() -> dict[str, dict[str, dict]]:
+    """personality_id -> model_id -> source dict (roast, roaster, verified, …)."""
+    out: dict[str, dict[str, dict]] = defaultdict(dict)
+    if not JOKES_DIR.exists():
+        return out
+    for path in sorted(JOKES_DIR.glob("*.json")):
+        d = _load(path)
+        mid = d["model_id"]
+        for pid, src in d.get("sources", {}).items():
+            if src:
+                out[pid][mid] = src
+    return out
+
+
 def _next_unranked(pers: list[dict], rankings: dict, model_id: str, jokes: dict, skip: str | None = None) -> str | None:
     """Next personality where this model has a joke but isn't yet in the ranking."""
     for p in pers:
@@ -144,7 +158,9 @@ def rate_personality(model_id, personality_id):
     rankings = get_rankings()
     models = get_models()
     jokes = get_jokes()
+    sources = get_sources()
     jokes_for_p = jokes.get(personality_id, {})
+    sources_for_p = sources.get(personality_id, {})
 
     if request.method == "POST":
         body = request.get_json(force=True)
@@ -174,6 +190,7 @@ def rate_personality(model_id, personality_id):
             "joke": jokes_for_p[mid],
             "is_new": mid == model_id,
             "lol": mid in lol_set,
+            "source": sources_for_p.get(mid),
         }
         for mid in current
         if mid in jokes_for_p
@@ -216,6 +233,7 @@ def rerank_personality(personality_id):
     rankings = get_rankings()
     models = get_models()
     jokes_for_p = get_jokes().get(personality_id, {})
+    sources_for_p = get_sources().get(personality_id, {})
     current = list(rankings["rankings"].get(personality_id, []))
     for mid in jokes_for_p:
         if mid not in current:
@@ -228,6 +246,7 @@ def rerank_personality(personality_id):
             "joke": jokes_for_p[mid],
             "is_new": False,
             "lol": mid in lol_set,
+            "source": sources_for_p.get(mid),
         }
         for mid in current
         if mid in jokes_for_p

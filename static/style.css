@@ -136,6 +136,21 @@ ul.ranklist {
   font-family: "SF Pro Text", "Charter", Georgia, serif;
   font-size: 15px;
 }
+.content .source {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--dim);
+}
+.content .source .unverified {
+  background: #f5e8c8;
+  color: #8a6a14;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  margin-left: 4px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
 .badge {
   display: inline-block;
   background: var(--accent);
