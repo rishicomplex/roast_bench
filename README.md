@@ -9,6 +9,8 @@ Two sets of personalities:
 
 → All jokes + the per-personality breakdown at **[rishimehta.xyz/roast_bench](https://rishimehta.xyz/roast_bench/)**.
 
+**Avg %ile** — for each personality I order all models from best to worst. Each model's rank is converted to a percentile (top = 100, bottom = 0, linear). The displayed number is the mean of that model's percentiles across the set's personalities. **LOL rate** — fraction of the model's jokes (in this set) I flagged as making me laugh out loud during rating.
+
 ## vs. human comedians
 
 <!-- leaderboard:human_baseline:start -->
