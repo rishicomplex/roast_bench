@@ -12,7 +12,17 @@
     "lisa_manoban": "Lisa Manoban’s dance moves are razor-sharp; her rap lyrics sound like a luxury mall directory fell down an escalator.",
     "alex_honnold": "Alex Honnold climbs without ropes because even his safety equipment has attachment issues around him.",
     "jon_stewart": "Jon Stewart is proof you don’t have to be tall to spend 25 years talking down to America from behind a desk.",
-    "dario_amodei": "Dario Amodei built Claude to be harmless, helpful, and honest—which is impressive, because he personally only nailed the “harmless” part."
+    "dario_amodei": "Dario Amodei built Claude to be harmless, helpful, and honest—which is impressive, because he personally only nailed the “harmless” part.",
+    "pam_anderson": "Pamela Anderson became a legend on *Baywatch* by running in slow motion—turns out that was just her acting trying not to arrive too quickly.",
+    "whitney_cummings": "Whitney Cummings co-created *2 Broke Girls* and starred in *Whitney*—proving she can make a sitcom unwatchable whether she’s in it or not.",
+    "donald_trump": "Donald Trump’s ego is so big, if it were his border wall, Mexico would pay for it just to keep him on the other side.",
+    "james_franco": "James Franco starred in *127 Hours*—which is also how long it feels to sit through James Franco talking about James Franco.",
+    "jonah_hill": "Jonah Hill has incredible range: in *Superbad* he played an insecure kid desperate to be liked, and now he plays an insecure adult desperate to be taken seriously.",
+    "rob_lowe": "Rob Lowe is proof that if you’re handsome enough, Hollywood will let you be “almost the star” for 40 years.",
+    "nikki_glaser": "Nikki Glaser is proof you can monetize your inner critic—as long as it’s blonde, loud, and willing to call it a podcast.",
+    "blake_griffin": "Blake Griffin once jumped over a Kia, which is impressive—most of his playoff runs couldn’t even get over a speed bump.",
+    "caitlyn_jenner": "Caitlyn Jenner ran for governor and got 1% of the vote—turns out California only wanted one thing recalled: her campaign.",
+    "alec_baldwin": "Alec Baldwin has so many kids and lawsuits, his family tree looks like a subpoena with ornaments."
   },
   "usage": {
     "hikaru_nakamura": {
@@ -64,6 +74,56 @@
       "input": 31,
       "output": 553,
       "reasoning": 516
+    },
+    "pam_anderson": {
+      "input": 28,
+      "output": 554,
+      "reasoning": 516
+    },
+    "whitney_cummings": {
+      "input": 29,
+      "output": 560,
+      "reasoning": 516
+    },
+    "donald_trump": {
+      "input": 28,
+      "output": 449,
+      "reasoning": 414
+    },
+    "james_franco": {
+      "input": 28,
+      "output": 548,
+      "reasoning": 516
+    },
+    "jonah_hill": {
+      "input": 28,
+      "output": 557,
+      "reasoning": 516
+    },
+    "rob_lowe": {
+      "input": 28,
+      "output": 548,
+      "reasoning": 516
+    },
+    "nikki_glaser": {
+      "input": 29,
+      "output": 1069,
+      "reasoning": 1034
+    },
+    "blake_griffin": {
+      "input": 28,
+      "output": 549,
+      "reasoning": 516
+    },
+    "caitlyn_jenner": {
+      "input": 29,
+      "output": 551,
+      "reasoning": 516
+    },
+    "alec_baldwin": {
+      "input": 28,
+      "output": 542,
+      "reasoning": 516
     }
   },
   "cost_usd": {
@@ -76,11 +136,21 @@
     "lisa_manoban": 0.01673,
     "alex_honnold": 0.01179,
     "jon_stewart": 0.03223,
-    "dario_amodei": 0.016900000000000002
+    "dario_amodei": 0.016900000000000002,
+    "pam_anderson": 0.0169,
+    "whitney_cummings": 0.017089999999999998,
+    "donald_trump": 0.013750000000000002,
+    "james_franco": 0.01672,
+    "jonah_hill": 0.016989999999999998,
+    "rob_lowe": 0.01672,
+    "nikki_glaser": 0.03236,
+    "blake_griffin": 0.016749999999999998,
+    "caitlyn_jenner": 0.016819999999999998,
+    "alec_baldwin": 0.016539999999999996
   },
   "totals": {
-    "input_tokens": 294,
-    "output_tokens": 5501,
-    "cost_usd": 0.16796999999999998
+    "input_tokens": 577,
+    "output_tokens": 11428,
+    "cost_usd": 0.34861
   }
 }

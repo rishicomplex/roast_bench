@@ -16,9 +16,14 @@ JOKES_DIR = DATA / "jokes"
 app = Flask(__name__, template_folder=str(ROOT / "templates"), static_folder=str(ROOT / "static"))
 
 SET_LABELS = {
-    "original": "Original benchmark",
-    "human_baseline": "Human baseline (Comedy Central roasts)",
+    "original": "Other personalities",
+    "human_baseline": "Human baseline",
 }
+SET_TAGS = {
+    "original": "Original benchmark set — frontier models only.",
+    "human_baseline": "10 Comedy Central roast targets (2005–2019); each set includes a Human entry with verified quotes.",
+}
+SET_ORDER = ["human_baseline", "original"]
 
 
 def _load(p: Path) -> dict:
@@ -118,12 +123,15 @@ def index():
             }
 
     sets_view = []
-    for set_name in ["original", "human_baseline"]:
-        if set_name not in pers_by_set:
-            continue
+    set_order = [s for s in SET_ORDER if s in pers_by_set]
+    for s in pers_by_set:
+        if s not in set_order:
+            set_order.append(s)
+    for set_name in set_order:
         sets_view.append({
             "name": set_name,
             "label": SET_LABELS.get(set_name, set_name),
+            "tag": SET_TAGS.get(set_name, ""),
             "personalities": pers_by_set[set_name],
             "board": leaderboard["sets"].get(set_name, []),
         })

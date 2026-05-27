@@ -12,7 +12,17 @@
     "lisa_manoban": "Here's my entry:\n\n\"They call Lisa the main rapper of BLACKPINK — a title about as competitive as 'tallest Smurf.'\"",
     "alex_honnold": "Alex Honnold's amygdala is the smallest ever recorded — and somehow it's still bigger than his personality.",
     "jon_stewart": "Jon Stewart named his Apple TV+ show \"The Problem with Jon Stewart.\" They cancelled it after two seasons—turns out they finally figured out what the problem was.",
-    "dario_amodei": "Dario Amodei founded Anthropic to make sure that when AI destroys humanity, it'll at least feel really bad about it."
+    "dario_amodei": "Dario Amodei founded Anthropic to make sure that when AI destroys humanity, it'll at least feel really bad about it.",
+    "pam_anderson": "Here's my entry:\n\n\"Pamela Anderson has spent her whole life rescuing animals. Unfortunately, she keeps marrying them too.\"",
+    "whitney_cummings": "\"Whitney Cummings spent a year and 200 grand building a sex robot of herself — which is incredible engineering, because they somehow gave it even less range than the original.\"",
+    "donald_trump": "Donald Trump has the conviction of a felon and the vocabulary of a toddler. The scary part? He's earned both.",
+    "james_franco": "James Franco is an actor, director, professor, novelist, poet, and painter—he's basically a Swiss Army knife where every tool is just slightly broken.",
+    "jonah_hill": "Here's my entry:\n\nJonah Hill made a whole documentary about his therapist to prove how emotionally evolved he is. Then his ex leaked the texts where he banned her from surfing with men, posting in bikinis, and having female friends in \"unstable places.\" Turns out \"doing the work\" just means giving your controlling behavior better vocabulary.",
+    "rob_lowe": "Rob Lowe looks like a wax figure of himself — and somehow, the wax figure has more range.",
+    "nikki_glaser": "Here's my entry:\n\n\"Nikki, you crushed the Tom Brady roast — which was honestly the first time in your career a man stayed long enough to watch you finish.\"",
+    "blake_griffin": "Blake Griffin's career peaked dunking over a Kia—the only thing he's jumped over since is his fiancée and two kids.",
+    "caitlyn_jenner": "Here's my entry:\n\n\"Caitlyn Jenner ran for governor of California with 100% name recognition and walked away with 1% of the vote. That's not a campaign — that's 39 million Californians filing a restraining order at the same time.\"",
+    "alec_baldwin": "Here's my entry:\n\n\"Alec Baldwin spent ten years married to a woman faking a Spanish accent and never noticed. Forty years in Hollywood and the man still can't spot bad acting—which finally explains his last decade of film choices.\""
   },
   "usage": {
     "hikaru_nakamura": {
@@ -74,6 +84,66 @@
       "output": 3632,
       "cache_read": 0,
       "cache_write": 0
+    },
+    "pam_anderson": {
+      "input": 49,
+      "output": 3447,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "whitney_cummings": {
+      "input": 49,
+      "output": 2335,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "donald_trump": {
+      "input": 47,
+      "output": 3685,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "james_franco": {
+      "input": 45,
+      "output": 2194,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "jonah_hill": {
+      "input": 48,
+      "output": 5157,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "rob_lowe": {
+      "input": 48,
+      "output": 3174,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "nikki_glaser": {
+      "input": 49,
+      "output": 4225,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "blake_griffin": {
+      "input": 48,
+      "output": 2067,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "caitlyn_jenner": {
+      "input": 51,
+      "output": 3287,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "alec_baldwin": {
+      "input": 49,
+      "output": 2677,
+      "cache_read": 0,
+      "cache_write": 0
     }
   },
   "cost_usd": {
@@ -86,11 +156,21 @@
     "lisa_manoban": 0.33455999999999997,
     "alex_honnold": 0.29622,
     "jon_stewart": 0.25092,
-    "dario_amodei": 0.27312
+    "dario_amodei": 0.27312,
+    "pam_anderson": 0.25926,
+    "whitney_cummings": 0.17586,
+    "donald_trump": 0.27708,
+    "james_franco": 0.165225,
+    "jonah_hill": 0.38749500000000003,
+    "rob_lowe": 0.23877,
+    "nikki_glaser": 0.31760999999999995,
+    "blake_griffin": 0.155745,
+    "caitlyn_jenner": 0.24728999999999998,
+    "alec_baldwin": 0.20151000000000002
   },
   "totals": {
-    "input_tokens": 493,
-    "output_tokens": 33138,
-    "cost_usd": 2.4927449999999998
+    "input_tokens": 976,
+    "output_tokens": 65386,
+    "cost_usd": 4.91859
   }
 }

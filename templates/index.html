@@ -12,38 +12,42 @@
 
   <main>
     {% for s in sets_view %}
-    <section>
-      <h2>{{ s.label }}</h2>
+    <section class="set-section set-{{ s.name }}">
+      <div class="set-head">
+        <h2>{{ s.label }}</h2>
+        {% if s.tag %}<p class="set-tag">{{ s.tag }}</p>{% endif %}
+      </div>
+
       {% if s.board %}
       <table class="board">
         <thead>
           <tr>
             <th>#</th>
             <th>Model</th>
-            <th>Provider</th>
-            <th>Avg %ile</th>
-            <th>LOL rate</th>
-            <th>Rated</th>
-            <th>Cost</th>
-            <th>Tokens (in/out)</th>
+            <th class="dim-th">Provider</th>
+            <th class="num-th">Avg %ile</th>
+            <th class="num-th">LOL</th>
+            <th class="num-th">Rated</th>
+            <th class="num-th">Cost</th>
+            <th class="num-th">Tokens</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           {% for row in s.board %}
           <tr>
-            <td>{{ loop.index }}</td>
+            <td class="rank-cell">{{ loop.index }}</td>
             <td><strong>{{ row.display_name }}</strong></td>
             <td class="dim">{{ row.provider }}</td>
-            <td>{% if row.avg_percentile is not none %}{{ "%.1f"|format(row.avg_percentile) }}{% else %}—{% endif %}</td>
-            <td>{% if row.lol_rate is not none %}{{ "%.0f"|format(row.lol_rate) }}%{% else %}—{% endif %}</td>
-            <td class="dim">{{ row.jokes_rated }}/{{ row.personalities_in_set }}</td>
-            <td class="dim">{% if row.cost_usd is not none %}${{ "%.3f"|format(row.cost_usd) }}{% else %}—{% endif %}</td>
-            <td class="dim">{% if row.input_tokens is not none %}{{ row.input_tokens }} / {{ row.output_tokens }}{% else %}—{% endif %}</td>
-            <td>
+            <td class="num">{% if row.avg_percentile is not none %}{{ "%.1f"|format(row.avg_percentile) }}{% else %}—{% endif %}</td>
+            <td class="num">{% if row.lol_rate is not none %}{{ "%.0f"|format(row.lol_rate) }}%{% else %}—{% endif %}</td>
+            <td class="dim num">{{ row.jokes_rated }}/{{ row.personalities_in_set }}</td>
+            <td class="dim num">{% if row.cost_usd is not none %}${{ "%.3f"|format(row.cost_usd) }}{% else %}—{% endif %}</td>
+            <td class="dim num">{% if row.input_tokens is not none %}{{ row.input_tokens }} / {{ row.output_tokens }}{% else %}—{% endif %}</td>
+            <td class="action-cell">
               {% set p = progress[row.model_id][s.name] %}
               {% if p.next %}
-                <a class="btn" href="{{ url_for('rate_model', model_id=row.model_id) }}">Rate ({{ p.unranked|length }} left)</a>
+                <a class="btn" href="{{ url_for('rate_model', model_id=row.model_id) }}">Rate <span class="btn-meta">({{ p.unranked|length }} left)</span></a>
               {% else %}
                 <span class="dim">done</span>
               {% endif %}
@@ -53,17 +57,20 @@
         </tbody>
       </table>
       {% else %}
-      <p class="dim">No jokes yet for this set.</p>
+      <p class="dim empty">No jokes yet for this set.</p>
       {% endif %}
 
-      <ul class="pers">
-        {% for p in s.personalities %}
-        <li>
-          <a href="{{ url_for('rerank_personality', personality_id=p.id) }}">{{ p.name }}</a>
-          <span class="dim">— {{ rankings.rankings[p.id]|length }} ranked</span>
-        </li>
-        {% endfor %}
-      </ul>
+      <details class="pers-details">
+        <summary>Personalities ({{ s.personalities|length }})</summary>
+        <ul class="pers">
+          {% for p in s.personalities %}
+          <li>
+            <a href="{{ url_for('rerank_personality', personality_id=p.id) }}">{{ p.name }}</a>
+            <span class="dim">— {{ rankings.rankings[p.id]|length }} ranked</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </details>
     </section>
     {% endfor %}
   </main>

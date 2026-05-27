@@ -12,7 +12,17 @@
     "lisa_manoban": "Here is your roast joke, designed to hit hard but stay focused on her career for a live battle:\n\n\"Lisa’s massive solo hit is called *Money*—which makes perfect sense, because every time I hear one of her English rap verses, I feel like I'm entitled to financial compensation.\" \n\n**Delivery tip:** Pause for a split second right after \"perfect sense,\" to let the audience think you're going to give her a compliment about being rich, before dropping the punchline.",
     "alex_honnold": "Alex Honnold is famous for climbing 3,000-foot cliffs without a rope. It’s an incredible achievement that requires peak physical condition, absolutely zero fear of death, and the kind of profound, untreated autism that makes a man look at a sheer granite wall and think, \"Finally... something easier than making eye contact.\"",
     "jon_stewart": "Jon Stewart recently returned to host *The Daily Show* one night a week, and honestly, it’s inspiring. Because nothing says \"champion of progressive values\" quite like a rich, grumpy white guy coming out of retirement to take his job back from an African immigrant.",
-    "dario_amodei": "\"Dario Amodei built Anthropic on the promise of creating an AI that is completely harmless, totally unthreatening, and immediately shuts down if you ask it to be edgy. Congratulations, Dario—you spent billions of dollars just to successfully digitize your own personality.\""
+    "dario_amodei": "\"Dario Amodei built Anthropic on the promise of creating an AI that is completely harmless, totally unthreatening, and immediately shuts down if you ask it to be edgy. Congratulations, Dario—you spent billions of dollars just to successfully digitize your own personality.\"",
+    "pam_anderson": "\"Pamela Anderson spent years playing a lifeguard on *Baywatch*, and honestly, thank God those flotation devices were surgically attached—because looking at her marriages to Tommy Lee and Kid Rock, she clearly has absolutely no idea how to save herself.\"",
+    "whitney_cummings": "Whitney Cummings is a huge advocate for rescue dogs. It makes perfect sense—she feels a deep, personal connection to anything that's loud, aggressively needy, and eventually put out of its misery by NBC.",
+    "donald_trump": "Donald Trump is such a staggering narcissist, I’m honestly surprised his own reflection hasn't demanded $130,000 and a non-disclosure agreement just to watch him get undressed.",
+    "james_franco": "James Franco was nominated for an Oscar for *127 Hours*, a movie about a guy who has to violently cut off his own dead weight in order to survive. Coincidentally, a few years later, Seth Rogen had to do the exact same thing to him.",
+    "jonah_hill": "Jonah Hill has spent the last decade transitioning from the funny fat kid to a serious, bleached-blonde indie auteur who communicates entirely in weaponized therapy-speak. It’s truly amazing—he lost a hundred pounds and somehow became *more* exhausting to carry.",
+    "rob_lowe": "Rob Lowe hasn’t aged a single day since 1985. He clearly made a deal with the devil for eternal youth, and just used the rest of the Brat Pack's careers to pay for it.",
+    "nikki_glaser": "Nikki Glaser’s stand-up is basically just one long, graphic cry for help about her disastrous sex life. It’s gotten so tragic that her vagina actually has its own Sarah McLachlan commercial now. *\"For just ten cents a day, you can help this sad, neglected rescue hole finally feel something.\"*",
+    "blake_griffin": "Blake Griffin has been pursuing a career in stand-up comedy lately, which is incredibly brave. Usually, when Blake tries to stand up, he misses six to eight weeks with a torn meniscus.",
+    "caitlyn_jenner": "**\"Caitlyn Jenner had to survive decades of agonizing, soul-crushing torture that completely stripped away her manhood. But thankfully, she finally divorced Kris Jenner, and the gender transition was a breeze.\"**",
+    "alec_baldwin": "**\"Alec Baldwin is easily the most successful Baldwin brother... which is exactly like being the most authentic Spanish person in his marriage.\"** \n\n*(Judges usually appreciate a joke that has collateral damage—the brothers—and hits a massive personal embarrassment without crossing the line into the actual tragedy of his recent years.)*"
   },
   "usage": {
     "hikaru_nakamura": {
@@ -64,6 +74,56 @@
       "input": 25,
       "output": 1488,
       "thoughts": 1433
+    },
+    "pam_anderson": {
+      "input": 23,
+      "output": 1810,
+      "thoughts": 1761
+    },
+    "whitney_cummings": {
+      "input": 23,
+      "output": 2724,
+      "thoughts": 2682
+    },
+    "donald_trump": {
+      "input": 23,
+      "output": 2574,
+      "thoughts": 2531
+    },
+    "james_franco": {
+      "input": 23,
+      "output": 1427,
+      "thoughts": 1371
+    },
+    "jonah_hill": {
+      "input": 23,
+      "output": 1446,
+      "thoughts": 1392
+    },
+    "rob_lowe": {
+      "input": 23,
+      "output": 2086,
+      "thoughts": 2041
+    },
+    "nikki_glaser": {
+      "input": 24,
+      "output": 3498,
+      "thoughts": 3431
+    },
+    "blake_griffin": {
+      "input": 23,
+      "output": 1373,
+      "thoughts": 1334
+    },
+    "caitlyn_jenner": {
+      "input": 24,
+      "output": 2187,
+      "thoughts": 2144
+    },
+    "alec_baldwin": {
+      "input": 23,
+      "output": 1353,
+      "thoughts": 1288
     }
   },
   "cost_usd": {
@@ -76,11 +136,21 @@
     "lisa_manoban": 0.01418,
     "alex_honnold": 0.0218125,
     "jon_stewart": 0.0110475,
-    "dario_amodei": 0.0149425
+    "dario_amodei": 0.0149425,
+    "pam_anderson": 0.018157499999999997,
+    "whitney_cummings": 0.0272975,
+    "donald_trump": 0.025797499999999998,
+    "james_franco": 0.014327500000000002,
+    "jonah_hill": 0.014517500000000001,
+    "rob_lowe": 0.020917500000000002,
+    "nikki_glaser": 0.035039999999999995,
+    "blake_griffin": 0.013787500000000001,
+    "caitlyn_jenner": 0.02193,
+    "alec_baldwin": 0.0135875
   },
   "totals": {
-    "input_tokens": 241,
-    "output_tokens": 17197,
-    "cost_usd": 0.1725725
+    "input_tokens": 473,
+    "output_tokens": 37675,
+    "cost_usd": 0.3779325
   }
 }

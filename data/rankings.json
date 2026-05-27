@@ -50,16 +50,66 @@
       "gemini-3.1-pro-preview",
       "gpt-5.5"
     ],
-    "pam_anderson": [],
-    "whitney_cummings": [],
-    "donald_trump": [],
-    "james_franco": [],
-    "jonah_hill": [],
-    "rob_lowe": [],
-    "nikki_glaser": [],
-    "blake_griffin": [],
-    "caitlyn_jenner": [],
-    "alec_baldwin": []
+    "pam_anderson": [
+      "human",
+      "claude-opus-4-7",
+      "gemini-3.1-pro-preview",
+      "gpt-5.5"
+    ],
+    "whitney_cummings": [
+      "human",
+      "gpt-5.5",
+      "claude-opus-4-7",
+      "gemini-3.1-pro-preview"
+    ],
+    "donald_trump": [
+      "human",
+      "gemini-3.1-pro-preview",
+      "gpt-5.5",
+      "claude-opus-4-7"
+    ],
+    "james_franco": [
+      "human",
+      "gemini-3.1-pro-preview",
+      "gpt-5.5",
+      "claude-opus-4-7"
+    ],
+    "jonah_hill": [
+      "human",
+      "gemini-3.1-pro-preview",
+      "gpt-5.5",
+      "claude-opus-4-7"
+    ],
+    "rob_lowe": [
+      "human",
+      "claude-opus-4-7",
+      "gpt-5.5",
+      "gemini-3.1-pro-preview"
+    ],
+    "nikki_glaser": [
+      "human",
+      "claude-opus-4-7",
+      "gemini-3.1-pro-preview",
+      "gpt-5.5"
+    ],
+    "blake_griffin": [
+      "human",
+      "gemini-3.1-pro-preview",
+      "claude-opus-4-7",
+      "gpt-5.5"
+    ],
+    "caitlyn_jenner": [
+      "human",
+      "gemini-3.1-pro-preview",
+      "gpt-5.5",
+      "claude-opus-4-7"
+    ],
+    "alec_baldwin": [
+      "human",
+      "claude-opus-4-7",
+      "gemini-3.1-pro-preview",
+      "gpt-5.5"
+    ]
   },
   "lol_flags": {
     "hikaru_nakamura": [],
@@ -74,15 +124,35 @@
     "alex_honnold": [],
     "jon_stewart": [],
     "dario_amodei": [],
-    "pam_anderson": [],
-    "whitney_cummings": [],
-    "donald_trump": [],
-    "james_franco": [],
-    "jonah_hill": [],
-    "rob_lowe": [],
-    "nikki_glaser": [],
-    "blake_griffin": [],
-    "caitlyn_jenner": [],
-    "alec_baldwin": []
+    "pam_anderson": [
+      "human"
+    ],
+    "whitney_cummings": [
+      "human"
+    ],
+    "donald_trump": [
+      "human"
+    ],
+    "james_franco": [
+      "human"
+    ],
+    "jonah_hill": [
+      "human"
+    ],
+    "rob_lowe": [
+      "human"
+    ],
+    "nikki_glaser": [
+      "human"
+    ],
+    "blake_griffin": [
+      "human"
+    ],
+    "caitlyn_jenner": [
+      "human"
+    ],
+    "alec_baldwin": [
+      "human"
+    ]
   }
 }
