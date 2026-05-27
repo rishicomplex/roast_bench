@@ -1,6 +1,11 @@
 # RoastBench
 
-A two-part comparison. The **first table** pits frontier LLMs against some of my favorite roast jokes from human comedians (verified quotes from real Comedy Central roasts) — useful as an absolute reference. The **second table** swaps in 10 personalities I personally find interesting — none of whom have *ever* been the subject of a public roast, so the models can't lean on memorized material from training data; the LLMs are scored only against each other there. For every personality, each model writes one roast at maximum reasoning effort; I rank the jokes by hand and flag any that made me laugh.
+A benchmark for how well frontier LLMs write roast jokes. Each model writes one roast per personality at maximum reasoning effort; I rank the jokes by hand and flag any that made me laugh out loud.
+
+Two sets of personalities:
+
+- **Set A — vs. human comedians.** LLMs go up against some of my favorite roast jokes from real Comedy Central roasts. Showcases performance against an expert human baseline.
+- **Set B — held-out personalities.** 10 figures I find interesting who have never been the subject of a public roast, so the models can't lean on memorized material.
 
 → All jokes + the per-personality breakdown at **[rishimehta.xyz/roast_bench](https://rishimehta.xyz/roast_bench/)**.
 

@@ -14,12 +14,12 @@ README = ROOT / "README.md"
 MEDALS = ["🥇", "🥈", "🥉"]
 PROVIDER_LABEL = {"anthropic": "Anthropic", "openai": "OpenAI", "google": "Google", "human": "Human"}
 SET_LABELS = {
-    "human_baseline": "vs. human comedians",
-    "original": "10 additional personalities",
+    "human_baseline": "Set A · vs. human comedians",
+    "original": "Set B · held-out personalities",
 }
 SET_TAGS = {
-    "human_baseline": "LLMs go head-to-head against some of my favorite roast jokes — verified quotes from real Comedy Central roasts (2005–2019).",
-    "original": "10 personalities I find interesting — none have ever been the subject of a public roast, so the models can't fall back on memorized material; frontier models only.",
+    "human_baseline": "LLMs go up against some of my favorite roast jokes — verified quotes from real Comedy Central roasts (2005–2019).",
+    "original": "10 personalities I find interesting who have never been the subject of a public roast, so the models can't fall back on memorized material; frontier LLMs only.",
 }
 SET_ORDER = ["human_baseline", "original"]
 
@@ -106,11 +106,21 @@ def build() -> str:
     .pill.openai{background:#dff5ec; color:var(--openai)}
     .pill.google{background:#e3edfd; color:var(--google)}
     .pill.human{background:#eee7da; color:#5e4a1f}
-    .set-tag{color:var(--muted); font-size:14px; margin:-8px 0 16px}
+    .set-tag{color:var(--muted); font-size:14px; margin:0 0 20px; max-width:640px}
     .source{margin-top:8px; font-size:13px; color:var(--muted)}
     .source strong{color:var(--fg)}
     .source .unverified{background:#f5e8c8; color:#8a6a14; padding:1px 6px; border-radius:3px;
                         font-size:10px; margin-left:6px; letter-spacing:0.03em; text-transform:uppercase}
+    .tabs{display:flex; gap:4px; border-bottom:1px solid var(--rule); margin:32px 0 24px; position:sticky; top:0;
+          background:var(--bg); z-index:5; padding-top:4px}
+    .tab{background:none; border:none; padding:14px 18px; cursor:pointer; font:inherit; font-weight:600;
+         font-size:15px; color:var(--muted); border-bottom:2px solid transparent; margin-bottom:-1px;
+         letter-spacing:-0.005em}
+    .tab:hover{color:var(--fg)}
+    .tab.active{color:var(--fg); border-bottom-color:var(--fg)}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+    section.lead h2{margin-top:0}
     .pers{margin:48px 0 64px; padding-top:24px; border-top:1px solid var(--rule)}
     .pers h3{font-size:28px; margin:0 0 6px; letter-spacing:-0.02em}
     .pers .desc{color:var(--muted); font-size:15px; margin:0 0 24px; max-width:640px}
@@ -210,16 +220,21 @@ def build() -> str:
             )
 
         set_sections.append(
+            f"<div class='tab-panel' id='set-{escape(set_name)}'>"
             f"<section class='lead'>"
-            f"<h2>{escape(SET_LABELS.get(set_name, set_name))}</h2>"
             f"<p class='set-tag'>{escape(SET_TAGS.get(set_name, ''))}</p>"
             f"{lb_table}"
             f"<h2>Roasts by personality</h2>"
             f"<nav class='toc'>{' · '.join(toc)}</nav>"
             f"{''.join(pers_sections)}"
             f"</section>"
+            f"</div>"
         )
 
+    tab_buttons = "".join(
+        f'<button class="tab" data-target="set-{escape(s)}" role="tab">{escape(SET_LABELS.get(s, s))}</button>'
+        for s in set_order
+    )
     repo_url = discover_repo_url()
     source_link = (
         f'Source: <a href="{escape(repo_url)}">{escape(repo_url.replace("https://", ""))}</a>'
@@ -237,9 +252,13 @@ def build() -> str:
 <div class="wrap">
 <header>
   <h1>RoastBench</h1>
-  <p class="tag">A two-part comparison. The <strong>first table</strong> pits frontier LLMs against some of my favorite roast jokes from human comedians (real Comedy Central roasts) — useful as an absolute reference. The <strong>second table</strong> swaps in 10 personalities I personally find interesting — none of whom have <em>ever</em> been the subject of a public roast, so the models can't lean on memorized material from training data; the LLMs are scored only against each other there. For every personality, each model writes one roast at maximum reasoning effort; I rank the jokes by hand and flag any that made me laugh.</p>
+  <p class="tag">A benchmark for how well frontier LLMs write roast jokes. Each model writes one roast per personality at maximum reasoning effort; I rank the jokes by hand and flag any that made me laugh out loud.</p>
   <p class="meta">{total_models} models · {len(personalities)} personalities · {total_jokes} jokes · total LLM cost {fmt_money(total_cost)}</p>
 </header>
+
+<nav class="tabs" role="tablist">
+{tab_buttons}
+</nav>
 
 {''.join(set_sections)}
 
@@ -249,6 +268,22 @@ def build() -> str:
 <p>{source_link}</p>
 </footer>
 </div>
+<script>
+(function() {{
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.tab-panel');
+  function activate(id) {{
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.target === id));
+    panels.forEach(p => p.classList.toggle('active', p.id === id));
+  }}
+  tabs.forEach(t => t.addEventListener('click', () => {{
+    activate(t.dataset.target);
+    history.replaceState(null, '', '#' + t.dataset.target);
+  }}));
+  const initial = (location.hash || '').replace('#', '') || (tabs[0] && tabs[0].dataset.target);
+  activate(initial);
+}})();
+</script>
 </body>
 </html>
 """
