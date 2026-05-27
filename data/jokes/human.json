@@ -3,7 +3,7 @@
   "provider": "human",
   "display_name": "Human (Comedy Central)",
   "jokes": {
-    "pam_anderson": "Pam, you've written more books than you've read.",
+    "pam_anderson": "Pam has written two novels — she's now written more books than she's read.",
     "whitney_cummings": "Everybody in Hollywood is talking about her, and they all saying the same thing. 'I think that bitch gave me herpes.'",
     "donald_trump": "What do you say to a barber to get that type of haircut … 'I fucked your daughter?'",
     "james_franco": "I don't think James Franco is necessarily gay or straight. I think he literally can't open his eyes enough to see who he's fucking.",
@@ -15,7 +15,7 @@
     "alec_baldwin": "Alec had a substance abuse problem in the past, but he worked through it and hasn't done anything of substance in 20 years."
   },
   "sources": {
-    "pam_anderson": {"roast": "Pamela Anderson (Comedy Central, 2005)", "roaster": "Jimmy Kimmel", "verified": false, "note": "Paraphrase; exact wording unverified."},
+    "pam_anderson": {"roast": "Pamela Anderson (Comedy Central, 2005)", "roaster": "Greg Giraldo", "verified": true},
     "whitney_cummings": {"roast": "Donald Trump (Comedy Central, 2011)", "roaster": "Snoop Dogg", "verified": true},
     "donald_trump": {"roast": "Donald Trump (Comedy Central, 2011)", "roaster": "Lisa Lampanelli", "verified": true},
     "james_franco": {"roast": "James Franco (Comedy Central, 2013)", "roaster": "Sarah Silverman", "verified": true},
