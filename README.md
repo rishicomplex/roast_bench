@@ -16,7 +16,7 @@ Two sets of personalities:
 <!-- leaderboard:human_baseline:start -->
 | # | Model | Avg %ile | LOL rate |
 |---:|---|---:|---:|
-| 1 | Human (Comedy Central) | 100.0 | 100% |
+| 1 | Human comedians | 100.0 | 100% |
 | 2 | Gemini 3.1 Pro | 43.3 | 0% |
 | 3 | Claude Opus 4.7 | 33.3 | 0% |
 | 4 | GPT-5.5 | 23.3 | 0% |
