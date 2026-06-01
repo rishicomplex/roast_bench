@@ -106,6 +106,15 @@ def build() -> str:
     .pill.openai{background:#dff5ec; color:var(--openai)}
     .pill.google{background:#e3edfd; color:var(--google)}
     .pill.human{background:#eee7da; color:#5e4a1f}
+    .info{color:#b8b3aa; font-size:11px; margin-left:3px; cursor:help; vertical-align:middle;
+          text-transform:none; letter-spacing:0; user-select:none}
+    .info:hover, .info:focus{color:var(--fg); outline:none}
+    .repo-link{display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border:1px solid var(--rule);
+               border-radius:6px; font-size:13px; font-weight:500; color:var(--fg); text-decoration:none;
+               background:var(--paper)}
+    .repo-link:hover{border-color:var(--muted)}
+    header .title-row{display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap}
+    header .title-row h1{margin:0}
     .set-tag{color:var(--muted); font-size:14px; margin:0 0 20px; max-width:640px}
     .source{margin-top:8px; font-size:13px; color:var(--muted)}
     .source strong{color:var(--fg)}
@@ -197,7 +206,21 @@ def build() -> str:
             )
         lb_table = (
             "<table class='lb'>"
-            "<thead><tr><th>#</th><th>Model</th><th>Avg %ile</th><th>LOL rate</th><th>Gen cost</th></tr></thead>"
+            "<thead><tr>"
+            "<th>#</th>"
+            "<th>Model</th>"
+            "<th>Avg %ile <span class='info' tabindex='0' "
+            "title='For each personality I rank all models from best to worst. "
+            "Each model&#39;s rank is converted to a percentile (top=100, bottom=0, linear). "
+            "The displayed number is the mean of that model&#39;s percentiles across this set&#39;s personalities.'>"
+            "ⓘ</span></th>"
+            "<th>LOL rate <span class='info' tabindex='0' "
+            "title='Fraction of the model&#39;s jokes (in this set) that I flagged as making me laugh out loud during rating.'>"
+            "ⓘ</span></th>"
+            "<th>Gen cost <span class='info' tabindex='0' "
+            "title='Total USD spent generating this model&#39;s jokes for this set (input + output tokens × provider rate, including reasoning tokens).'>"
+            "ⓘ</span></th>"
+            "</tr></thead>"
             f"<tbody>{''.join(lb_rows)}</tbody></table>"
         )
 
@@ -240,6 +263,18 @@ def build() -> str:
         f'Source: <a href="{escape(repo_url)}">{escape(repo_url.replace("https://", ""))}</a>'
         if repo_url else 'Source on GitHub (link not yet configured)'
     )
+    repo_button = (
+        f'<a class="repo-link" href="{escape(repo_url)}" target="_blank" rel="noopener">'
+        f'<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">'
+        f'<path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 '
+        f'0-.19-.01-.82-.01-1.49-2 .37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 '
+        f'1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 '
+        f'0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 2-.27c.68 0 1.36.09 '
+        f'2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 '
+        f'3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>'
+        f'</svg> View on GitHub</a>'
+        if repo_url else ''
+    )
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -251,7 +286,10 @@ def build() -> str:
 <body>
 <div class="wrap">
 <header>
-  <h1>RoastBench</h1>
+  <div class="title-row">
+    <h1>RoastBench</h1>
+    {repo_button}
+  </div>
   <p class="tag">A benchmark for how well frontier LLMs write roast jokes. Each model writes one roast per personality at maximum reasoning effort; I rank the jokes by hand and flag any that made me laugh out loud.</p>
   <p class="meta">{total_models} models · {len(personalities)} personalities · {total_jokes} jokes · total LLM cost {fmt_money(total_cost)}</p>
 </header>
