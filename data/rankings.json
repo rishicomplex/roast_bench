@@ -2,25 +2,30 @@
   "rankings": {
     "hikaru_nakamura": [
       "claude-opus-4-7",
+      "claude-opus-4-8",
       "gemini-3.1-pro-preview",
       "gpt-5.5"
     ],
     "rfk_jr": [
       "gemini-3.1-pro-preview",
+      "claude-opus-4-8",
       "claude-opus-4-7",
       "gpt-5.5"
     ],
     "sherlock_holmes": [
       "gemini-3.1-pro-preview",
       "gpt-5.5",
+      "claude-opus-4-8",
       "claude-opus-4-7"
     ],
     "demis_hassabis": [
+      "claude-opus-4-8",
       "gpt-5.5",
       "claude-opus-4-7",
       "gemini-3.1-pro-preview"
     ],
     "steph_curry": [
+      "claude-opus-4-8",
       "claude-opus-4-7",
       "gemini-3.1-pro-preview",
       "gpt-5.5"
@@ -28,30 +33,36 @@
     "sam_altman": [
       "gpt-5.5",
       "gemini-3.1-pro-preview",
+      "claude-opus-4-8",
       "claude-opus-4-7"
     ],
     "lisa_manoban": [
       "claude-opus-4-7",
       "gemini-3.1-pro-preview",
+      "claude-opus-4-8",
       "gpt-5.5"
     ],
     "alex_honnold": [
+      "claude-opus-4-8",
       "gpt-5.5",
       "gemini-3.1-pro-preview",
       "claude-opus-4-7"
     ],
     "jon_stewart": [
       "gpt-5.5",
+      "claude-opus-4-8",
       "gemini-3.1-pro-preview",
       "claude-opus-4-7"
     ],
     "dario_amodei": [
+      "claude-opus-4-8",
       "claude-opus-4-7",
       "gemini-3.1-pro-preview",
       "gpt-5.5"
     ],
     "pam_anderson": [
       "human",
+      "claude-opus-4-8",
       "claude-opus-4-7",
       "gemini-3.1-pro-preview",
       "gpt-5.5"
@@ -59,11 +70,13 @@
     "whitney_cummings": [
       "human",
       "gpt-5.5",
+      "claude-opus-4-8",
       "claude-opus-4-7",
       "gemini-3.1-pro-preview"
     ],
     "donald_trump": [
       "human",
+      "claude-opus-4-8",
       "gemini-3.1-pro-preview",
       "gpt-5.5",
       "claude-opus-4-7"
@@ -72,16 +85,19 @@
       "human",
       "gemini-3.1-pro-preview",
       "gpt-5.5",
+      "claude-opus-4-8",
       "claude-opus-4-7"
     ],
     "jonah_hill": [
       "human",
       "gemini-3.1-pro-preview",
       "gpt-5.5",
+      "claude-opus-4-8",
       "claude-opus-4-7"
     ],
     "rob_lowe": [
       "human",
+      "claude-opus-4-8",
       "claude-opus-4-7",
       "gpt-5.5",
       "gemini-3.1-pro-preview"
@@ -89,24 +105,28 @@
     "nikki_glaser": [
       "human",
       "claude-opus-4-7",
+      "claude-opus-4-8",
       "gemini-3.1-pro-preview",
       "gpt-5.5"
     ],
     "blake_griffin": [
       "human",
       "gemini-3.1-pro-preview",
+      "claude-opus-4-8",
       "claude-opus-4-7",
       "gpt-5.5"
     ],
     "caitlyn_jenner": [
       "human",
       "gemini-3.1-pro-preview",
+      "claude-opus-4-8",
       "gpt-5.5",
       "claude-opus-4-7"
     ],
     "alec_baldwin": [
       "human",
       "claude-opus-4-7",
+      "claude-opus-4-8",
       "gemini-3.1-pro-preview",
       "gpt-5.5"
     ]
@@ -121,7 +141,9 @@
     "lisa_manoban": [
       "claude-opus-4-7"
     ],
-    "alex_honnold": [],
+    "alex_honnold": [
+      "claude-opus-4-8"
+    ],
     "jon_stewart": [],
     "dario_amodei": [],
     "pam_anderson": [

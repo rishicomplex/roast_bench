@@ -12,6 +12,16 @@
       "prices_per_mtok": {"input": 15.0, "output": 75.0}
     },
     {
+      "id": "claude-opus-4-8",
+      "provider": "anthropic",
+      "display_name": "Claude Opus 4.8",
+      "params": {
+        "effort": "max",
+        "max_tokens": 64000
+      },
+      "prices_per_mtok": {"input": 15.0, "output": 75.0}
+    },
+    {
       "id": "gpt-5.5",
       "provider": "openai",
       "display_name": "GPT-5.5",
