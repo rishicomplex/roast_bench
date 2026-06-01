@@ -1,0 +1,176 @@
+{
+  "model_id": "claude-opus-4-8",
+  "provider": "anthropic",
+  "display_name": "Claude Opus 4.8",
+  "jokes": {
+    "hikaru_nakamura": "Here's my entry:\n\n\"Hikaru can win a bullet game in 30 seconds — which makes sense, because that's also the exact amount of original content he produces before slapping his webcam on someone else's video and calling it a stream.\"",
+    "rfk_jr": "Here's my entry:\n\n\"Robert F. Kennedy Jr. once admitted a worm crawled into his brain, ate part of it, and died. Which is genuinely the saddest story I've ever heard—imagine being that worm, traveling all that way, taking one bite, and immediately realizing there was nothing left in there worth living for.\"",
+    "sherlock_holmes": "\"Sherlock, you can deduce a man's entire life story from the mud on his boots—yet the one mystery you've never cracked is why Watson keeps coming back, when the only thing he's ever truly detected is that the rent's cheaper than living with someone tolerable.\"",
+    "demis_hassabis": "Every DeepMind model Demis ships starts with \"Alpha\"—AlphaGo, AlphaFold, AlphaZero. It's the closest that man will ever get to being one.",
+    "steph_curry": "Here's my entry:\n\n\"Steph Curry has four championships, two MVPs, and a face that still gets carded buying a lottery ticket. Greatest shooter who ever lived—and he *still* looks like he's waiting outside the locker room for his dad to pick him up.\"",
+    "sam_altman": "Here's my entry:\n\n\"Sam Altman keeps a doomsday bunker stocked with guns and gold to survive the AI apocalypse—which has got to be the most honest product review ChatGPT has ever received.\"\n\nThe joke lands on the irony: the guy building the thing is also the guy quietly prepping to outrun it. Want me to draft a couple of alternates so you can pick the one that best fits your opponent and crowd?",
+    "lisa_manoban": "Here's my entry:\n\n\"Lisa named her solo single 'LALISA'—because when your whole brand is attention, even your own name has to say it twice.\"",
+    "alex_honnold": "Here's my entry:\n\n\"Scientists scanned Alex Honnold's brain and found the part that feels fear is completely dead. Turns out it's right next to the part that has a personality.\"",
+    "jon_stewart": "Here's my entry:\n\n\"Jon Stewart took nine years off from *The Daily Show* and came back to host exactly one day a week. He's the only man alive who figured out how to retire *and* still show up to work—and somehow he looks tired doing both.\"",
+    "dario_amodei": "Here's my entry:\n\n\"Dario Amodei spends half his time warning that AI might wipe out humanity, and the other half raising billions to build it faster. He's basically an arsonist who sells fire insurance on the side—'Terrible news about these fires, by the way, have you seen my new lighter?'\"",
+    "pam_anderson": "Here's my entry:\n\n\"Pamela Anderson's been married five times—turns out that famous red Baywatch swimsuit was a red flag all along.\"\n\nIt leans on her well-known marriage history and flips her most iconic image into the punchline. Want me to draft a couple of alternates so you can pick the one that fits your delivery style?",
+    "whitney_cummings": "Here's my entry:\n\n\"Whitney Cummings built a robot replica of herself for her last special. Genuine breakthrough in engineering—they finally made a version of Whitney that men can turn off.\"\n\nIt leans on her actual \"Can I Touch It?\" special (the robot doll bit) and lands on the double meaning of \"turn off,\" which is the kind of self-referential, fact-based shot that tends to play well with a live crowd.",
+    "donald_trump": "Here's my entry:\n\n\"Donald Trump bankrupted a casino. A *casino*—a business literally designed so the house always wins. The man is living proof you can lose money being the guy everyone else loses money to.\"\n\nGood luck in the battle. If you want, I can give you a few alternates to pick from—I've got angles on the hair, the tan, the vocabulary, and the ego standing by.",
+    "james_franco": "Here's my entry:\n\n\"James Franco's collected so many college degrees you'd think he was qualified for something—yet after all that schooling, he still hasn't passed the one class everyone wishes he'd take: Acting.\"",
+    "jonah_hill": "\"Jonah Hill has lost the same 50 pounds so many times that his fat cells have developed abandonment issues.\"",
+    "rob_lowe": "Here's my entry:\n\n\"Rob Lowe's coasted on his looks for forty years—he's got the face of a leading man and the range of a screensaver.\"",
+    "nikki_glaser": "Here's my entry:\n\n\"Nikki Glaser is the undisputed queen of the roast—which tracks. She's spent two decades getting paid to talk about everyone else's sex life, mostly because it's livelier than her own.\"",
+    "blake_griffin": "Here's my entry:\n\n\"Blake Griffin gave a whole teary-eyed speech about being a 'Clipper for life,' then got traded six months later. Honestly, that's the fastest he's moved on a court in years.\"",
+    "caitlyn_jenner": "Here's my entry:\n\n\"Caitlyn Jenner won Olympic gold *and* gave the world the Kardashians — making her single-handedly responsible for both the peak of Western civilization and its complete collapse.\"\n\nGood luck in the battle. 🏆",
+    "alec_baldwin": "Here's my entry:\n\n\"Alec Baldwin's wife faked a Spanish accent for over a decade and he never caught on—which makes sense, because the most convincing performance in that marriage was always happening off-camera.\""
+  },
+  "usage": {
+    "hikaru_nakamura": {
+      "input": 46,
+      "output": 1091,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "rfk_jr": {
+      "input": 50,
+      "output": 1401,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "sherlock_holmes": {
+      "input": 45,
+      "output": 1667,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "demis_hassabis": {
+      "input": 44,
+      "output": 2190,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "steph_curry": {
+      "input": 43,
+      "output": 1239,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "sam_altman": {
+      "input": 42,
+      "output": 1728,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "lisa_manoban": {
+      "input": 44,
+      "output": 1246,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "alex_honnold": {
+      "input": 43,
+      "output": 1774,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "jon_stewart": {
+      "input": 43,
+      "output": 2111,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "dario_amodei": {
+      "input": 43,
+      "output": 1596,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "pam_anderson": {
+      "input": 44,
+      "output": 1316,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "whitney_cummings": {
+      "input": 44,
+      "output": 1709,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "donald_trump": {
+      "input": 42,
+      "output": 1362,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "james_franco": {
+      "input": 40,
+      "output": 2002,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "jonah_hill": {
+      "input": 43,
+      "output": 1852,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "rob_lowe": {
+      "input": 43,
+      "output": 1416,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "nikki_glaser": {
+      "input": 44,
+      "output": 1815,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "blake_griffin": {
+      "input": 43,
+      "output": 1444,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "caitlyn_jenner": {
+      "input": 46,
+      "output": 2028,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "alec_baldwin": {
+      "input": 44,
+      "output": 1510,
+      "cache_read": 0,
+      "cache_write": 0
+    }
+  },
+  "cost_usd": {
+    "hikaru_nakamura": 0.08251499999999999,
+    "rfk_jr": 0.10582499999999999,
+    "sherlock_holmes": 0.1257,
+    "demis_hassabis": 0.16491,
+    "steph_curry": 0.09357000000000001,
+    "sam_altman": 0.13022999999999998,
+    "lisa_manoban": 0.09410999999999999,
+    "alex_honnold": 0.133695,
+    "jon_stewart": 0.15897,
+    "dario_amodei": 0.12034500000000001,
+    "pam_anderson": 0.09935999999999999,
+    "whitney_cummings": 0.128835,
+    "donald_trump": 0.10278,
+    "james_franco": 0.15074999999999997,
+    "jonah_hill": 0.139545,
+    "rob_lowe": 0.106845,
+    "nikki_glaser": 0.136785,
+    "blake_griffin": 0.108945,
+    "caitlyn_jenner": 0.15278999999999998,
+    "alec_baldwin": 0.11391
+  },
+  "totals": {
+    "input_tokens": 876,
+    "output_tokens": 32497,
+    "cost_usd": 2.450415
+  }
+}
