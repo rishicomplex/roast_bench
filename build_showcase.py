@@ -23,6 +23,30 @@ SET_TAGS = {
 }
 SET_ORDER = ["human_baseline", "original"]
 
+COL_TIPS = {
+    "avg": (
+        "For each personality I rank all models from best to worst. Each model's rank is "
+        "converted to a percentile (top=100, bottom=0, linear). The displayed number is the "
+        "mean of that model's percentiles across this set's personalities."
+    ),
+    "lol": (
+        "Fraction of the model's jokes (in this set) that I flagged as making me laugh out "
+        "loud during rating."
+    ),
+    "cost": (
+        "Total USD spent generating this model's jokes for this set (input + output tokens × "
+        "provider rate, including reasoning tokens)."
+    ),
+}
+
+
+def info(key: str) -> str:
+    """Render a tap/hover-friendly info trigger for a column header."""
+    return (
+        f"<button type='button' class='info' aria-label='What does this column mean?' "
+        f'data-tip="{escape(COL_TIPS[key])}">ⓘ</button>'
+    )
+
 
 def load(p: Path) -> dict:
     return json.loads(p.read_text())
@@ -106,9 +130,23 @@ def build() -> str:
     .pill.openai{background:#dff5ec; color:var(--openai)}
     .pill.google{background:#e3edfd; color:var(--google)}
     .pill.human{background:#eee7da; color:#5e4a1f}
-    .info{color:#b8b3aa; font-size:11px; margin-left:3px; cursor:help; vertical-align:middle;
-          text-transform:none; letter-spacing:0; user-select:none}
-    .info:hover, .info:focus{color:var(--fg); outline:none}
+    th .th-label{vertical-align:middle}
+    .info{display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px;
+          margin-left:2px; padding:0; border:none; background:none; color:#b8b3aa; cursor:pointer;
+          font:inherit; font-size:13px; line-height:1; vertical-align:middle; border-radius:50%;
+          text-transform:none; letter-spacing:0; user-select:none; -webkit-tap-highlight-color:transparent;
+          transition:color .12s ease, background .12s ease}
+    .info:hover, .info:focus-visible, .info.active{color:var(--fg); outline:none}
+    .info.active{background:#ece8df}
+    .tip-bubble{position:fixed; left:0; top:0; z-index:60; max-width:min(280px, calc(100vw - 24px));
+          background:#181818; color:#fafaf7; font-size:13px; line-height:1.45; font-weight:400;
+          letter-spacing:0; text-transform:none; padding:10px 13px; border-radius:9px;
+          box-shadow:0 8px 28px rgba(0,0,0,0.22); opacity:0; transform:translateY(-4px);
+          transition:opacity .13s ease, transform .13s ease; pointer-events:none}
+    .tip-bubble.show{opacity:1; transform:translateY(0)}
+    .tip-arrow{position:absolute; width:10px; height:10px; background:#181818; transform:rotate(45deg)}
+    .tip-arrow.up{top:-5px}
+    .tip-arrow.down{bottom:-5px}
     .repo-link{display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border:1px solid var(--rule);
                border-radius:6px; font-size:13px; font-weight:500; color:var(--fg); text-decoration:none;
                background:var(--paper)}
@@ -209,17 +247,9 @@ def build() -> str:
             "<thead><tr>"
             "<th>#</th>"
             "<th>Model</th>"
-            "<th>Avg %ile <span class='info' tabindex='0' "
-            "title='For each personality I rank all models from best to worst. "
-            "Each model&#39;s rank is converted to a percentile (top=100, bottom=0, linear). "
-            "The displayed number is the mean of that model&#39;s percentiles across this set&#39;s personalities.'>"
-            "ⓘ</span></th>"
-            "<th>LOL rate <span class='info' tabindex='0' "
-            "title='Fraction of the model&#39;s jokes (in this set) that I flagged as making me laugh out loud during rating.'>"
-            "ⓘ</span></th>"
-            "<th>Gen cost <span class='info' tabindex='0' "
-            "title='Total USD spent generating this model&#39;s jokes for this set (input + output tokens × provider rate, including reasoning tokens).'>"
-            "ⓘ</span></th>"
+            f"<th><span class='th-label'>Avg %ile</span>{info('avg')}</th>"
+            f"<th><span class='th-label'>LOL rate</span>{info('lol')}</th>"
+            f"<th><span class='th-label'>Gen cost</span>{info('cost')}</th>"
             "</tr></thead>"
             f"<tbody>{''.join(lb_rows)}</tbody></table>"
         )
@@ -320,6 +350,65 @@ def build() -> str:
   }}));
   const initial = (location.hash || '').replace('#', '') || (tabs[0] && tabs[0].dataset.target);
   activate(initial);
+}})();
+
+// Tap/hover info tooltips (works on touch devices, unlike native title=)
+(function() {{
+  const triggers = document.querySelectorAll('.info');
+  if (!triggers.length) return;
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const bubble = document.createElement('div');
+  bubble.className = 'tip-bubble';
+  bubble.setAttribute('role', 'tooltip');
+  const arrow = document.createElement('span');
+  arrow.className = 'tip-arrow';
+  const text = document.createElement('span');
+  bubble.append(arrow, text);
+  document.body.appendChild(bubble);
+  let current = null;
+
+  function place(el) {{
+    const pad = 12;
+    const r = el.getBoundingClientRect();
+    const bw = bubble.offsetWidth, bh = bubble.offsetHeight;
+    const cx = r.left + r.width / 2;
+    let left = Math.max(pad, Math.min(cx - bw / 2, window.innerWidth - bw - pad));
+    let top = r.bottom + 9, below = true;
+    if (top + bh > window.innerHeight - pad && r.top - bh - 9 > pad) {{
+      top = r.top - bh - 9; below = false;
+    }}
+    bubble.style.left = left + 'px';
+    bubble.style.top = top + 'px';
+    let ax = Math.max(9, Math.min(cx - left - 5, bw - 19));
+    arrow.style.left = ax + 'px';
+    arrow.classList.toggle('up', below);
+    arrow.classList.toggle('down', !below);
+  }}
+  function show(el) {{
+    text.textContent = el.getAttribute('data-tip') || '';
+    current = el;
+    el.classList.add('active');
+    bubble.classList.add('show');
+    place(el);
+  }}
+  function hide() {{
+    if (current) current.classList.remove('active');
+    current = null;
+    bubble.classList.remove('show');
+  }}
+  function toggle(el) {{ current === el ? hide() : (hide(), show(el)); }}
+
+  triggers.forEach(el => {{
+    el.addEventListener('click', e => {{ e.stopPropagation(); toggle(el); }});
+    if (canHover) {{
+      el.addEventListener('mouseenter', () => show(el));
+      el.addEventListener('mouseleave', hide);
+    }}
+  }});
+  document.addEventListener('click', hide);
+  document.addEventListener('keydown', e => {{ if (e.key === 'Escape') hide(); }});
+  window.addEventListener('resize', hide);
+  window.addEventListener('scroll', hide, true);
 }})();
 </script>
 </body>

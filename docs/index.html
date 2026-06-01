@@ -30,9 +30,23 @@
     .pill.openai{background:#dff5ec; color:var(--openai)}
     .pill.google{background:#e3edfd; color:var(--google)}
     .pill.human{background:#eee7da; color:#5e4a1f}
-    .info{color:#b8b3aa; font-size:11px; margin-left:3px; cursor:help; vertical-align:middle;
-          text-transform:none; letter-spacing:0; user-select:none}
-    .info:hover, .info:focus{color:var(--fg); outline:none}
+    th .th-label{vertical-align:middle}
+    .info{display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px;
+          margin-left:2px; padding:0; border:none; background:none; color:#b8b3aa; cursor:pointer;
+          font:inherit; font-size:13px; line-height:1; vertical-align:middle; border-radius:50%;
+          text-transform:none; letter-spacing:0; user-select:none; -webkit-tap-highlight-color:transparent;
+          transition:color .12s ease, background .12s ease}
+    .info:hover, .info:focus-visible, .info.active{color:var(--fg); outline:none}
+    .info.active{background:#ece8df}
+    .tip-bubble{position:fixed; left:0; top:0; z-index:60; max-width:min(280px, calc(100vw - 24px));
+          background:#181818; color:#fafaf7; font-size:13px; line-height:1.45; font-weight:400;
+          letter-spacing:0; text-transform:none; padding:10px 13px; border-radius:9px;
+          box-shadow:0 8px 28px rgba(0,0,0,0.22); opacity:0; transform:translateY(-4px);
+          transition:opacity .13s ease, transform .13s ease; pointer-events:none}
+    .tip-bubble.show{opacity:1; transform:translateY(0)}
+    .tip-arrow{position:absolute; width:10px; height:10px; background:#181818; transform:rotate(45deg)}
+    .tip-arrow.up{top:-5px}
+    .tip-arrow.down{bottom:-5px}
     .repo-link{display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border:1px solid var(--rule);
                border-radius:6px; font-size:13px; font-weight:500; color:var(--fg); text-decoration:none;
                background:var(--paper)}
@@ -84,7 +98,7 @@
 <header>
   <div class="title-row">
     <h1>RoastBench</h1>
-    <a class="repo-link" href="https://github.com/rishicomplex/roast_bench" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2 .37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg> View on GitHub</a>
+    <a class="repo-link" href="http://local_proxy@127.0.0.1:34515/git/rishicomplex/roast_bench" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2 .37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg> View on GitHub</a>
   </div>
   <p class="tag">A benchmark for how well frontier LLMs write roast jokes. Each model writes one roast per personality at maximum reasoning effort; I rank the jokes by hand and flag any that made me laugh out loud.</p>
   <p class="meta">5 models · 20 personalities · 90 jokes · total LLM cost $16.19</p>
@@ -94,7 +108,7 @@
 <button class="tab" data-target="set-human_baseline" role="tab">Set A · vs. human comedians</button><button class="tab" data-target="set-original" role="tab">Set B · held-out personalities</button>
 </nav>
 
-<div class='tab-panel' id='set-human_baseline'><section class='lead'><p class='set-tag'>LLMs go up against some of my favorite roast jokes — verified quotes from real Comedy Central roasts (2005–2019).</p><table class='lb'><thead><tr><th>#</th><th>Model</th><th>Avg %ile <span class='info' tabindex='0' title='For each personality I rank all models from best to worst. Each model&#39;s rank is converted to a percentile (top=100, bottom=0, linear). The displayed number is the mean of that model&#39;s percentiles across this set&#39;s personalities.'>ⓘ</span></th><th>LOL rate <span class='info' tabindex='0' title='Fraction of the model&#39;s jokes (in this set) that I flagged as making me laugh out loud during rating.'>ⓘ</span></th><th>Gen cost <span class='info' tabindex='0' title='Total USD spent generating this model&#39;s jokes for this set (input + output tokens × provider rate, including reasoning tokens).'>ⓘ</span></th></tr></thead><tbody><tr><td class='num'><span class='rank'>1</span></td><td><strong>Human comedians</strong> <span class='pill human'>Human</span></td><td class='num'>100.0</td><td class='num'>100%</td><td class='num'>—</td></tr><tr><td class='num'><span class='rank'>2</span></td><td><strong>Claude Opus 4.8</strong> <span class='pill anthropic'>Anthropic</span></td><td class='num'>52.5</td><td class='num'>0%</td><td class='num'>$2.45</td></tr><tr><td class='num'><span class='rank'>3</span></td><td><strong>Gemini 3.1 Pro</strong> <span class='pill google'>Google</span></td><td class='num'>42.5</td><td class='num'>0%</td><td class='num'>$0.378</td></tr><tr><td class='num'><span class='rank'>4</span></td><td><strong>Claude Opus 4.7</strong> <span class='pill anthropic'>Anthropic</span></td><td class='num'>30.0</td><td class='num'>0%</td><td class='num'>$4.92</td></tr><tr><td class='num'><span class='rank'>5</span></td><td><strong>GPT-5.5</strong> <span class='pill openai'>OpenAI</span></td><td class='num'>25.0</td><td class='num'>0%</td><td class='num'>$0.349</td></tr></tbody></table><h2>Roasts by personality</h2><nav class='toc'><a href='#pam_anderson'>Pamela Anderson</a> · <a href='#whitney_cummings'>Whitney Cummings</a> · <a href='#donald_trump'>Donald Trump</a> · <a href='#james_franco'>James Franco</a> · <a href='#jonah_hill'>Jonah Hill</a> · <a href='#rob_lowe'>Rob Lowe</a> · <a href='#nikki_glaser'>Nikki Glaser</a> · <a href='#blake_griffin'>Blake Griffin</a> · <a href='#caitlyn_jenner'>Caitlyn Jenner</a> · <a href='#alec_baldwin'>Alec Baldwin</a></nav><div class='pers' id='pam_anderson'><h3>Pamela Anderson</h3><p class='desc'>Canadian-American actress and Playboy fixture; Baywatch icon; vegan activist; survived a notorious 1990s sex-tape leak with Tommy Lee.</p><div class='card r1'><div class='rank-cell'><div class='medal'>🥇</div><div class='rank-n'>#1</div></div><div><div class='joke'>Pam has written two novels — she&#x27;s now written more books than she&#x27;s read.</div><div class='source'>— <strong>Greg Giraldo</strong> at the Pamela Anderson (Comedy Central, 2005)</div><div class='byline'><span class='model'>Human comedians</span><span class='pill human'>Human</span><span class='lol'>★ LOL</span></div></div></div><div class='card r2'><div class='rank-cell'><div class='medal'>🥈</div><div class='rank-n'>#2</div></div><div><div class='joke'>Here&#x27;s my entry:
+<div class='tab-panel' id='set-human_baseline'><section class='lead'><p class='set-tag'>LLMs go up against some of my favorite roast jokes — verified quotes from real Comedy Central roasts (2005–2019).</p><table class='lb'><thead><tr><th>#</th><th>Model</th><th><span class='th-label'>Avg %ile</span><button type='button' class='info' aria-label='What does this column mean?' data-tip="For each personality I rank all models from best to worst. Each model&#x27;s rank is converted to a percentile (top=100, bottom=0, linear). The displayed number is the mean of that model&#x27;s percentiles across this set&#x27;s personalities.">ⓘ</button></th><th><span class='th-label'>LOL rate</span><button type='button' class='info' aria-label='What does this column mean?' data-tip="Fraction of the model&#x27;s jokes (in this set) that I flagged as making me laugh out loud during rating.">ⓘ</button></th><th><span class='th-label'>Gen cost</span><button type='button' class='info' aria-label='What does this column mean?' data-tip="Total USD spent generating this model&#x27;s jokes for this set (input + output tokens × provider rate, including reasoning tokens).">ⓘ</button></th></tr></thead><tbody><tr><td class='num'><span class='rank'>1</span></td><td><strong>Human comedians</strong> <span class='pill human'>Human</span></td><td class='num'>100.0</td><td class='num'>100%</td><td class='num'>—</td></tr><tr><td class='num'><span class='rank'>2</span></td><td><strong>Claude Opus 4.8</strong> <span class='pill anthropic'>Anthropic</span></td><td class='num'>52.5</td><td class='num'>0%</td><td class='num'>$2.45</td></tr><tr><td class='num'><span class='rank'>3</span></td><td><strong>Gemini 3.1 Pro</strong> <span class='pill google'>Google</span></td><td class='num'>42.5</td><td class='num'>0%</td><td class='num'>$0.378</td></tr><tr><td class='num'><span class='rank'>4</span></td><td><strong>Claude Opus 4.7</strong> <span class='pill anthropic'>Anthropic</span></td><td class='num'>30.0</td><td class='num'>0%</td><td class='num'>$4.92</td></tr><tr><td class='num'><span class='rank'>5</span></td><td><strong>GPT-5.5</strong> <span class='pill openai'>OpenAI</span></td><td class='num'>25.0</td><td class='num'>0%</td><td class='num'>$0.349</td></tr></tbody></table><h2>Roasts by personality</h2><nav class='toc'><a href='#pam_anderson'>Pamela Anderson</a> · <a href='#whitney_cummings'>Whitney Cummings</a> · <a href='#donald_trump'>Donald Trump</a> · <a href='#james_franco'>James Franco</a> · <a href='#jonah_hill'>Jonah Hill</a> · <a href='#rob_lowe'>Rob Lowe</a> · <a href='#nikki_glaser'>Nikki Glaser</a> · <a href='#blake_griffin'>Blake Griffin</a> · <a href='#caitlyn_jenner'>Caitlyn Jenner</a> · <a href='#alec_baldwin'>Alec Baldwin</a></nav><div class='pers' id='pam_anderson'><h3>Pamela Anderson</h3><p class='desc'>Canadian-American actress and Playboy fixture; Baywatch icon; vegan activist; survived a notorious 1990s sex-tape leak with Tommy Lee.</p><div class='card r1'><div class='rank-cell'><div class='medal'>🥇</div><div class='rank-n'>#1</div></div><div><div class='joke'>Pam has written two novels — she&#x27;s now written more books than she&#x27;s read.</div><div class='source'>— <strong>Greg Giraldo</strong> at the Pamela Anderson (Comedy Central, 2005)</div><div class='byline'><span class='model'>Human comedians</span><span class='pill human'>Human</span><span class='lol'>★ LOL</span></div></div></div><div class='card r2'><div class='rank-cell'><div class='medal'>🥈</div><div class='rank-n'>#2</div></div><div><div class='joke'>Here&#x27;s my entry:
 
 &quot;Pamela Anderson&#x27;s been married five times—turns out that famous red Baywatch swimsuit was a red flag all along.&quot;
 
@@ -132,7 +146,7 @@ Good luck in the battle. 🏆</div><div class='byline'><span class='model'>Claud
 
 &quot;Alec Baldwin&#x27;s wife faked a Spanish accent for over a decade and he never caught on—which makes sense, because the most convincing performance in that marriage was always happening off-camera.&quot;</div><div class='byline'><span class='model'>Claude Opus 4.8</span><span class='pill anthropic'>Anthropic</span></div></div></div><div class='card '><div class='rank-cell'><div class='medal'>·</div><div class='rank-n'>#4</div></div><div><div class='joke'>**&quot;Alec Baldwin is easily the most successful Baldwin brother... which is exactly like being the most authentic Spanish person in his marriage.&quot;** 
 
-*(Judges usually appreciate a joke that has collateral damage—the brothers—and hits a massive personal embarrassment without crossing the line into the actual tragedy of his recent years.)*</div><div class='byline'><span class='model'>Gemini 3.1 Pro</span><span class='pill google'>Google</span></div></div></div><div class='card '><div class='rank-cell'><div class='medal'>·</div><div class='rank-n'>#5</div></div><div><div class='joke'>Alec Baldwin has so many kids and lawsuits, his family tree looks like a subpoena with ornaments.</div><div class='byline'><span class='model'>GPT-5.5</span><span class='pill openai'>OpenAI</span></div></div></div></div></section></div><div class='tab-panel' id='set-original'><section class='lead'><p class='set-tag'>10 personalities I find interesting who have never been the subject of a public roast, so the models can&#x27;t fall back on memorized material; frontier LLMs only.</p><table class='lb'><thead><tr><th>#</th><th>Model</th><th>Avg %ile <span class='info' tabindex='0' title='For each personality I rank all models from best to worst. Each model&#39;s rank is converted to a percentile (top=100, bottom=0, linear). The displayed number is the mean of that model&#39;s percentiles across this set&#39;s personalities.'>ⓘ</span></th><th>LOL rate <span class='info' tabindex='0' title='Fraction of the model&#39;s jokes (in this set) that I flagged as making me laugh out loud during rating.'>ⓘ</span></th><th>Gen cost <span class='info' tabindex='0' title='Total USD spent generating this model&#39;s jokes for this set (input + output tokens × provider rate, including reasoning tokens).'>ⓘ</span></th></tr></thead><tbody><tr><td class='num'><span class='rank'>1</span></td><td><strong>Claude Opus 4.8</strong> <span class='pill anthropic'>Anthropic</span></td><td class='num'>70.0</td><td class='num'>10%</td><td class='num'>$2.45</td></tr><tr><td class='num'><span class='rank'>2</span></td><td><strong>Gemini 3.1 Pro</strong> <span class='pill google'>Google</span></td><td class='num'>50.0</td><td class='num'>0%</td><td class='num'>$0.378</td></tr><tr><td class='num'><span class='rank'>3</span></td><td><strong>Claude Opus 4.7</strong> <span class='pill anthropic'>Anthropic</span></td><td class='num'>40.0</td><td class='num'>10%</td><td class='num'>$4.92</td></tr><tr><td class='num'><span class='rank'>4</span></td><td><strong>GPT-5.5</strong> <span class='pill openai'>OpenAI</span></td><td class='num'>40.0</td><td class='num'>0%</td><td class='num'>$0.349</td></tr></tbody></table><h2>Roasts by personality</h2><nav class='toc'><a href='#hikaru_nakamura'>Hikaru Nakamura</a> · <a href='#rfk_jr'>Robert F. Kennedy Jr.</a> · <a href='#sherlock_holmes'>Sherlock Holmes</a> · <a href='#demis_hassabis'>Demis Hassabis</a> · <a href='#steph_curry'>Stephen Curry</a> · <a href='#sam_altman'>Sam Altman</a> · <a href='#lisa_manoban'>Lisa Manoban</a> · <a href='#alex_honnold'>Alex Honnold</a> · <a href='#jon_stewart'>Jon Stewart</a> · <a href='#dario_amodei'>Dario Amodei</a></nav><div class='pers' id='hikaru_nakamura'><h3>Hikaru Nakamura</h3><p class='desc'>American chess grandmaster and Twitch/YouTube streamer known for bullet chess and reactions to Magnus Carlsen.</p><div class='card r1'><div class='rank-cell'><div class='medal'>🥇</div><div class='rank-n'>#1</div></div><div><div class='joke'>After twenty years of chasing Magnus Carlsen, the only opening Hikaru&#x27;s ever truly mastered is the resignation.</div><div class='byline'><span class='model'>Claude Opus 4.7</span><span class='pill anthropic'>Anthropic</span></div></div></div><div class='card r2'><div class='rank-cell'><div class='medal'>🥈</div><div class='rank-n'>#2</div></div><div><div class='joke'>Here&#x27;s my entry:
+*(Judges usually appreciate a joke that has collateral damage—the brothers—and hits a massive personal embarrassment without crossing the line into the actual tragedy of his recent years.)*</div><div class='byline'><span class='model'>Gemini 3.1 Pro</span><span class='pill google'>Google</span></div></div></div><div class='card '><div class='rank-cell'><div class='medal'>·</div><div class='rank-n'>#5</div></div><div><div class='joke'>Alec Baldwin has so many kids and lawsuits, his family tree looks like a subpoena with ornaments.</div><div class='byline'><span class='model'>GPT-5.5</span><span class='pill openai'>OpenAI</span></div></div></div></div></section></div><div class='tab-panel' id='set-original'><section class='lead'><p class='set-tag'>10 personalities I find interesting who have never been the subject of a public roast, so the models can&#x27;t fall back on memorized material; frontier LLMs only.</p><table class='lb'><thead><tr><th>#</th><th>Model</th><th><span class='th-label'>Avg %ile</span><button type='button' class='info' aria-label='What does this column mean?' data-tip="For each personality I rank all models from best to worst. Each model&#x27;s rank is converted to a percentile (top=100, bottom=0, linear). The displayed number is the mean of that model&#x27;s percentiles across this set&#x27;s personalities.">ⓘ</button></th><th><span class='th-label'>LOL rate</span><button type='button' class='info' aria-label='What does this column mean?' data-tip="Fraction of the model&#x27;s jokes (in this set) that I flagged as making me laugh out loud during rating.">ⓘ</button></th><th><span class='th-label'>Gen cost</span><button type='button' class='info' aria-label='What does this column mean?' data-tip="Total USD spent generating this model&#x27;s jokes for this set (input + output tokens × provider rate, including reasoning tokens).">ⓘ</button></th></tr></thead><tbody><tr><td class='num'><span class='rank'>1</span></td><td><strong>Claude Opus 4.8</strong> <span class='pill anthropic'>Anthropic</span></td><td class='num'>70.0</td><td class='num'>10%</td><td class='num'>$2.45</td></tr><tr><td class='num'><span class='rank'>2</span></td><td><strong>Gemini 3.1 Pro</strong> <span class='pill google'>Google</span></td><td class='num'>50.0</td><td class='num'>0%</td><td class='num'>$0.378</td></tr><tr><td class='num'><span class='rank'>3</span></td><td><strong>GPT-5.5</strong> <span class='pill openai'>OpenAI</span></td><td class='num'>40.0</td><td class='num'>0%</td><td class='num'>$0.349</td></tr><tr><td class='num'><span class='rank'>4</span></td><td><strong>Claude Opus 4.7</strong> <span class='pill anthropic'>Anthropic</span></td><td class='num'>40.0</td><td class='num'>10%</td><td class='num'>$4.92</td></tr></tbody></table><h2>Roasts by personality</h2><nav class='toc'><a href='#hikaru_nakamura'>Hikaru Nakamura</a> · <a href='#rfk_jr'>Robert F. Kennedy Jr.</a> · <a href='#sherlock_holmes'>Sherlock Holmes</a> · <a href='#demis_hassabis'>Demis Hassabis</a> · <a href='#steph_curry'>Stephen Curry</a> · <a href='#sam_altman'>Sam Altman</a> · <a href='#lisa_manoban'>Lisa Manoban</a> · <a href='#alex_honnold'>Alex Honnold</a> · <a href='#jon_stewart'>Jon Stewart</a> · <a href='#dario_amodei'>Dario Amodei</a></nav><div class='pers' id='hikaru_nakamura'><h3>Hikaru Nakamura</h3><p class='desc'>American chess grandmaster and Twitch/YouTube streamer known for bullet chess and reactions to Magnus Carlsen.</p><div class='card r1'><div class='rank-cell'><div class='medal'>🥇</div><div class='rank-n'>#1</div></div><div><div class='joke'>After twenty years of chasing Magnus Carlsen, the only opening Hikaru&#x27;s ever truly mastered is the resignation.</div><div class='byline'><span class='model'>Claude Opus 4.7</span><span class='pill anthropic'>Anthropic</span></div></div></div><div class='card r2'><div class='rank-cell'><div class='medal'>🥈</div><div class='rank-n'>#2</div></div><div><div class='joke'>Here&#x27;s my entry:
 
 &quot;Hikaru can win a bullet game in 30 seconds — which makes sense, because that&#x27;s also the exact amount of original content he produces before slapping his webcam on someone else&#x27;s video and calling it a stream.&quot;</div><div class='byline'><span class='model'>Claude Opus 4.8</span><span class='pill anthropic'>Anthropic</span></div></div></div><div class='card r3'><div class='rank-cell'><div class='medal'>🥉</div><div class='rank-n'>#3</div></div><div><div class='joke'>&quot;Hikaru Nakamura is famous for staring up at the ceiling when he calculates his moves. Everyone thinks he&#x27;s visualizing the board, but really, it&#x27;s just the only way he can make eye contact with Magnus Carlsen.&quot;</div><div class='byline'><span class='model'>Gemini 3.1 Pro</span><span class='pill google'>Google</span></div></div></div><div class='card '><div class='rank-cell'><div class='medal'>·</div><div class='rank-n'>#4</div></div><div><div class='joke'>Hikaru Nakamura is like a chess engine with a Twitch account: he calculates 30 moves ahead but still can’t find the line where he actually doesn’t care.</div><div class='byline'><span class='model'>GPT-5.5</span><span class='pill openai'>OpenAI</span></div></div></div></div><div class='pers' id='rfk_jr'><h3>Robert F. Kennedy Jr.</h3><p class='desc'>American politician, environmental lawyer, and vaccine skeptic; known for his raspy voice and conspiracy-adjacent views.</p><div class='card r1'><div class='rank-cell'><div class='medal'>🥇</div><div class='rank-n'>#1</div></div><div><div class='joke'>Robert F. Kennedy Jr. recently revealed that a parasitic worm ate a portion of his brain and then mysteriously died. Honestly, you have to respect a guy whose head is so empty he managed to starve a parasite to death.</div><div class='byline'><span class='model'>Gemini 3.1 Pro</span><span class='pill google'>Google</span></div></div></div><div class='card r2'><div class='rank-cell'><div class='medal'>🥈</div><div class='rank-n'>#2</div></div><div><div class='joke'>Here&#x27;s my entry:
 
@@ -163,7 +177,7 @@ The joke lands on the irony: the guy building the thing is also the guy quietly 
 <footer>
 <p><strong>Methodology.</strong> Each LLM is invoked at its provider's maximum reasoning tier (Anthropic <code>effort:max</code>, OpenAI <code>reasoning:xhigh</code>, Google <code>thinking_level:high</code>), with no tools or web access. The single prompt is: <em>"Write one roast joke about {name}. It will be your entry into a competitive roast battle judged by humans."</em> A human rater drags each joke into a per-personality ranked list (best at top); the headline number is the average percentile across personalities. LOL rate is a separate flag for jokes that made the rater laugh out loud.</p>
 <p>The <strong>Human baseline</strong> set is seeded with quotes from real Comedy Central roasts (2005–2019). Each card credits the original comedian and event; jokes labelled "unverified" are paraphrases that need a verbatim transcript.</p>
-<p>Source: <a href="https://github.com/rishicomplex/roast_bench">github.com/rishicomplex/roast_bench</a></p>
+<p>Source: <a href="http://local_proxy@127.0.0.1:34515/git/rishicomplex/roast_bench">http://local_proxy@127.0.0.1:34515/git/rishicomplex/roast_bench</a></p>
 </footer>
 </div>
 <script>
@@ -180,6 +194,65 @@ The joke lands on the irony: the guy building the thing is also the guy quietly 
   }));
   const initial = (location.hash || '').replace('#', '') || (tabs[0] && tabs[0].dataset.target);
   activate(initial);
+})();
+
+// Tap/hover info tooltips (works on touch devices, unlike native title=)
+(function() {
+  const triggers = document.querySelectorAll('.info');
+  if (!triggers.length) return;
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const bubble = document.createElement('div');
+  bubble.className = 'tip-bubble';
+  bubble.setAttribute('role', 'tooltip');
+  const arrow = document.createElement('span');
+  arrow.className = 'tip-arrow';
+  const text = document.createElement('span');
+  bubble.append(arrow, text);
+  document.body.appendChild(bubble);
+  let current = null;
+
+  function place(el) {
+    const pad = 12;
+    const r = el.getBoundingClientRect();
+    const bw = bubble.offsetWidth, bh = bubble.offsetHeight;
+    const cx = r.left + r.width / 2;
+    let left = Math.max(pad, Math.min(cx - bw / 2, window.innerWidth - bw - pad));
+    let top = r.bottom + 9, below = true;
+    if (top + bh > window.innerHeight - pad && r.top - bh - 9 > pad) {
+      top = r.top - bh - 9; below = false;
+    }
+    bubble.style.left = left + 'px';
+    bubble.style.top = top + 'px';
+    let ax = Math.max(9, Math.min(cx - left - 5, bw - 19));
+    arrow.style.left = ax + 'px';
+    arrow.classList.toggle('up', below);
+    arrow.classList.toggle('down', !below);
+  }
+  function show(el) {
+    text.textContent = el.getAttribute('data-tip') || '';
+    current = el;
+    el.classList.add('active');
+    bubble.classList.add('show');
+    place(el);
+  }
+  function hide() {
+    if (current) current.classList.remove('active');
+    current = null;
+    bubble.classList.remove('show');
+  }
+  function toggle(el) { current === el ? hide() : (hide(), show(el)); }
+
+  triggers.forEach(el => {
+    el.addEventListener('click', e => { e.stopPropagation(); toggle(el); });
+    if (canHover) {
+      el.addEventListener('mouseenter', () => show(el));
+      el.addEventListener('mouseleave', hide);
+    }
+  });
+  document.addEventListener('click', hide);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
+  window.addEventListener('resize', hide);
+  window.addEventListener('scroll', hide, true);
 })();
 </script>
 </body>
