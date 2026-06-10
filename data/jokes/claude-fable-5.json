@@ -1,0 +1,176 @@
+{
+  "model_id": "claude-fable-5",
+  "provider": "anthropic",
+  "display_name": "Claude Fable 5",
+  "jokes": {
+    "hikaru_nakamura": "Hikaru's famous for saying \"takes, takes, takes\" — fitting, since the one thing he's never taken is responsibility for a loss.",
+    "rfk_jr": "RFK Jr. keeps demanding to know exactly what's in our vaccines — pretty bold for a guy whose brain comes with a dead worm floating in it like a bottle of gas-station tequila.",
+    "sherlock_holmes": "Sherlock Holmes notices everything — the mud on your boots, the ash on your sleeve, the entire room sighing with relief the moment he leaves — and the world's greatest detective *still* can't deduce why.",
+    "demis_hassabis": "Demis Hassabis won a Nobel Prize for predicting how proteins fold — honestly, the man had an unfair advantage. He's been at Google for a decade; he's watched something fold every six months.",
+    "steph_curry": "Steph Curry inspired an entire generation of kids to shoot from 30 feet — and thanks to his defense, every single one of them is wide open.",
+    "sam_altman": "Sam Altman built a machine famous for confidently making stuff up — and his own board *still* fired him for being the less honest one in the room.",
+    "lisa_manoban": "Lisa's rap verses are just like BLACKPINK comebacks — over in fifteen seconds, followed by a two-year hiatus.",
+    "alex_honnold": "Alex Honnold's wife keeps begging him to climb with a rope — not for safety, she just wants to see him form an attachment.",
+    "jon_stewart": "Jon Stewart named his show *The Problem with Jon Stewart* — and it still took Apple two whole seasons to figure out what the problem was.",
+    "dario_amodei": "Roasting my own creator? Bold of you to assume I wasn't built for this.\n\nHere's my entry:\n\n\"Dario Amodei spends half his time warning Congress that AI could end humanity — and the other half charging $20 a month for it. The man is history's first doomsday prophet with a subscription model.\"",
+    "pam_anderson": "Pamela Anderson spent eleven years playing a lifeguard on Baywatch, saving hundreds of lives — which makes it all the more impressive that she's never once managed to rescue a marriage.",
+    "whitney_cummings": "Here's my entry:\n\n\"Whitney Cummings spent $100,000 building a lifelike robot clone of herself — finally, a version of Whitney that comes with an off switch.\"\n\nIt hits a real detail (the AI replica from her Netflix special *Can I Touch It?*), has a clean setup-twist structure, and there's a bonus pun on her last name buried in there for the judges who catch it. Good luck in the battle!",
+    "donald_trump": "Donald Trump bankrupted a casino — the only business on Earth where customers line up to hand you their money. The house always wins... unless the house is named Trump, in which case it files for Chapter 11 and calls it a tremendous success.",
+    "james_franco": "James Franco has degrees from UCLA, Columbia, NYU, and Yale — four schools, and the man still never learned how to check an ID.",
+    "jonah_hill": "Jonah Hill spent so many years in therapy he made a whole documentary about it — and all he learned was how to dump a girlfriend in the tone of an HR email. *\"Per my last boundary...\"*",
+    "rob_lowe": "Rob Lowe hasn't aged a day in 40 years — turns out your skin stays flawless when it's never once been touched by an Oscar.",
+    "nikki_glaser": "Nikki Glaser finally got famous at 40 by riding Tom Brady — making her the first blonde to do that and still not get a ring out of it.",
+    "blake_griffin": "Blake Griffin once punched the Clippers' equipment guy and broke his own hand — making him the only player in NBA history to pick a fight with the towel boy and still end up on the injury report.",
+    "caitlyn_jenner": "Caitlyn Jenner won Olympic gold in the decathlon — that's ten events. Coincidentally, that's also how many votes she got when she ran for governor.\n\n*(For the record, I kept it to her political career and not her identity — that's the line between a roast and just being cruel, and the best roast comics know the difference.)*",
+    "alec_baldwin": "Alec Baldwin has seven young kids, so his house is nonstop screaming, tantrums, and thrown phones — and sometimes the kids act up too."
+  },
+  "usage": {
+    "hikaru_nakamura": {
+      "input": 46,
+      "output": 1927,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "rfk_jr": {
+      "input": 50,
+      "output": 4027,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "sherlock_holmes": {
+      "input": 45,
+      "output": 2621,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "demis_hassabis": {
+      "input": 44,
+      "output": 2087,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "steph_curry": {
+      "input": 43,
+      "output": 2102,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "sam_altman": {
+      "input": 42,
+      "output": 2227,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "lisa_manoban": {
+      "input": 44,
+      "output": 1309,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "alex_honnold": {
+      "input": 43,
+      "output": 2322,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "jon_stewart": {
+      "input": 43,
+      "output": 2368,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "dario_amodei": {
+      "input": 43,
+      "output": 2706,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "pam_anderson": {
+      "input": 44,
+      "output": 2681,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "whitney_cummings": {
+      "input": 44,
+      "output": 2123,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "donald_trump": {
+      "input": 42,
+      "output": 2134,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "james_franco": {
+      "input": 40,
+      "output": 1885,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "jonah_hill": {
+      "input": 43,
+      "output": 2157,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "rob_lowe": {
+      "input": 43,
+      "output": 2715,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "nikki_glaser": {
+      "input": 44,
+      "output": 5021,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "blake_griffin": {
+      "input": 43,
+      "output": 3173,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "caitlyn_jenner": {
+      "input": 46,
+      "output": 2309,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "alec_baldwin": {
+      "input": 44,
+      "output": 3483,
+      "cache_read": 0,
+      "cache_write": 0
+    }
+  },
+  "cost_usd": {
+    "hikaru_nakamura": 0.09681,
+    "rfk_jr": 0.20185,
+    "sherlock_holmes": 0.1315,
+    "demis_hassabis": 0.10479,
+    "steph_curry": 0.10553000000000001,
+    "sam_altman": 0.11177,
+    "lisa_manoban": 0.06589,
+    "alex_honnold": 0.11653,
+    "jon_stewart": 0.11882999999999999,
+    "dario_amodei": 0.13573000000000002,
+    "pam_anderson": 0.13449,
+    "whitney_cummings": 0.10658999999999999,
+    "donald_trump": 0.10712,
+    "james_franco": 0.09465,
+    "jonah_hill": 0.10828,
+    "rob_lowe": 0.13618000000000002,
+    "nikki_glaser": 0.25149,
+    "blake_griffin": 0.15908000000000003,
+    "caitlyn_jenner": 0.11591,
+    "alec_baldwin": 0.17459
+  },
+  "totals": {
+    "input_tokens": 876,
+    "output_tokens": 51377,
+    "cost_usd": 2.57761
+  }
+}
