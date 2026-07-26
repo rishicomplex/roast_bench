@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RoastBench — rate</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+  <style>
+    /* Mobile tweaks for the hosted app (the local Flask app is desktop-only). */
+    @media (max-width: 640px) {
+      header { padding: 12px 16px; flex-wrap: wrap; gap: 8px; }
+      header .ctx { margin-left: 0; width: 100%; }
+      main { padding: 20px 12px 60px; gap: 0; }
+      .card { grid-template-columns: 24px 24px 1fr auto; gap: 8px; padding: 12px 10px; }
+      .handle { font-size: 26px; padding: 4px 0; }
+    }
+    .sortable-chosen { box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><a href="/">RoastBench</a></h1>
+    <div class="ctx" id="ctx"></div>
+  </header>
+
+  <main id="main"><p class="dim">Loading…</p></main>
+
+  <script src="/static/app.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const modelId = params.get("model") || "";
+    const rerankOnly = !modelId;
+
+    async function render() {
+      const state = await loadState();
+      let pid = params.get("p");
+      if (!pid && modelId) {
+        pid = nextUnranked(state, modelId);
+        if (!pid) { location.href = "/"; return; }
+      }
+      const personality = state.personalities.find(p => p.id === pid);
+      if (!personality) {
+        document.getElementById("main").innerHTML = `<p class="dim">Unknown personality.</p>`;
+        return;
+      }
+
+      const jokesForP = state.jokes[pid] || {};
+      const sourcesForP = state.sources[pid] || {};
+      const current = (state.rankings.rankings[pid] || []).slice();
+      const lolSet = new Set(state.rankings.lol_flags[pid] || []);
+      if (modelId && modelId in jokesForP && !current.includes(modelId)) current.unshift(modelId);
+      for (const mid of Object.keys(jokesForP)) if (!current.includes(mid)) current.push(mid);
+      const cards = current.filter(mid => mid in jokesForP).map(mid => ({
+        model_id: mid,
+        display_name: (state.models[mid] || {}).display_name || mid,
+        joke: jokesForP[mid],
+        is_new: !rerankOnly && mid === modelId,
+        lol: lolSet.has(mid),
+        source: sourcesForP[mid] || null,
+      }));
+
+      // Header context + same-set progress dots (rating mode only).
+      const setPers = state.personalities.filter(p => (p.set || "original") === (personality.set || "original"));
+      const modelDisplay = rerankOnly ? "(re-rank)" : ((state.models[modelId] || {}).display_name || modelId);
+      if (rerankOnly) {
+        document.getElementById("ctx").innerHTML = `Re-ranking <strong>${esc(personality.name)}</strong>`;
+      } else {
+        const done = setPers.filter(p => (state.rankings.rankings[p.id] || []).includes(modelId)).length;
+        document.getElementById("ctx").innerHTML =
+          `Rating <strong>${esc(modelDisplay)}</strong> — ${done} / ${setPers.length} done`;
+      }
+
+      let html = `<section class="target"><h2>${esc(personality.name)}</h2>
+        <p class="desc">${esc(personality.description)}</p></section>
+        <p class="instr">Drag rows to reorder (best at top). Tick LOL for any joke that made you laugh out loud.</p>
+        <ul id="ranklist" class="ranklist">`;
+      cards.forEach((c, i) => {
+        let source = "";
+        if (c.source) {
+          source = `<div class="source">— <strong>${esc(c.source.roaster)}</strong>` +
+            (c.source.roast ? ` at the ${esc(c.source.roast)}` : "") +
+            (c.source.verified ? "" : ` <span class="unverified">unverified paraphrase</span>`) + `</div>`;
+        }
+        html += `<li class="card${c.is_new ? " new" : ""}" data-model="${esc(c.model_id)}">
+          <div class="rank-num">${i + 1}</div>
+          <div class="handle" title="drag">≡</div>
+          <div class="content">
+            <div class="name">${esc(c.display_name)}${c.is_new ? '<span class="badge">NEW</span>' : ""}</div>
+            <div class="joke">${esc(c.joke)}</div>
+            ${source}
+          </div>
+          <label class="lol"><input type="checkbox"${c.lol ? " checked" : ""} class="lol-cb"><span>LOL</span></label>
+        </li>`;
+      });
+      html += `</ul>
+        <div class="actions">
+          <button id="save" class="primary">${rerankOnly ? "Save" : "Save &amp; Next →"}</button>
+          <a class="cancel" href="/">Cancel</a>
+        </div>`;
+      if (!rerankOnly) {
+        html += `<div class="progress-list">` + setPers.map(p => {
+          const rated = (state.rankings.rankings[p.id] || []).includes(modelId);
+          const hasJoke = modelId in (state.jokes[p.id] || {});
+          return `<span class="pdot${rated ? " done" : ""}${p.id === pid ? " current" : ""}"
+            title="${esc(p.name)}${hasJoke ? "" : " (no joke)"}"></span>`;
+        }).join("") + `</div>`;
+      }
+      document.getElementById("main").innerHTML = html;
+
+      const list = document.getElementById("ranklist");
+      Sortable.create(list, {
+        handle: ".handle",
+        animation: 150,
+        onSort: () => list.querySelectorAll(".card").forEach((el, i) => {
+          el.querySelector(".rank-num").textContent = i + 1;
+        }),
+      });
+
+      document.getElementById("save").addEventListener("click", async (e) => {
+        e.preventDefault();
+        const items = Array.from(list.querySelectorAll(".card"));
+        const order = items.map(el => el.dataset.model);
+        const lol = items.filter(el => el.querySelector(".lol-cb").checked).map(el => el.dataset.model);
+        const btn = e.currentTarget;
+        btn.disabled = true;
+        btn.textContent = "Saving…";
+        try {
+          const r = await fetch(`/api/rankings/${encodeURIComponent(pid)}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ order, lol }),
+          });
+          if (!r.ok) throw new Error((await r.json()).error || r.status);
+          if (rerankOnly) { location.href = "/"; return; }
+          state.rankings.rankings[pid] = order;
+          const nxt = nextUnranked(state, modelId, pid);
+          location.href = nxt ? `/rate.html?model=${encodeURIComponent(modelId)}&p=${encodeURIComponent(nxt)}` : "/";
+        } catch (err) {
+          btn.disabled = false;
+          btn.textContent = "Save (retry)";
+          alert("Save failed: " + err.message);
+        }
+      });
+    }
+    render().catch(e => {
+      document.getElementById("main").innerHTML = `<p class="dim">Failed to load: ${esc(e.message)}</p>`;
+    });
+  </script>
+</body>
+</html>

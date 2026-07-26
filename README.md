@@ -43,3 +43,22 @@ python add_model.py --id <model-id> --provider {anthropic,openai,google}
 ```
 
 Generates 10 jokes at the provider's top reasoning tier, opens the Flask rating UI at `localhost:5000` to drag the new jokes into the per-personality rankings, then regenerates `data/leaderboard.json`. Run `python build_showcase.py` to refresh the public site and this README.
+
+## Hosted rating app (rate from anywhere)
+
+The rating UI is also hosted privately at **https://roast-bench.rishimehta.workers.dev** (Google sign-in, allowlist), so a new model can be generated + rated end-to-end from the Claude app without a laptop. Same setup as the `korean` project:
+
+- `src/index.js` — Cloudflare Worker: auth gate + static assets + a tiny rankings API.
+- `index.html` / `rate.html` + `static/app.js` — client-side port of the Flask templates (leaderboard math from `scoring.py` included); they read the committed JSON (`models.json`, `personalities.json`, `data/jokes/*.json`) as assets.
+- Rankings are the one mutable piece: stored in Workers KV (seeded from `data/rankings.json` on first use).
+
+### Remote flow
+
+1. Generate jokes for a new model: `python generate.py --id <model-id> --provider <provider>` (registers it in `models.json`, no UI). Commit, push.
+2. Deploy: push to `main` auto-deploys if the Cloudflare GitHub build integration is connected (dashboard → Workers → `roast-bench` → Settings → Build); otherwise `npm run deploy`.
+3. Rate on the phone at the URL above.
+4. `scripts/pull_rankings.sh` — pulls KV rankings back into `data/rankings.json`, regenerates the leaderboard + showcase. Commit the result.
+
+Note: after rating on the hosted app, KV is the source of truth for rankings until `pull_rankings.sh` lands them in the repo — don't rate locally and remotely at the same time. To push repo rankings back up to KV (e.g. after rating in the local Flask app): `npx wrangler kv key put rankings --binding RANKINGS --remote --path data/rankings.json`.
+
+One-time pieces already done: KV namespace, `TOKEN_SECRET` secret, worker deploy. The Google OAuth client is shared with `korean`; the workers.dev origin must be in its authorized JavaScript origins.

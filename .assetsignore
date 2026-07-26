@@ -1,0 +1,20 @@
+# Only the hosted app needs to ship as Worker assets: the two HTML pages,
+# static/, and the JSON data (models, personalities, data/jokes, rankings
+# fallback). Everything else stays out of the deploy.
+.git
+.*
+node_modules
+__pycache__
+codex
+docs
+src
+scripts
+templates
+*.py
+*.md
+*.txt
+package.json
+package-lock.json
+wrangler.jsonc
+.assetsignore
+.gitignore

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RoastBench</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    /* Mobile tweaks for the hosted app (the local Flask app is desktop-only). */
+    @media (max-width: 640px) {
+      header { padding: 12px 16px; }
+      main { padding: 20px 12px 60px; gap: 24px; }
+      .set-section { padding: 18px 14px 16px; border-radius: 10px; }
+      .board-wrap { overflow-x: auto; margin: 0 -14px; padding: 0 14px; }
+      table.board { font-size: 13px; }
+      table.board th, table.board td { padding: 8px 6px; }
+    }
+    .board-wrap { overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>RoastBench <span class="sub">— an LLM benchmark for roast jokes</span></h1>
+  </header>
+
+  <main id="main"><p class="dim">Loading…</p></main>
+
+  <script src="/static/app.js"></script>
+  <script>
+    async function render() {
+      const state = await loadState();
+      const bySet = personalitiesBySet(state.personalities);
+      const main = document.getElementById("main");
+      main.innerHTML = "";
+
+      for (const setName of orderedSets(bySet)) {
+        const setPers = bySet[setName];
+        const board = computeSet(setPers, state);
+
+        const section = document.createElement("section");
+        section.className = `set-section set-${setName}`;
+
+        let html = `<div class="set-head"><h2>${esc(SET_LABELS[setName] || setName)}</h2>`;
+        if (SET_TAGS[setName]) html += `<p class="set-tag">${esc(SET_TAGS[setName])}</p>`;
+        html += `</div>`;
+
+        if (board.length) {
+          html += `<div class="board-wrap"><table class="board"><thead><tr>
+            <th>#</th><th>Model</th><th class="dim-th">Provider</th>
+            <th class="num-th">Avg %ile</th><th class="num-th">LOL</th><th class="num-th">Rated</th>
+            <th class="num-th">Cost</th><th class="num-th">Tokens</th><th></th>
+          </tr></thead><tbody>`;
+          board.forEach((row, i) => {
+            const unranked = unrankedIn(state, row.model_id, setPers);
+            const action = unranked.length
+              ? `<a class="btn" href="/rate.html?model=${encodeURIComponent(row.model_id)}">Rate <span class="btn-meta">(${unranked.length} left)</span></a>`
+              : `<span class="dim">done</span>`;
+            html += `<tr>
+              <td class="rank-cell">${i + 1}</td>
+              <td><strong>${esc(row.display_name)}</strong></td>
+              <td class="dim">${esc(row.provider)}</td>
+              <td class="num">${row.avg_percentile !== null ? row.avg_percentile.toFixed(1) : "—"}</td>
+              <td class="num">${row.lol_rate !== null ? row.lol_rate.toFixed(0) + "%" : "—"}</td>
+              <td class="dim num">${row.jokes_rated}/${row.personalities_in_set}</td>
+              <td class="dim num">${row.cost_usd !== null ? "$" + row.cost_usd.toFixed(3) : "—"}</td>
+              <td class="dim num">${row.input_tokens !== null ? row.input_tokens + " / " + row.output_tokens : "—"}</td>
+              <td class="action-cell">${action}</td>
+            </tr>`;
+          });
+          html += `</tbody></table></div>`;
+        } else {
+          html += `<p class="dim empty">No jokes yet for this set.</p>`;
+        }
+
+        html += `<details class="pers-details"><summary>Personalities (${setPers.length})</summary><ul class="pers">`;
+        for (const p of setPers) {
+          const n = (state.rankings.rankings[p.id] || []).length;
+          html += `<li><a href="/rate.html?p=${encodeURIComponent(p.id)}">${esc(p.name)}</a> <span class="dim">— ${n} ranked</span></li>`;
+        }
+        html += `</ul></details>`;
+
+        section.innerHTML = html;
+        main.appendChild(section);
+      }
+    }
+    render().catch(e => {
+      document.getElementById("main").innerHTML = `<p class="dim">Failed to load: ${esc(e.message)}</p>`;
+    });
+  </script>
+</body>
+</html>

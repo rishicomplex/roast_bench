@@ -1,0 +1,35 @@
+{
+  // Cloudflare Worker that hosts the RoastBench rating app privately, so new
+  // models can be rated from a phone (via Claude Code remote) instead of the
+  // local Flask app. Same pattern as the `korean` project:
+  //   - Google sign-in gate (allowlist below), everything served behind it.
+  //   - Static assets = this repo (jokes/models/personalities JSON + the two
+  //     HTML pages at the root). run_worker_first is ESSENTIAL or Cloudflare
+  //     serves assets directly and bypasses the auth gate.
+  //   - Rankings are the one mutable piece: stored in Workers KV, pulled back
+  //     into data/rankings.json with scripts/pull_rankings.sh.
+  // Deploy: npx wrangler deploy
+  "name": "roast-bench",
+  "main": "src/index.js",
+  "compatibility_date": "2025-05-01",
+
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+
+  "kv_namespaces": [
+    { "binding": "RANKINGS", "id": "dd0e8bc706874e8baa615c1f267f90ed" }
+  ],
+
+  "vars": {
+    // Same Google OAuth client as `korean`/`love`. The workers.dev origin for
+    // this app must be added to the client's authorized JavaScript origins.
+    "GOOGLE_CLIENT_ID": "311040284822-1go9ufaitbse9heid8loj5cjmhq6cnos.apps.googleusercontent.com",
+    "ALLOWED_EMAILS": "rishicomplex@gmail.com"
+  }
+
+  // TOKEN_SECRET is an encrypted secret, set separately:
+  //   openssl rand -base64 32 | npx wrangler secret put TOKEN_SECRET
+}
