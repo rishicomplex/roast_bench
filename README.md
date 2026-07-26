@@ -65,7 +65,9 @@ Note: after rating on the hosted app, KV is the source of truth for rankings unt
 
 So the whole loop runs from a phone, the claude.ai Code environment for this repo needs:
 
-- **Environment variables** (`KEY=value`, no quotes): `ANTHROPIC_API_KEY` (plus `OPENAI_API_KEY` / `GEMINI_API_KEY` when generating for those providers), and `CLOUDFLARE_API_TOKEN` — a token with *Account → Workers KV Storage → Read* so `pull_rankings.sh` can fetch ratings without wrangler login.
+- **Environment variables** (`KEY=value`, no quotes): `ROAST_ANTHROPIC_API_KEY` (plus `OPENAI_API_KEY` / `GEMINI_API_KEY` when generating for those providers), and `CLOUDFLARE_API_TOKEN` — a token with *Account → Workers KV Storage → Read* so `pull_rankings.sh` can fetch ratings without wrangler login.
+
+  The Anthropic key uses the `ROAST_` prefix because the cloud session reserves `ANTHROPIC_API_KEY` for the harness's own auth and its UI won't accept that name. `generate.py` reads either. Locally (`.env`), plain `ANTHROPIC_API_KEY` still works.
 - **Network access = Custom**, "include default list" checked, allowed domains: `api.anthropic.com`, `api.openai.com`, `generativelanguage.googleapis.com`, `api.cloudflare.com`.
 - **Setup script**: `pip install -r requirements.txt`.
 

@@ -50,7 +50,10 @@ def _cost(usage: dict, prices: dict) -> float:
 def call_anthropic(model_id: str, prompt: str, params: dict) -> tuple[str, dict]:
     import anthropic
 
-    client = anthropic.Anthropic()
+    # Claude Code cloud sessions reserve ANTHROPIC_API_KEY (it's the harness's own
+    # credential), so its env-var UI won't let you set it. Accept an alias.
+    key = os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ROAST_ANTHROPIC_API_KEY")
+    client = anthropic.Anthropic(api_key=key)
     kwargs: dict = {
         "model": model_id,
         "max_tokens": params.get("max_tokens", 64000),
