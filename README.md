@@ -61,4 +61,14 @@ The rating UI is also hosted privately at **https://roast-bench.rishimehta.worke
 
 Note: after rating on the hosted app, KV is the source of truth for rankings until `pull_rankings.sh` lands them in the repo — don't rate locally and remotely at the same time. To push repo rankings back up to KV (e.g. after rating in the local Flask app): `npx wrangler kv key put rankings --binding RANKINGS --remote --path data/rankings.json`.
 
+### Remote (cloud) session environment — one-time setup
+
+So the whole loop runs from a phone, the claude.ai Code environment for this repo needs:
+
+- **Environment variables** (`KEY=value`, no quotes): `ANTHROPIC_API_KEY` (plus `OPENAI_API_KEY` / `GEMINI_API_KEY` when generating for those providers), and `CLOUDFLARE_API_TOKEN` — a token with *Account → Workers KV Storage → Read* so `pull_rankings.sh` can fetch ratings without wrangler login.
+- **Network access = Custom**, "include default list" checked, allowed domains: `api.anthropic.com`, `api.openai.com`, `generativelanguage.googleapis.com`, `api.cloudflare.com`.
+- **Setup script**: `pip install -r requirements.txt`.
+
+Deploys need no credentials remotely — pushing to `main` triggers the Cloudflare GitHub build.
+
 One-time pieces already done: KV namespace, `TOKEN_SECRET` secret, worker deploy. The Google OAuth client is shared with `korean`; the workers.dev origin must be in its authorized JavaScript origins.
