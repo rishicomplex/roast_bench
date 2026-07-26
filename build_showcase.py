@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import html
 import json
+import os
 import subprocess
 from pathlib import Path
 
@@ -65,6 +66,11 @@ def escape(s: str) -> str:
 
 
 def discover_repo_url() -> str | None:
+    # REPO_URL wins: in sandboxed/CI checkouts `origin` is often rewritten to a
+    # local proxy, which must never be baked into the public site.
+    override = os.environ.get("REPO_URL")
+    if override:
+        return override.removesuffix(".git")
     try:
         url = subprocess.check_output(
             ["git", "remote", "get-url", "origin"], cwd=ROOT, stderr=subprocess.DEVNULL
@@ -73,6 +79,8 @@ def discover_repo_url() -> str | None:
         return None
     if url.startswith("git@github.com:"):
         url = "https://github.com/" + url[len("git@github.com:"):]
+    if not url.startswith("https://github.com/"):
+        return None
     return url.removesuffix(".git") or None
 
 
