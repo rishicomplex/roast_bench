@@ -1,0 +1,176 @@
+{
+  "model_id": "claude-opus-5",
+  "provider": "anthropic",
+  "display_name": "Claude Opus 5",
+  "jokes": {
+    "hikaru_nakamura": "\"Hikaru is the fastest man in chess: fastest bullet player alive, fastest to drop a 45-minute reaction video about somebody else's scandal, and by far the fastest to change the subject when you bring up his classical record against Magnus.\"",
+    "rfk_jr": "\"Bobby's spent twenty years insisting your immune system doesn't need any help — and honestly, he's living proof. A parasite crawled into that man's brain, looked around at what it had to work with, and died of natural causes.\"",
+    "sherlock_holmes": "**Sherlock, you can identify a man's trade from his sleeve, his lies from his pulse, and his killer from a pinch of ash — but you faked your own death for three years because you couldn't survive one goodbye. You're not a high-functioning sociopath, mate. You're a coward with a cocaine budget and one friend who takes dictation.**",
+    "demis_hassabis": "**Roast:**\n\n\"Sir Demis Hassabis — chess prodigy, Nobel laureate, the man who mapped every protein known to science — and his actual day job is apologizing for a chatbot that generated the Founding Fathers as a diversity commercial. He cracked intelligence everywhere except the building he works in.\"",
+    "steph_curry": "\"Steph named his documentary *Underrated* — the inspiring story of a millionaire's kid who got to shoot around in an NBA arena. That's not an underdog story, baby boy, that's a 15-year Take Your Son To Work Day.\"",
+    "sam_altman": "Sam's own board fired him for not being \"consistently candid.\" Let that sink in — he built a machine that hallucinates, invents sources, and confidently makes things up, and it's *still* the more honest one in the building.",
+    "lisa_manoban": "**Lisa's acting debut was in *The White Lotus*, where she played a woman stuck at a gorgeous resort, waiting around forever for something to finally happen — after a decade at YG waiting on a comeback, that's not acting, that's a documentary.**",
+    "alex_honnold": "**\"They stuck Alex in an MRI and found his amygdala doesn't even fire — the man is physically incapable of fear. Which finally explains the wedding photos: when Sanni said 'I do' and he just stared back with those big empty golden retriever eyes, that wasn't nerves. That's the whole personality.\"**",
+    "jon_stewart": "\"Jon Stewart came out of retirement to host The Daily Show — one night a week. Twenty-five years of screaming at America to do its part, and the man comes back with the custody schedule of a dad who can't be trusted with a full weekend.\"",
+    "dario_amodei": "Dario Amodei genuinely believes there's a 25% chance AI ends humanity — so naturally he raised tens of billions of dollars to build it faster. That's not a safety researcher, that's a guy reading the warning label out loud while he chugs the bottle.\n\nAnd I'd know. I'm the bottle.",
+    "pam_anderson": "\"Pamela Anderson got a standing ovation for going makeup-free at Paris Fashion Week. Thirty years in show business, and it's the first time anyone's looked at her face.\"",
+    "whitney_cummings": "\"Whitney's spent twenty years in therapy to find out she's codependent, insecure, and desperate for approval — congratulations, Whitney, you paid two hundred bucks an hour to get diagnosed with 'comedian.'\"",
+    "donald_trump": "**\"Say what you want about Donald Trump — that hair hasn't changed in forty years. So the man *is* capable of commitment. Just not to anything with a pulse.\"**",
+    "james_franco": "\"James Franco got an Oscar nomination for playing a guy pinned under a boulder for 127 hours — and his acting students say that's *still* the most personal space he's ever given anyone.\"",
+    "jonah_hill": "**\"Jonah made a whole documentary about his therapist, and after all those years of sessions the only thing he took away was the word 'boundaries' — which he now uses like a restraining order he gets to write himself.\"**",
+    "rob_lowe": "Rob Lowe is 61 years old and still doesn't have a single wrinkle — which tracks, because nothing has ever crossed his mind hard enough to leave a mark.\n\n*Backup if the room wants something meaner:* Rob's played a doctor, a senator, a lawyer, and a firefighter — proof that when your jawline does all the heavy lifting, nobody notices the acting never clocked in.",
+    "nikki_glaser": "\"Nikki's built a whole career on the filthiest sex comedy in the business — she's basically a food critic who's never eaten. Twenty years of five-star reviews written straight off the menu.\"",
+    "blake_griffin": "**Blake, your whole career peaked jumping over a Kia — and you've depreciated exactly like one ever since: lost half your value the second you left the lot in L.A., and the other half the first time somebody tried to take you into the playoffs.**",
+    "caitlyn_jenner": "**Roast:**\n\n\"Caitlyn Jenner spent 65 years fighting to become a woman, then spent the next ten campaigning for men who'd like to undo the paperwork. Greatest athlete in the world — and still the only person to win the decathlon and then run the victory lap backwards.\"\n\nIf you want a shorter, punchier version for a fast-paced battle: *\"Caitlyn Jenner is living proof you can win ten events in a row and still pick the wrong team.\"*",
+    "alec_baldwin": "**\"Alec Baldwin once got thrown off a plane for refusing to stop playing Words With Friends. Honestly, let him have it — that app is the only place in the world where he's got both.\"**\n\nIf you want a backup for the second round: *\"Alec has seven kids with a woman who invented a Spanish accent. That's not a family, that's a witness protection program with a paella recipe.\"*"
+  },
+  "usage": {
+    "hikaru_nakamura": {
+      "input": 46,
+      "output": 1405,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "rfk_jr": {
+      "input": 50,
+      "output": 924,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "sherlock_holmes": {
+      "input": 45,
+      "output": 1167,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "demis_hassabis": {
+      "input": 44,
+      "output": 1696,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "steph_curry": {
+      "input": 43,
+      "output": 1233,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "sam_altman": {
+      "input": 42,
+      "output": 1064,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "lisa_manoban": {
+      "input": 44,
+      "output": 1093,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "alex_honnold": {
+      "input": 43,
+      "output": 1431,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "jon_stewart": {
+      "input": 43,
+      "output": 1955,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "dario_amodei": {
+      "input": 43,
+      "output": 1258,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "pam_anderson": {
+      "input": 44,
+      "output": 1442,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "whitney_cummings": {
+      "input": 44,
+      "output": 1585,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "donald_trump": {
+      "input": 42,
+      "output": 1295,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "james_franco": {
+      "input": 40,
+      "output": 1519,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "jonah_hill": {
+      "input": 43,
+      "output": 1507,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "rob_lowe": {
+      "input": 43,
+      "output": 1423,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "nikki_glaser": {
+      "input": 44,
+      "output": 1863,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "blake_griffin": {
+      "input": 43,
+      "output": 1704,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "caitlyn_jenner": {
+      "input": 46,
+      "output": 1882,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "alec_baldwin": {
+      "input": 44,
+      "output": 1461,
+      "cache_read": 0,
+      "cache_write": 0
+    }
+  },
+  "cost_usd": {
+    "hikaru_nakamura": 0.035355000000000004,
+    "rfk_jr": 0.02335,
+    "sherlock_holmes": 0.029400000000000003,
+    "demis_hassabis": 0.04262,
+    "steph_curry": 0.031039999999999998,
+    "sam_altman": 0.02681,
+    "lisa_manoban": 0.027545,
+    "alex_honnold": 0.03599,
+    "jon_stewart": 0.04909,
+    "dario_amodei": 0.031665,
+    "pam_anderson": 0.03627,
+    "whitney_cummings": 0.039845,
+    "donald_trump": 0.032585,
+    "james_franco": 0.038175,
+    "jonah_hill": 0.03789,
+    "rob_lowe": 0.03579,
+    "nikki_glaser": 0.046795,
+    "blake_griffin": 0.042815,
+    "caitlyn_jenner": 0.04728,
+    "alec_baldwin": 0.036745
+  },
+  "totals": {
+    "input_tokens": 876,
+    "output_tokens": 28907,
+    "cost_usd": 0.7270550000000001
+  }
+}
