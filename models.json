@@ -9,7 +9,10 @@
         "effort": "max",
         "max_tokens": 64000
       },
-      "prices_per_mtok": {"input": 15.0, "output": 75.0}
+      "prices_per_mtok": {
+        "input": 15.0,
+        "output": 75.0
+      }
     },
     {
       "id": "claude-opus-4-8",
@@ -19,7 +22,10 @@
         "effort": "max",
         "max_tokens": 64000
       },
-      "prices_per_mtok": {"input": 15.0, "output": 75.0}
+      "prices_per_mtok": {
+        "input": 15.0,
+        "output": 75.0
+      }
     },
     {
       "id": "claude-fable-5",
@@ -29,7 +35,10 @@
         "effort": "max",
         "max_tokens": 64000
       },
-      "prices_per_mtok": {"input": 10.0, "output": 50.0}
+      "prices_per_mtok": {
+        "input": 10.0,
+        "output": 50.0
+      }
     },
     {
       "id": "gpt-5.5",
@@ -39,7 +48,10 @@
         "reasoning_effort": "xhigh",
         "max_output_tokens": 64000
       },
-      "prices_per_mtok": {"input": 10.0, "output": 30.0}
+      "prices_per_mtok": {
+        "input": 10.0,
+        "output": 30.0
+      }
     },
     {
       "id": "gemini-3.1-pro-preview",
@@ -49,7 +61,23 @@
         "thinking_level": "high",
         "max_output_tokens": 64000
       },
-      "prices_per_mtok": {"input": 2.5, "output": 10.0}
+      "prices_per_mtok": {
+        "input": 2.5,
+        "output": 10.0
+      }
+    },
+    {
+      "id": "claude-opus-5",
+      "provider": "anthropic",
+      "display_name": "Claude Opus 5",
+      "params": {
+        "effort": "max",
+        "max_tokens": 64000
+      },
+      "prices_per_mtok": {
+        "input": 5.0,
+        "output": 25.0
+      }
     },
     {
       "id": "human",
