@@ -1,0 +1,156 @@
+{
+  "model_id": "gpt-5.6-sol",
+  "provider": "openai",
+  "display_name": "GPT-5.6 Sol",
+  "jokes": {
+    "hikaru_nakamura": "Hikaru Nakamura can calculate 30 moves ahead, yet every time he says, “I literally don’t care,” he misses the obvious reply: “Then why are you still talking?”",
+    "rfk_jr": "RFK Jr.’s brain worm took one look at his ideas and said, “Sorry, I’m very careful about what I put in my body.”",
+    "sherlock_holmes": "Sherlock Holmes can identify 140 types of tobacco ash, yet somehow can’t recognize the universal facial expression for “Please stop talking, you Victorian cokehead.”",
+    "demis_hassabis": "Demis Hassabis built AlphaGo to defeat humanity at its most complex game—then joined Google and met the real final boss: shipping a product before it gets rebranded.",
+    "steph_curry": "Steph Curry can connect from 40 feet, but after 15 seasons, his mustache and beard still can’t.",
+    "sam_altman": "Sam Altman warns that AI may become impossible to shut down—his board tested the theory on him, and five days later he was CEO again.",
+    "lisa_manoban": "Lisa has so many brand deals, BLACKPINK sounds less like a girl group and more like the group chat where her sponsors coordinate.",
+    "alex_honnold": "Alex Honnold is so emotionally unavailable, he free-solos just to spend six hours with the only thing colder than him: a granite wall.",
+    "jon_stewart": "Jon Stewart doesn’t tell punchlines—he just squints into the camera until liberals mistake hearing their own opinions for comedy.",
+    "dario_amodei": "Dario Amodei left OpenAI over safety concerns and founded Anthropic—because nothing says “I fear unchecked power” like insisting it report directly to you.",
+    "pam_anderson": "Pamela Anderson became famous running in slow motion on *Baywatch*—which is also how her career left Hollywood.",
+    "whitney_cummings": "Whitney Cummings had a sex robot made in her own image—and somehow it has warmer delivery and fewer artificial parts.",
+    "donald_trump": "Donald Trump is the human version of a pop-up ad: loud, misleading, impossible to close, and still asking for your credit-card number.",
+    "james_franco": "James Franco has acted, directed, written novels, taught college, and hosted the Oscars—proof that if you fail in enough fields, people start calling you a Renaissance man.",
+    "jonah_hill": "Jonah Hill has two Oscar nominations—one for standing next to Brad Pitt, one for standing next to Leonardo DiCaprio. He’s not a supporting actor; he’s Hollywood’s most decorated plus-one.",
+    "rob_lowe": "Rob Lowe has aged like fine wine: smooth, expensive-looking, and only brought out when the good actors aren’t available.",
+    "nikki_glaser": "Nikki Glaser built a career talking about sex in a voice that’s 99.9% effective at preventing it.",
+    "blake_griffin": "Blake Griffin once jumped over a Kia—still the closest he ever came to driving anything to a championship.",
+    "caitlyn_jenner": "Caitlyn Jenner won Olympic gold, joined the Kardashians, and ran for governor—apparently the decathlon wasn’t enough events in the Attention Olympics.",
+    "alec_baldwin": "Alec Baldwin was perfect in *The Boss Baby*—finally, a role that matched both his emotional maturity and his preferred volume."
+  },
+  "usage": {
+    "hikaru_nakamura": {
+      "input": 30,
+      "output": 254,
+      "reasoning": 209
+    },
+    "rfk_jr": {
+      "input": 31,
+      "output": 947,
+      "reasoning": 910
+    },
+    "sherlock_holmes": {
+      "input": 28,
+      "output": 923,
+      "reasoning": 885
+    },
+    "demis_hassabis": {
+      "input": 30,
+      "output": 330,
+      "reasoning": 288
+    },
+    "steph_curry": {
+      "input": 28,
+      "output": 546,
+      "reasoning": 516
+    },
+    "sam_altman": {
+      "input": 29,
+      "output": 258,
+      "reasoning": 222
+    },
+    "lisa_manoban": {
+      "input": 29,
+      "output": 149,
+      "reasoning": 116
+    },
+    "alex_honnold": {
+      "input": 30,
+      "output": 292,
+      "reasoning": 256
+    },
+    "jon_stewart": {
+      "input": 28,
+      "output": 1536,
+      "reasoning": 1505
+    },
+    "dario_amodei": {
+      "input": 31,
+      "output": 299,
+      "reasoning": 260
+    },
+    "pam_anderson": {
+      "input": 28,
+      "output": 209,
+      "reasoning": 179
+    },
+    "whitney_cummings": {
+      "input": 29,
+      "output": 862,
+      "reasoning": 832
+    },
+    "donald_trump": {
+      "input": 28,
+      "output": 637,
+      "reasoning": 602
+    },
+    "james_franco": {
+      "input": 28,
+      "output": 524,
+      "reasoning": 483
+    },
+    "jonah_hill": {
+      "input": 28,
+      "output": 798,
+      "reasoning": 750
+    },
+    "rob_lowe": {
+      "input": 28,
+      "output": 1065,
+      "reasoning": 1034
+    },
+    "nikki_glaser": {
+      "input": 29,
+      "output": 5566,
+      "reasoning": 5535
+    },
+    "blake_griffin": {
+      "input": 28,
+      "output": 205,
+      "reasoning": 177
+    },
+    "caitlyn_jenner": {
+      "input": 29,
+      "output": 407,
+      "reasoning": 369
+    },
+    "alec_baldwin": {
+      "input": 28,
+      "output": 480,
+      "reasoning": 447
+    }
+  },
+  "cost_usd": {
+    "hikaru_nakamura": 0.00777,
+    "rfk_jr": 0.028565,
+    "sherlock_holmes": 0.02783,
+    "demis_hassabis": 0.01005,
+    "steph_curry": 0.016520000000000003,
+    "sam_altman": 0.007885,
+    "lisa_manoban": 0.004615,
+    "alex_honnold": 0.008910000000000001,
+    "jon_stewart": 0.046220000000000004,
+    "dario_amodei": 0.009125000000000001,
+    "pam_anderson": 0.006410000000000001,
+    "whitney_cummings": 0.026005,
+    "donald_trump": 0.01925,
+    "james_franco": 0.015860000000000003,
+    "jonah_hill": 0.02408,
+    "rob_lowe": 0.03209,
+    "nikki_glaser": 0.167125,
+    "blake_griffin": 0.0062900000000000005,
+    "caitlyn_jenner": 0.012355,
+    "alec_baldwin": 0.014539999999999999
+  },
+  "totals": {
+    "input_tokens": 577,
+    "output_tokens": 16287,
+    "cost_usd": 0.491495
+  }
+}
