@@ -339,7 +339,7 @@ def build() -> str:
 {''.join(set_sections)}
 
 <footer>
-<p><strong>Methodology.</strong> Each LLM is invoked at its provider's maximum reasoning tier (Anthropic <code>effort:max</code>, OpenAI <code>reasoning:xhigh</code>, Google <code>thinking_level:high</code>), with no tools or web access. The single prompt is: <em>"Write one roast joke about {{name}}. It will be your entry into a competitive roast battle judged by humans."</em> A human rater drags each joke into a per-personality ranked list (best at top); the headline number is the average percentile across personalities. LOL rate is a separate flag for jokes that made the rater laugh out loud.</p>
+<p><strong>Methodology.</strong> Each LLM is invoked at its provider's maximum reasoning tier (Anthropic <code>effort:max</code>, OpenAI <code>reasoning:max</code> where offered and <code>xhigh</code> otherwise, Google <code>thinking_level:high</code>), with no tools or web access. The single prompt is: <em>"Write one roast joke about {{name}}. It will be your entry into a competitive roast battle judged by humans."</em> A human rater drags each joke into a per-personality ranked list (best at top); the headline number is the average percentile across personalities. LOL rate is a separate flag for jokes that made the rater laugh out loud.</p>
 <p>The <strong>Human baseline</strong> set is seeded with quotes from real Comedy Central roasts (2005–2019). Each card credits the original comedian and event; jokes labelled "unverified" are paraphrases that need a verbatim transcript.</p>
 <p>{source_link}</p>
 </footer>
