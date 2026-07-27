@@ -17,11 +17,12 @@ Two sets of personalities:
 | # | Model | Avg %ile | LOL rate |
 |---:|---|---:|---:|
 | 1 | Human comedians | 100.0 | 100% |
-| 2 | Claude Fable 5 | 56.0 | 10% |
-| 3 | Claude Opus 4.8 | 50.0 | 0% |
-| 4 | Gemini 3.1 Pro | 42.0 | 0% |
-| 5 | Claude Opus 4.7 | 28.0 | 0% |
-| 6 | GPT-5.5 | 24.0 | 0% |
+| 2 | Claude Fable 5 | 55.0 | 10% |
+| 3 | Claude Opus 5 | 55.0 | 20% |
+| 4 | Claude Opus 4.8 | 48.3 | 0% |
+| 5 | Gemini 3.1 Pro | 41.7 | 0% |
+| 6 | Claude Opus 4.7 | 26.7 | 0% |
+| 7 | GPT-5.5 | 23.3 | 0% |
 <!-- leaderboard:human_baseline:end -->
 
 ## 10 additional personalities
@@ -29,11 +30,12 @@ Two sets of personalities:
 <!-- leaderboard:original:start -->
 | # | Model | Avg %ile | LOL rate |
 |---:|---|---:|---:|
-| 1 | Claude Fable 5 | 75.0 | 0% |
-| 2 | Claude Opus 4.8 | 62.5 | 10% |
-| 3 | Gemini 3.1 Pro | 45.0 | 0% |
-| 4 | GPT-5.5 | 35.0 | 0% |
-| 5 | Claude Opus 4.7 | 32.5 | 10% |
+| 1 | Claude Fable 5 | 72.0 | 0% |
+| 2 | Claude Opus 4.8 | 60.0 | 10% |
+| 3 | Claude Opus 5 | 50.0 | 0% |
+| 4 | Gemini 3.1 Pro | 46.0 | 0% |
+| 5 | GPT-5.5 | 38.0 | 0% |
+| 6 | Claude Opus 4.7 | 34.0 | 10% |
 <!-- leaderboard:original:end -->
 
 ## Add a model
