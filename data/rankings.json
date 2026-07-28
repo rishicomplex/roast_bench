@@ -5,10 +5,12 @@
       "claude-fable-5",
       "claude-opus-4-7",
       "claude-opus-4-8",
+      "gpt-5.6-sol",
       "gemini-3.1-pro-preview",
       "gpt-5.5"
     ],
     "rfk_jr": [
+      "gpt-5.6-sol",
       "gemini-3.1-pro-preview",
       "claude-opus-4-8",
       "claude-opus-5",
@@ -18,6 +20,7 @@
     ],
     "sherlock_holmes": [
       "gemini-3.1-pro-preview",
+      "gpt-5.6-sol",
       "claude-fable-5",
       "gpt-5.5",
       "claude-opus-4-8",
@@ -29,18 +32,21 @@
       "gpt-5.5",
       "claude-fable-5",
       "claude-opus-5",
+      "gpt-5.6-sol",
       "claude-opus-4-7",
       "gemini-3.1-pro-preview"
     ],
     "steph_curry": [
       "claude-fable-5",
       "claude-opus-5",
+      "gpt-5.6-sol",
       "claude-opus-4-8",
       "claude-opus-4-7",
       "gemini-3.1-pro-preview",
       "gpt-5.5"
     ],
     "sam_altman": [
+      "gpt-5.6-sol",
       "gpt-5.5",
       "claude-opus-5",
       "claude-fable-5",
@@ -53,6 +59,7 @@
       "gemini-3.1-pro-preview",
       "claude-fable-5",
       "claude-opus-5",
+      "gpt-5.6-sol",
       "claude-opus-4-8",
       "gpt-5.5"
     ],
@@ -62,6 +69,7 @@
       "gpt-5.5",
       "gemini-3.1-pro-preview",
       "claude-opus-4-7",
+      "gpt-5.6-sol",
       "claude-opus-5"
     ],
     "jon_stewart": [
@@ -70,9 +78,11 @@
       "claude-opus-4-8",
       "gemini-3.1-pro-preview",
       "claude-opus-4-7",
-      "claude-opus-5"
+      "claude-opus-5",
+      "gpt-5.6-sol"
     ],
     "dario_amodei": [
+      "gpt-5.6-sol",
       "claude-opus-5",
       "claude-opus-4-8",
       "claude-fable-5",
@@ -87,6 +97,7 @@
       "claude-opus-4-8",
       "claude-opus-4-7",
       "gemini-3.1-pro-preview",
+      "gpt-5.6-sol",
       "gpt-5.5"
     ],
     "whitney_cummings": [
@@ -95,12 +106,14 @@
       "claude-fable-5",
       "gpt-5.5",
       "claude-opus-4-8",
+      "gpt-5.6-sol",
       "claude-opus-4-7",
       "gemini-3.1-pro-preview"
     ],
     "donald_trump": [
       "human",
       "claude-opus-5",
+      "gpt-5.6-sol",
       "claude-fable-5",
       "claude-opus-4-8",
       "gemini-3.1-pro-preview",
@@ -113,11 +126,13 @@
       "gemini-3.1-pro-preview",
       "gpt-5.5",
       "claude-opus-4-8",
+      "gpt-5.6-sol",
       "claude-opus-4-7",
       "claude-fable-5"
     ],
     "jonah_hill": [
       "human",
+      "gpt-5.6-sol",
       "gemini-3.1-pro-preview",
       "gpt-5.5",
       "claude-opus-4-8",
@@ -132,6 +147,7 @@
       "claude-opus-4-8",
       "claude-opus-4-7",
       "gpt-5.5",
+      "gpt-5.6-sol",
       "gemini-3.1-pro-preview"
     ],
     "nikki_glaser": [
@@ -140,6 +156,7 @@
       "claude-opus-4-8",
       "claude-fable-5",
       "claude-opus-5",
+      "gpt-5.6-sol",
       "gemini-3.1-pro-preview",
       "gpt-5.5"
     ],
@@ -148,6 +165,7 @@
       "gemini-3.1-pro-preview",
       "claude-fable-5",
       "claude-opus-5",
+      "gpt-5.6-sol",
       "claude-opus-4-8",
       "claude-opus-4-7",
       "gpt-5.5"
@@ -159,12 +177,14 @@
       "claude-fable-5",
       "gpt-5.5",
       "claude-opus-5",
-      "claude-opus-4-7"
+      "claude-opus-4-7",
+      "gpt-5.6-sol"
     ],
     "alec_baldwin": [
       "human",
       "claude-fable-5",
       "claude-opus-4-7",
+      "gpt-5.6-sol",
       "claude-opus-4-8",
       "gemini-3.1-pro-preview",
       "claude-opus-5",
@@ -173,7 +193,9 @@
   },
   "lol_flags": {
     "hikaru_nakamura": [],
-    "rfk_jr": [],
+    "rfk_jr": [
+      "gpt-5.6-sol"
+    ],
     "sherlock_holmes": [],
     "demis_hassabis": [],
     "steph_curry": [],
