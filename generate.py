@@ -133,10 +133,44 @@ def call_google(model_id: str, prompt: str, params: dict) -> tuple[str, dict]:
     return (response.text or "").strip(), usage
 
 
+def call_moonshot(model_id: str, prompt: str, params: dict) -> tuple[str, dict]:
+    from openai import OpenAI
+
+    # Moonshot is OpenAI-SDK-compatible, but only via chat.completions — not the
+    # Responses API that call_openai() uses. K3 also renames two params: effort is
+    # top-level `reasoning_effort` (not K2.x's `thinking`), and the output cap is
+    # `max_completion_tokens` (not `max_tokens`).
+    key = os.environ.get("MOONSHOT_API_KEY") or os.environ.get("ROAST_MOONSHOT_API_KEY")
+    client = OpenAI(api_key=key, base_url=params.get("base_url", "https://api.moonshot.ai/v1"))
+    kwargs: dict = {
+        "model": model_id,
+        "messages": [{"role": "user", "content": prompt}],
+        "max_completion_tokens": params.get("max_completion_tokens", 64000),
+        # No tools — explicit pure-LM generation
+    }
+    if "reasoning_effort" in params:
+        kwargs["reasoning_effort"] = params["reasoning_effort"]
+    response = client.chat.completions.create(**kwargs)
+    text = (response.choices[0].message.content or "").strip()
+    u = response.usage
+    reasoning_toks = 0
+    details = getattr(u, "completion_tokens_details", None)
+    if details is not None:
+        reasoning_toks = getattr(details, "reasoning_tokens", 0) or 0
+    usage = {
+        "input": getattr(u, "prompt_tokens", 0) or 0,
+        "output": getattr(u, "completion_tokens", 0) or 0,  # includes reasoning tokens
+        "reasoning": reasoning_toks,
+        "cache_read": getattr(u, "cached_tokens", 0) or 0,
+    }
+    return text, usage
+
+
 PROVIDERS = {
     "anthropic": call_anthropic,
     "openai": call_openai,
     "google": call_google,
+    "moonshot": call_moonshot,
 }
 
 

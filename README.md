@@ -41,7 +41,7 @@ Two sets of personalities:
 ## Add a model
 
 ```bash
-python add_model.py --id <model-id> --provider {anthropic,openai,google}
+python add_model.py --id <model-id> --provider {anthropic,openai,google,moonshot}
 ```
 
 Generates 10 jokes at the provider's top reasoning tier, opens the Flask rating UI at `localhost:5000` to drag the new jokes into the per-personality rankings, then regenerates `data/leaderboard.json`. Run `python build_showcase.py` to refresh the public site and this README.
@@ -67,10 +67,10 @@ Note: after rating on the hosted app, KV is the source of truth for rankings unt
 
 So the whole loop runs from a phone, the claude.ai Code environment for this repo needs:
 
-- **Environment variables** (`KEY=value`, no quotes): `ROAST_ANTHROPIC_API_KEY` (plus `OPENAI_API_KEY` / `GEMINI_API_KEY` when generating for those providers), and `CLOUDFLARE_API_TOKEN` — a token with *Account → Workers KV Storage → Read* so `pull_rankings.sh` can fetch ratings without wrangler login.
+- **Environment variables** (`KEY=value`, no quotes): `ROAST_ANTHROPIC_API_KEY` (plus `OPENAI_API_KEY` / `GEMINI_API_KEY` / `MOONSHOT_API_KEY` when generating for those providers), and `CLOUDFLARE_API_TOKEN` — a token with *Account → Workers KV Storage → Read* so `pull_rankings.sh` can fetch ratings without wrangler login.
 
   The Anthropic key uses the `ROAST_` prefix because the cloud session reserves `ANTHROPIC_API_KEY` for the harness's own auth and its UI won't accept that name. `generate.py` reads either. Locally (`.env`), plain `ANTHROPIC_API_KEY` still works.
-- **Network access = Custom**, "include default list" checked, allowed domains: `api.anthropic.com`, `api.openai.com`, `generativelanguage.googleapis.com`, `api.cloudflare.com`.
+- **Network access = Custom**, "include default list" checked, allowed domains: `api.anthropic.com`, `api.openai.com`, `generativelanguage.googleapis.com`, `api.moonshot.ai`, `api.cloudflare.com`. A provider missing from this list fails as `APIConnectionError` at the proxy, which looks like an outage rather than a config gap — add the domain before blaming the provider.
 - **Setup script**: `pip install -r requirements.txt`.
 
 Deploys need no credentials remotely — pushing to `main` triggers the Cloudflare GitHub build.
