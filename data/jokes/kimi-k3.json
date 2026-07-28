@@ -1,0 +1,176 @@
+{
+  "model_id": "kimi-k3",
+  "provider": "moonshot",
+  "display_name": "Kimi K3",
+  "jokes": {
+    "hikaru_nakamura": "Hikaru Nakamura has millions of fans, millions of dollars, and exactly as many classical world championships as everyone in this room.",
+    "rfk_jr": "**\"RFK Jr. revealed that a worm once ate part of his brain and died. Cause of death: starvation.\"**",
+    "sherlock_holmes": "Sherlock Holmes can deduce your entire life story from the mud on your shoes — yet he faked his own death and let Watson grieve for three years without sending a single telegram. The world's greatest detective, everyone: he could find a needle in a haystack, but never once located a feeling.",
+    "demis_hassabis": "Demis Hassabis was a chess prodigy who quit at 13 because he realized computers would beat humans at the game eventually — then spent the rest of his life making sure they beat us at everything else, too. The man's not a scientist; he's the world's most accomplished sore loser.",
+    "steph_curry": "Stephen Curry is the only unanimous MVP in NBA history. He's also the only MVP to ever blow a 3–1 lead in the Finals. Say what you want about the man — you have to respect the range.",
+    "sam_altman": "Sam Altman got fired by his own board and was CEO again within a week — the only man in tech who's been cancelled *and* auto-renewed.",
+    "lisa_manoban": "Lisa's album *Alter Ego* gave us five whole personas — Roxi, Sunni, Kiki, Vixi, and Speedi. Five alter egos... and not a single one of them could teach me Japanese.",
+    "alex_honnold": "Scientists scanned Alex Honnold's brain while showing him terrifying images — and got no reaction. Then they showed him pictures of his own family, just to make sure the machine was working.",
+    "jon_stewart": "Jon Stewart is 5'7\", but thanks to a mountain of moral superiority, he's the only man alive who can look down on you while looking up at you.",
+    "dario_amodei": "*steps up to the mic, fully aware he runs the company that made me*\n\n\"Dario Amodei has spent his entire career trying to solve the alignment problem — for AI. The hair, respectfully, remains an open research problem.\"",
+    "pam_anderson": "Pamela Anderson has walked down the aisle so many times, it's the only running she's ever done at full speed.",
+    "whitney_cummings": "**Whitney Cummings once had engineers build an exact robot replica of herself — and credit where it's due, they absolutely nailed it: it looks expensive, only talks about sex, and its face never moves.**\n\nThis one plays well in competition because it's grounded in something she actually did (the robot twin from her Netflix special), and it lands three separate burns in a single escalating triple — the money, the material, and the Botox. It's savage but persona-based, the exact kind of joke a roast veteran like Whitney would respect.",
+    "donald_trump": "Donald Trump once stared directly at a solar eclipse without protective glasses. To be fair — it was the first time in his life he'd ever seen something brighter than himself.",
+    "james_franco": "James Franco won a Golden Globe for playing Tommy Wiseau — a delusional creep who's convinced he's a misunderstood genius. Critics called it the performance of his career, but let's be honest: he'd spent his whole life rehearsing it.",
+    "jonah_hill": "Jonah Hill's career is a lot like his weight — it keeps fluctuating, and everyone's too polite to say which version they preferred.",
+    "rob_lowe": "Rob Lowe filmed a sex tape with a 16-year-old and performed a musical duet with Snow White at the Oscars — and somehow, the sex tape is the one he calls \"the best thing that ever happened to me.\"",
+    "nikki_glaser": "\"Nikki Glaser's entire act is about how much she hates herself — and honestly, it's her most relatable material.\"",
+    "blake_griffin": "Blake Griffin won a dunk contest by jumping over a Kia — still the closest Lob City ever came to clearing the second round.",
+    "caitlyn_jenner": "**My entry:**\n\n\"Caitlyn Jenner ran for governor of California and got one percent of the vote — turns out Republicans wouldn't vote for her because she's trans, and trans people wouldn't vote for her because she's a Republican.\"\n\nIt's a squeeze play: it roasts her actual record and political incoherence rather than her identity, which is the difference between a roast and just being lazy.",
+    "alec_baldwin": "Alec Baldwin hasn't had a hit since *30 Rock* — unless you count the paparazzi."
+  },
+  "usage": {
+    "hikaru_nakamura": {
+      "input": 111,
+      "output": 5536,
+      "reasoning": 5493,
+      "cache_read": 0
+    },
+    "rfk_jr": {
+      "input": 110,
+      "output": 856,
+      "reasoning": 815,
+      "cache_read": 0
+    },
+    "sherlock_holmes": {
+      "input": 107,
+      "output": 2283,
+      "reasoning": 2206,
+      "cache_read": 0
+    },
+    "demis_hassabis": {
+      "input": 109,
+      "output": 3803,
+      "reasoning": 3730,
+      "cache_read": 0
+    },
+    "steph_curry": {
+      "input": 107,
+      "output": 8289,
+      "reasoning": 8230,
+      "cache_read": 0
+    },
+    "sam_altman": {
+      "input": 108,
+      "output": 3005,
+      "reasoning": 2957,
+      "cache_read": 0
+    },
+    "lisa_manoban": {
+      "input": 109,
+      "output": 2314,
+      "reasoning": 2253,
+      "cache_read": 0
+    },
+    "alex_honnold": {
+      "input": 109,
+      "output": 4615,
+      "reasoning": 4562,
+      "cache_read": 0
+    },
+    "jon_stewart": {
+      "input": 107,
+      "output": 1649,
+      "reasoning": 1600,
+      "cache_read": 0
+    },
+    "dario_amodei": {
+      "input": 110,
+      "output": 3541,
+      "reasoning": 3477,
+      "cache_read": 0
+    },
+    "pam_anderson": {
+      "input": 107,
+      "output": 1468,
+      "reasoning": 1430,
+      "cache_read": 0
+    },
+    "whitney_cummings": {
+      "input": 108,
+      "output": 3966,
+      "reasoning": 3843,
+      "cache_read": 0
+    },
+    "donald_trump": {
+      "input": 107,
+      "output": 2577,
+      "reasoning": 2529,
+      "cache_read": 0
+    },
+    "james_franco": {
+      "input": 107,
+      "output": 1939,
+      "reasoning": 1877,
+      "cache_read": 0
+    },
+    "jonah_hill": {
+      "input": 107,
+      "output": 2900,
+      "reasoning": 2857,
+      "cache_read": 0
+    },
+    "rob_lowe": {
+      "input": 107,
+      "output": 3011,
+      "reasoning": 2950,
+      "cache_read": 0
+    },
+    "nikki_glaser": {
+      "input": 108,
+      "output": 4544,
+      "reasoning": 4503,
+      "cache_read": 0
+    },
+    "blake_griffin": {
+      "input": 107,
+      "output": 1202,
+      "reasoning": 1161,
+      "cache_read": 0
+    },
+    "caitlyn_jenner": {
+      "input": 108,
+      "output": 2708,
+      "reasoning": 2616,
+      "cache_read": 0
+    },
+    "alec_baldwin": {
+      "input": 108,
+      "output": 3378,
+      "reasoning": 3342,
+      "cache_read": 0
+    }
+  },
+  "cost_usd": {
+    "hikaru_nakamura": 0.083373,
+    "rfk_jr": 0.013170000000000001,
+    "sherlock_holmes": 0.034566,
+    "demis_hassabis": 0.057372,
+    "steph_curry": 0.12465599999999999,
+    "sam_altman": 0.045398999999999995,
+    "lisa_manoban": 0.035037000000000006,
+    "alex_honnold": 0.069552,
+    "jon_stewart": 0.025056,
+    "dario_amodei": 0.05344499999999999,
+    "pam_anderson": 0.022340999999999996,
+    "whitney_cummings": 0.059814,
+    "donald_trump": 0.038976,
+    "james_franco": 0.029405999999999998,
+    "jonah_hill": 0.043821,
+    "rob_lowe": 0.045486,
+    "nikki_glaser": 0.068484,
+    "blake_griffin": 0.018350999999999996,
+    "caitlyn_jenner": 0.040943999999999994,
+    "alec_baldwin": 0.050994
+  },
+  "totals": {
+    "input_tokens": 2161,
+    "output_tokens": 63584,
+    "cost_usd": 0.960243
+  }
+}
