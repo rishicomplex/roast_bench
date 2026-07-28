@@ -93,6 +93,19 @@
       }
     },
     {
+      "id": "kimi-k3",
+      "provider": "moonshot",
+      "display_name": "Kimi K3",
+      "params": {
+        "reasoning_effort": "max",
+        "max_completion_tokens": 64000
+      },
+      "prices_per_mtok": {
+        "input": 3.0,
+        "output": 15.0
+      }
+    },
+    {
       "id": "human",
       "provider": "human",
       "display_name": "Human comedians",
