@@ -7,10 +7,12 @@
       "claude-opus-4-8",
       "gpt-5.6-sol",
       "gemini-3.1-pro-preview",
+      "kimi-k3",
       "gpt-5.5"
     ],
     "rfk_jr": [
       "gpt-5.6-sol",
+      "kimi-k3",
       "gemini-3.1-pro-preview",
       "claude-opus-4-8",
       "claude-opus-5",
@@ -25,11 +27,13 @@
       "gpt-5.5",
       "claude-opus-4-8",
       "claude-opus-4-7",
-      "claude-opus-5"
+      "claude-opus-5",
+      "kimi-k3"
     ],
     "demis_hassabis": [
       "claude-opus-4-8",
       "gpt-5.5",
+      "kimi-k3",
       "claude-fable-5",
       "claude-opus-5",
       "gpt-5.6-sol",
@@ -42,6 +46,7 @@
       "gpt-5.6-sol",
       "claude-opus-4-8",
       "claude-opus-4-7",
+      "kimi-k3",
       "gemini-3.1-pro-preview",
       "gpt-5.5"
     ],
@@ -51,6 +56,7 @@
       "claude-opus-5",
       "claude-fable-5",
       "gemini-3.1-pro-preview",
+      "kimi-k3",
       "claude-opus-4-8",
       "claude-opus-4-7"
     ],
@@ -60,6 +66,7 @@
       "claude-fable-5",
       "claude-opus-5",
       "gpt-5.6-sol",
+      "kimi-k3",
       "claude-opus-4-8",
       "gpt-5.5"
     ],
@@ -67,6 +74,7 @@
       "claude-opus-4-8",
       "claude-fable-5",
       "gpt-5.5",
+      "kimi-k3",
       "gemini-3.1-pro-preview",
       "claude-opus-4-7",
       "gpt-5.6-sol",
@@ -75,6 +83,7 @@
     "jon_stewart": [
       "claude-fable-5",
       "gpt-5.5",
+      "kimi-k3",
       "claude-opus-4-8",
       "gemini-3.1-pro-preview",
       "claude-opus-4-7",
@@ -86,6 +95,7 @@
       "claude-opus-5",
       "claude-opus-4-8",
       "claude-fable-5",
+      "kimi-k3",
       "claude-opus-4-7",
       "gemini-3.1-pro-preview",
       "gpt-5.5"
@@ -97,6 +107,7 @@
       "claude-opus-4-8",
       "claude-opus-4-7",
       "gemini-3.1-pro-preview",
+      "kimi-k3",
       "gpt-5.6-sol",
       "gpt-5.5"
     ],
@@ -106,6 +117,7 @@
       "claude-fable-5",
       "gpt-5.5",
       "claude-opus-4-8",
+      "kimi-k3",
       "gpt-5.6-sol",
       "claude-opus-4-7",
       "gemini-3.1-pro-preview"
@@ -117,6 +129,7 @@
       "claude-fable-5",
       "claude-opus-4-8",
       "gemini-3.1-pro-preview",
+      "kimi-k3",
       "gpt-5.5",
       "claude-opus-4-7"
     ],
@@ -126,6 +139,7 @@
       "gemini-3.1-pro-preview",
       "gpt-5.5",
       "claude-opus-4-8",
+      "kimi-k3",
       "gpt-5.6-sol",
       "claude-opus-4-7",
       "claude-fable-5"
@@ -138,6 +152,7 @@
       "claude-opus-4-8",
       "claude-fable-5",
       "claude-opus-5",
+      "kimi-k3",
       "claude-opus-4-7"
     ],
     "rob_lowe": [
@@ -148,6 +163,7 @@
       "claude-opus-4-7",
       "gpt-5.5",
       "gpt-5.6-sol",
+      "kimi-k3",
       "gemini-3.1-pro-preview"
     ],
     "nikki_glaser": [
@@ -156,6 +172,7 @@
       "claude-opus-4-8",
       "claude-fable-5",
       "claude-opus-5",
+      "kimi-k3",
       "gpt-5.6-sol",
       "gemini-3.1-pro-preview",
       "gpt-5.5"
@@ -167,12 +184,14 @@
       "claude-opus-5",
       "gpt-5.6-sol",
       "claude-opus-4-8",
+      "kimi-k3",
       "claude-opus-4-7",
       "gpt-5.5"
     ],
     "caitlyn_jenner": [
       "human",
       "gemini-3.1-pro-preview",
+      "kimi-k3",
       "claude-opus-4-8",
       "claude-fable-5",
       "gpt-5.5",
@@ -184,6 +203,7 @@
       "human",
       "claude-fable-5",
       "claude-opus-4-7",
+      "kimi-k3",
       "gpt-5.6-sol",
       "claude-opus-4-8",
       "gemini-3.1-pro-preview",
