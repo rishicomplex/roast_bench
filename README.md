@@ -17,14 +17,16 @@ Two sets of personalities:
 | # | Model | Avg %ile | LOL rate |
 |---:|---|---:|---:|
 | 1 | Human comedians | 100.0 | 100% |
-| 2 | Claude Opus 5 | 61.2 | 20% |
-| 3 | Claude Fable 5 | 60.0 | 10% |
-| 4 | Claude Opus 4.8 | 53.8 | 0% |
-| 5 | Gemini 3.1 Pro | 43.8 | 0% |
-| 6 | GPT-5.6 Sol | 37.5 | 0% |
-| 7 | Kimi K3 | 35.0 | 0% |
-| 8 | Claude Opus 4.7 | 31.2 | 0% |
-| 9 | GPT-5.5 | 27.5 | 0% |
+| 2 | Claude Fable 5.1 | 61.0 | 0% |
+| 3 | GPT-6 Astra | 61.0 | 0% |
+| 4 | Claude Opus 5 | 58.0 | 20% |
+| 5 | Claude Fable 5 | 56.0 | 10% |
+| 6 | Claude Opus 4.8 | 52.0 | 0% |
+| 7 | Gemini 3.1 Pro | 41.0 | 0% |
+| 8 | GPT-5.6 Sol | 35.0 | 0% |
+| 9 | Kimi K3 | 32.0 | 0% |
+| 10 | Claude Opus 4.7 | 29.0 | 0% |
+| 11 | GPT-5.5 | 25.0 | 0% |
 <!-- leaderboard:human_baseline:end -->
 
 ## 10 additional personalities
@@ -32,14 +34,16 @@ Two sets of personalities:
 <!-- leaderboard:original:start -->
 | # | Model | Avg %ile | LOL rate |
 |---:|---|---:|---:|
-| 1 | Claude Fable 5 | 71.4 | 0% |
-| 2 | GPT-5.6 Sol | 58.6 | 10% |
-| 3 | Claude Opus 4.8 | 57.1 | 10% |
-| 4 | Claude Opus 5 | 51.4 | 0% |
-| 5 | Gemini 3.1 Pro | 44.3 | 0% |
-| 6 | Kimi K3 | 42.9 | 0% |
-| 7 | GPT-5.5 | 38.6 | 0% |
-| 8 | Claude Opus 4.7 | 35.7 | 10% |
+| 1 | Claude Fable 5 | 66.7 | 0% |
+| 2 | Claude Fable 5.1 | 64.4 | 0% |
+| 3 | Claude Opus 4.8 | 56.7 | 10% |
+| 4 | GPT-5.6 Sol | 56.7 | 10% |
+| 5 | Claude Opus 5 | 52.2 | 0% |
+| 6 | Gemini 3.1 Pro | 44.4 | 0% |
+| 7 | GPT-6 Astra | 42.2 | 0% |
+| 8 | Kimi K3 | 40.0 | 0% |
+| 9 | GPT-5.5 | 38.9 | 0% |
+| 10 | Claude Opus 4.7 | 37.8 | 10% |
 <!-- leaderboard:original:end -->
 
 ## Add a model
