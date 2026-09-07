@@ -84,13 +84,16 @@ def call_openai(model_id: str, prompt: str, params: dict) -> tuple[str, dict]:
     from openai import OpenAI
 
     client = OpenAI()
-    response = client.responses.create(
+    # Streamed so long max-effort generations (>~3 min) don't get dropped
+    # with "Connection error" by an idle timeout on the non-streaming path.
+    with client.responses.stream(
         model=model_id,
         input=prompt,
         reasoning={"effort": params.get("reasoning_effort", "xhigh")},
         max_output_tokens=params.get("max_output_tokens", 64000),
         # No tools — explicit pure-LM generation
-    )
+    ) as stream:
+        response = stream.get_final_response()
     u = response.usage
     reasoning_toks = 0
     details = getattr(u, "output_tokens_details", None)

@@ -119,6 +119,19 @@
       }
     },
     {
+      "id": "gpt-6-astra",
+      "provider": "openai",
+      "display_name": "GPT-6 Astra",
+      "params": {
+        "reasoning_effort": "max",
+        "max_output_tokens": 64000
+      },
+      "prices_per_mtok": {
+        "input": 10.0,
+        "output": 50.0
+      }
+    },
+    {
       "id": "human",
       "provider": "human",
       "display_name": "Human comedians",
