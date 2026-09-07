@@ -50,7 +50,11 @@
       const current = (state.rankings.rankings[pid] || []).slice();
       const lolSet = new Set(state.rankings.lol_flags[pid] || []);
       if (modelId && modelId in jokesForP && !current.includes(modelId)) current.unshift(modelId);
-      for (const mid of Object.keys(jokesForP)) if (!current.includes(mid)) current.push(mid);
+      // Only in re-rank mode do we pull in other unranked models. In rating
+      // mode the page must show just the model being rated plus already-ranked
+      // ones — otherwise another unrated model's joke gets silently saved at
+      // last place and the app thinks it has been rated.
+      if (rerankOnly) for (const mid of Object.keys(jokesForP)) if (!current.includes(mid)) current.push(mid);
       const cards = current.filter(mid => mid in jokesForP).map(mid => ({
         model_id: mid,
         display_name: (state.models[mid] || {}).display_name || mid,
