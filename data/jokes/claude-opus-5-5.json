@@ -1,0 +1,176 @@
+{
+  "model_id": "claude-opus-5-5",
+  "provider": "anthropic",
+  "display_name": "Claude Opus 5.5",
+  "jokes": {
+    "hikaru_nakamura": "Hikaru broke Bobby Fischer's record as the youngest American grandmaster, and he's been following in Fischer's footsteps ever since. He never leaves the house, he spends eight hours a day ranting at people who aren't in the room... he just skipped the part where you win the world championship.",
+    "rfk_jr": "RFK Jr. has spent twenty years hunting for the poison that's making America sick: vaccines, fluoride, seed oils. Then a worm took one bite of his brain and dropped dead.\n\nBobby... you found it.",
+    "sherlock_holmes": "Sherlock, the man who knew you best, the guy who literally *created* you, threw you off a waterfall just to get rid of you. You're the only man in history whose own dad had to be bribed to take him back.",
+    "demis_hassabis": "Twenty years ago, Demis Hassabis made a video game called *Evil Genius*, where you build a secret lair, recruit an army of minions, and try to take over the world. Today he runs Google DeepMind.\n\nDemis, that's not a career change. That's a sequel.",
+    "steph_curry": "Steph Curry is famous for turning his back before the ball even goes in.\n\nHe plays defense the exact same way.",
+    "sam_altman": "Sam Altman has guns, gold, and gas masks stockpiled in case AI turns on humanity. Sam, when you're the one building it, that's not prepping. That's insider trading.",
+    "lisa_manoban": "Lisa's debut solo album had exactly two songs: \"LALISA\" and \"MONEY.\"\n\nBabe, that's not a tracklist. That's an invoice.",
+    "alex_honnold": "Alex Honnold got famous clinging to a cold, unfeeling rock for four hours with zero support. His wife's been doing that for ten years, and nobody's giving *her* an Oscar.",
+    "jon_stewart": "\"Jon Stewart spent twenty years yelling at Fox News, and now he's old, gray, and still yelling at the TV. Jon, you didn't beat them. You aged into their demographic.\"",
+    "dario_amodei": "Dario Amodei quit OpenAI because he was terrified they were building something dangerous. So he did the responsible thing: raised billions of dollars and built the exact same thing, but with a nicer font.",
+    "pam_anderson": "Everyone was shocked when Pamela Anderson got a Golden Globe nomination. Not me. That woman has said \"till death do us part\" six times with a straight face, and one guy bought it twice.",
+    "whitney_cummings": "Whitney Cummings built a sex robot of herself. That's the second \"Whitney\" she's put out that nobody wanted to turn on.",
+    "donald_trump": "**Donald Trump claimed his 11,000-square-foot penthouse was 30,000 square feet. Then he got booked in Georgia and listed himself at 215 pounds. First time in his life he's ever lowballed the size of a property.**\n\n*Delivery tip:* Pause after \"215 pounds\" and let the crowd laugh at the number before you land the last line.",
+    "james_franco": "For twenty years, James Franco was Seth Rogen's right-hand man. And just like in *127 Hours*, Seth finally realized the only way to survive was to cut him off.",
+    "jonah_hill": "Jonah Hill ate a goldfish in *The Wolf of Wall Street*, and honestly, that fish got off easy. At least he didn't text it a list of \"boundaries\" about who it's allowed to swim with.",
+    "rob_lowe": "When DirecTV cast Rob Lowe as \"Super Creepy Rob Lowe,\" they didn't even make him audition. They'd all seen the tape.",
+    "nikki_glaser": "Nikki Glaser named her radio show \"You Up?\", after the text no man has ever sent her twice.",
+    "blake_griffin": "In 2011, Blake Griffin won the Dunk Contest by jumping over a Kia. Today, they have the same trade-in value.",
+    "caitlyn_jenner": "For thirty years, Caitlyn Jenner has been overshadowed by people whose names start with K. Kris. Kim. Kourtney. Khloé. Kendall. Kylie. So in 2021 she finally stepped out on her own, ran for governor of California… and lost to three different guys named Kevin.\n\n*(It's true: Kevin Paffrath, Kevin Faulconer, and Kevin Kiley all beat her in the recall. Rattle off the K names fast, then pause before \"three different guys named Kevin.\")*",
+    "alec_baldwin": "Alec Baldwin has eight kids: one to scream at for every day of the week, and one for voicemail."
+  },
+  "usage": {
+    "hikaru_nakamura": {
+      "input": 48,
+      "output": 13382,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "rfk_jr": {
+      "input": 52,
+      "output": 8290,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "sherlock_holmes": {
+      "input": 47,
+      "output": 22993,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "demis_hassabis": {
+      "input": 46,
+      "output": 16768,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "steph_curry": {
+      "input": 45,
+      "output": 22866,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "sam_altman": {
+      "input": 44,
+      "output": 13531,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "lisa_manoban": {
+      "input": 46,
+      "output": 17827,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "alex_honnold": {
+      "input": 45,
+      "output": 11562,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "jon_stewart": {
+      "input": 45,
+      "output": 13720,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "dario_amodei": {
+      "input": 45,
+      "output": 12736,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "pam_anderson": {
+      "input": 46,
+      "output": 19133,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "whitney_cummings": {
+      "input": 46,
+      "output": 14109,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "donald_trump": {
+      "input": 44,
+      "output": 10570,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "james_franco": {
+      "input": 42,
+      "output": 12809,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "jonah_hill": {
+      "input": 45,
+      "output": 14122,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "rob_lowe": {
+      "input": 45,
+      "output": 26817,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "nikki_glaser": {
+      "input": 46,
+      "output": 16312,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "blake_griffin": {
+      "input": 45,
+      "output": 19035,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "caitlyn_jenner": {
+      "input": 48,
+      "output": 17976,
+      "cache_read": 0,
+      "cache_write": 0
+    },
+    "alec_baldwin": {
+      "input": 46,
+      "output": 7324,
+      "cache_read": 0,
+      "cache_write": 0
+    }
+  },
+  "cost_usd": {
+    "hikaru_nakamura": 0.267832,
+    "rfk_jr": 0.16600800000000002,
+    "sherlock_holmes": 0.460048,
+    "demis_hassabis": 0.33554400000000006,
+    "steph_curry": 0.4575,
+    "sam_altman": 0.270796,
+    "lisa_manoban": 0.356724,
+    "alex_honnold": 0.23142000000000001,
+    "jon_stewart": 0.27458,
+    "dario_amodei": 0.2549,
+    "pam_anderson": 0.382844,
+    "whitney_cummings": 0.282364,
+    "donald_trump": 0.211576,
+    "james_franco": 0.25634799999999996,
+    "jonah_hill": 0.28262,
+    "rob_lowe": 0.53652,
+    "nikki_glaser": 0.326424,
+    "blake_griffin": 0.38088,
+    "caitlyn_jenner": 0.359712,
+    "alec_baldwin": 0.146664
+  },
+  "totals": {
+    "input_tokens": 916,
+    "output_tokens": 311882,
+    "cost_usd": 6.241304
+  }
+}

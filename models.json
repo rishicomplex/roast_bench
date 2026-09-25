@@ -132,6 +132,19 @@
       }
     },
     {
+      "id": "claude-opus-5-5",
+      "provider": "anthropic",
+      "display_name": "Claude Opus 5.5",
+      "params": {
+        "effort": "max",
+        "max_tokens": 64000
+      },
+      "prices_per_mtok": {
+        "input": 4.0,
+        "output": 20.0
+      }
+    },
+    {
       "id": "human",
       "provider": "human",
       "display_name": "Human comedians",
